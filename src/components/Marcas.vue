@@ -5,12 +5,14 @@
         <h2 class="section-title">Marcas</h2>
       </div>
       <div class="marcas-grid">
+        <router-link to="/skin1004">
         <div class="marcas-card">
           <div class="marcas-icon">
-            <img src="@/assets/skin1004.webp" alt="Skin1004 logo" />
+            <img class="skin1004" src="@/assets/skin10042.webp" alt="Skin1004 logo" />
           </div>
           <h3>Skin1004</h3>
         </div>
+        </router-link>
         <div class="marcas-card">
           <div class="marcas-icon">
             <img  class="mixsoon" src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
@@ -19,7 +21,7 @@
         </div>
         <div class="marcas-card">
           <div class="marcas-icon">
-            <img src="@/assets/skin1004.webp" alt="Skin1004 logo" />
+            <img class="corsx" src="@/assets/corsx.webp" alt="Corxs logo" />
           </div>
           <h3>Corxs</h3>
         </div>
@@ -34,6 +36,10 @@
         <div class="marcas-card">
           <div class="marcas-icon">☀️</div>
           <h3>Dr. Althea</h3>
+        </div>
+        <div class="marcas-card">
+          <div class="marcas-icon">☀️</div>
+          <h3>Celimax</h3>
         </div>
       </div>
     </div>
@@ -111,15 +117,25 @@ export default {};
   border-radius: 8px;
 }
 
+.marcas-icon .skin1004 {
+  max-width: 230%;
+  max-height: 2000%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.marcas-icon .corsx {
+  max-width: 190%;
+  max-height: 2000%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
 .marcas-card h3 {
-  color: #4a5759;
+  color: #000000;
   font-size: 1.1rem;
   margin-bottom: 0;
   font-weight: 600;
 }
 
-.marcas-card p {
-  color: #666;
-  font-size: 0.9rem;
-}
 </style>

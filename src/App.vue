@@ -1,13 +1,22 @@
 <template>
   <div id="app">
-      <Menu />
+    <MenuSuperior class="menu-superior"/>
+    
     <router-view />
+    <CartSystem />
   </div>
 </template>
 
 <script>
+import CartSystem from '@/components/CartSystem.vue'
+import MenuSuperior from '@/components/MenuSuperior.vue'
+
 export default {
   name: "App",
+  components: {
+    CartSystem,
+    MenuSuperior
+  }
 };
 </script>
 <style>
@@ -17,12 +26,12 @@ export default {
   border-radius: 50%;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 0px;
+.menu-superior {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  margin-bottom: 10px;
 }
 </style>
