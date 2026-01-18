@@ -13,12 +13,14 @@
           <h3>Skin1004</h3>
         </div>
         </router-link>
+         <router-link to="/mixsoon">
         <div class="marcas-card">
           <div class="marcas-icon">
             <img  class="mixsoon" src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
           </div>
           <h3>Mixsoon</h3>
         </div>
+        </router-link>
         <div class="marcas-card">
           <div class="marcas-icon">
             <img class="corsx" src="@/assets/corsx.webp" alt="Corxs logo" />

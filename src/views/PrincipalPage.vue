@@ -1,5 +1,6 @@
 <template>
 <div class="container">
+  <Noticias/>
   <Marcas/>
   <Categoria/>
   <ProductosDes/>
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import Noticias from "@/components/Noticias.vue";
 import Marcas from "@/components/Marcas.vue";
 import Categoria from "@/components/Categoria.vue";
 import ProductosDes from "@/components/ProductosDes.vue";
@@ -19,6 +21,7 @@ import Footer from "@/components/Footer.vue";
 export default {
   name: "PrincipalPage",
   components: {
+    Noticias,
     Marcas,
     Categoria,
     ProductosDes,

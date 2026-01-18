@@ -300,7 +300,7 @@ export default {
         imageSize: "large"
       },
       {
-        id: "skin1004-ampoule-tonico-30ml",
+        id: "skin1004-ampoule-tonico-210ml",
         name: "Tonico Madagascar Centella",
         tamanio: "210ml",
         price: "$28.50",
@@ -313,6 +313,24 @@ export default {
         featured: true,
         imageSize: "large"
       },
+{
+        id: "skin1004-ampoule-tonico-tono-iluminador-210ml",
+        name: "Tónico Madagascar Centella Tono Iluminador",
+        tamanio: "210ml",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-tono-iluminador.jpg",
+        description: "Tónico Tono Iluminador para pieles con hiperpigmentación, decoloración e inflamación.",
+        benefits: ["Doble acción que ayuda a reponer la hidratación y mejorar el tono de la piel.",
+        "MadeWhite™ , mantiene una piel radiante.", 
+        "Elimina suavemente las células muertas.",
+      "Deja la piel tersa, revitalizada y con un aspecto juvenil."],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+
+
+      //Mascarillas
       {
         id: "skin1004-tone-brightening",
         name: "Madagascar Centella Tone Brightening Capsule Ampoule",
