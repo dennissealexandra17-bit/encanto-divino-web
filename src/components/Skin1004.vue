@@ -103,15 +103,114 @@
           </div>
         </div>
 
-        <!-- Hidratantes -->
+        <!-- Cremas Hidratantes -->
         <div class="category-section">
           <h2 class="category-title">
             <span class="category-icon">💧</span>
-            Hidratantes y Protección
+            Cremas Hidratantes
           </h2>
           <div class="products-grid">
             <div 
               v-for="product in moisturizerProducts" 
+              :key="product.id"
+              class="product-card"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">💧</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in product.benefits" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Protectores Solares-->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">💧</span>
+            Protectores Solares
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in sunscreenProducts" 
+              :key="product.id"
+              class="product-card"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">💧</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in product.benefits" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+ <!-- Ampollas - Serums -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">💧</span>
+            Ampollas - Serums
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in serumProducts" 
+              :key="product.id"
+              class="product-card"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">💧</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in product.benefits" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- mascarillas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">💧</span>
+            Mascarillas
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in mascarillaProducts" 
               :key="product.id"
               class="product-card"
             >
@@ -313,7 +412,7 @@ export default {
         featured: true,
         imageSize: "large"
       },
-{
+      {
         id: "skin1004-ampoule-tonico-tono-iluminador-210ml",
         name: "Tónico Madagascar Centella Tono Iluminador",
         tamanio: "210ml",
@@ -328,89 +427,392 @@ export default {
         featured: true,
         imageSize: "large"
       },
-
-
-      //Mascarillas
       {
-        id: "skin1004-tone-brightening",
-        name: "Madagascar Centella Tone Brightening Capsule Ampoule",
-        tamanio: "100ml",
-        price: "$35.90",
-        src: "/images/skin1004/tone-brightening.webp",
-        description: "Ampolla iluminadora con niacinamida y centella para unificar el tono.",
-        benefits: ["Ilumina la piel", "Reduce manchas", "Niacinamida"],
-        category: "treatment",
+        id: "skin1004-ampoule-tonico-poremizing-210ml",
+        name: "Tónico Madagascar Centella Tono Poremizing",
+        tamanio: "210ml",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-poremizing.jpg",
+        description: "Tónico Poremizing para piel grasa con poros dilatados.",
+        benefits: ["Diseñado para piel grasa que minimiza la apariencia de poros dilatados causados por el exceso de sebo.", 
+        "Elimina suavemente las células muertas y los residuos de los poros, revitalizando la piel.",
+      "Deja la piel fresca, suave e iluminada."],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+      {
+        id: "skin1004-ampoule-tonico-teatrica-210ml",
+        name: "Tónico Madagascar Centella Tea-Trica",
+        tamanio: "210ml",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-teatrica.jpg",
+        description: "Tónico Tono Tea-Trica para piel grasa con poros dilatados.",
+        benefits: ["Probado dermatológicamente, no comedogénico", 
+        "Adecuado para pieles sensibles y propensas al acné",
+      "Ayuda a reducir el exceso de secreción de sebo, eliminar las células muertas de la piel y los residuos de los poros."],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+      {
+        id: "skin1004-ampoule-tonico-teatrica-210ml",
+        name: "Tónico Priobio-Cica",
+        tamanio: "210ml",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-priobio-cica.jpg",
+        description: "Tónico Priobio-Cica para piel seca y sensible.",
+        benefits: ["Contiene ProBio-Cica vegano que cuida la barrera cutánea débil y sensible", 
+        "Previene la evaporación de la humedad y cuida la piel seca y sensible",
+      "Mejora la suavidad de la frente, mentón, nariz y mejillas, contorno de las cejas, los ojos y la boca"],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+       {
+        id: "skin1004-ampoule-tonico-hyalu-cica-210ml",
+        name: "Tónico Hyalu-Cica",
+        tamanio: "210ml",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-hyalu-cica.jpg",
+        description: "Tónico Hyalu-Cica para piel seca y sensible.",
+        benefits: ["Un tónico multiusos que calma, hidrata y rejuvenece la piel", 
+        "Elimina suavemente las células muertas de la piel y las impurezas",
+      "Alivia las molestias cutáneas y calma las irritaciones."],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+      {
+        id: "skin1004-ampoule-discos-algodon-hialuronico-70discos",
+        name: "Discos de Algodón con Ácido Hialurónico",
+        tamanio: "70 Discos",
+        price: "$26.50",
+        src: "/images/skin1004/tonico-discos.webp",
+        description: "70 Discos de algodón con ácido hialurónico para piel seca y sensible.",
+        benefits: ["Ofrece una hidratación profunda a la vez que eliminan suavemente las células muertas de la piel y las impurezas.", 
+        "Contienen un 49% de extracto de centella asiática de Madagascar para un efecto calmante.",
+      "Ayuda a potenciar y retener la hidratación de la piel durante más tiempo."],
+        category: "tonicos",
+        featured: true,
+        imageSize: "large"
+      },
+      // HIDRATANTES
+       {
+        id: "skin1004-crema-hidratante-30ml",
+        name: "Madagascar Centella Crema Hidratante",
+        tamanio: "30ml",
+        price: "$12.30",
+        src: "/images/skin1004/crema-hidratante-30ml.png",
+        description: "Para pieles sensibles, mixtas con tendencia a seca.",
+        benefits: ["Calma la piel con humedad al crear una barrera protectora.", 
+        "La técnica de mezcla de aceite en agua proporciona un acabado refrescante e hidratante mientras mantiene una textura suave de aceite.", 
+        "Es adecuado para todo tipo de piel, incluidas las pieles sensibles."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+      {
+        id: "skin1004-crema-hidratante-75ml",
+        name: "Madagascar Centella Crema Hidratante",
+        tamanio: "75ml",
+        price: "$24.50",
+        src: "/images/skin1004/crema-hidratante-75ml.avif",
+        description: "Para pieles sensibles, mixtas con tendencia a seca.",
+        benefits: ["Calma la piel con humedad al crear una barrera protectora.", 
+        "La técnica de mezcla de aceite en agua proporciona un acabado refrescante e hidratante mientras mantiene una textura suave de aceite.", 
+        "Es adecuado para todo tipo de piel, incluidas las pieles sensibles."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+      {
+        id: "skin1004-crema-hidratante-tono-iluminador-75ml",
+        name: "Crema Hidratante Tono Iluminador",
+        tamanio: "75ml",
+        price: "$25.50",
+        src: "/images/skin1004/crema-hidratante-tono-iluminador-75ml.png",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Ayuda a mejorar el tono desigual de la piel a la vez repone la hidratación.", 
+        "Combate las imperfecciones de la piel con MadeWhite™ que aclara y calma la piel.", 
+        "Su textura de gel de aceite en agua proporciona una hidratación ligera y duradera."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+          {
+        id: "skin1004-crema-hidratante-poremizing-75ml",
+        name: "Crema Hidratante Poremizing",
+        tamanio: "75ml",
+        price: "$24.50",
+        src: "/images/skin1004/crema-hidratante-poremizing-75ml.webp",
+        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
+        benefits: ["Ayuda a reducir la apariencia de los poros dilatados mientras repone la piel", 
+        "Junto con la niacinamida, tu piel queda iluminada y revitalizada"],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+          {
+        id: "skin1004-crema-hidratante-teatrica-75ml",
+        name: "Crema Hidratante Tea-Trica",
+        tamanio: "75ml",
+        price: "$22",
+        src: "/images/skin1004/crema-hidratante-teatrica-75ml.jpg",
+        description: "Tipo de piel: Grasa propensa al acné.",
+        benefits: ["Contiene propiedades hidratantes, protectoras y calmantes.", 
+        "Promueve la renovación de la piel y fortalece la barrera cutánea.","El 50% del producto esta elaborado a partir de una formulación de Tea-Trica."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },   
+       {
+        id: "skin1004-crema-spot-teatrica-20ml",
+        name: "Spot Crema Tea-Trica",
+        tamanio: "20ml",
+        price: "$22",
+        src: "/images/skin1004/crema-spot-teatrica-20ml.webp",
+        description: "Tipo de piel: Grasa propensa al acné.",
+        benefits: ["La calamina ayuda a absorber el exceso de sebo para mantener la piel suave", 
+        "La textura de loción en gel es fácil de absorber y deja un acabado refrescante.",
+        "Aplicar una capa gruesa sobre la zona afectada de 1 a 3 veces al día"],
+        category: "moisturizer",
+        imageSize: "medium"
+      },   
+      {
+        id: "skin1004-crema-ojos-probiocica-20ml",
+        name: "Crema de Ojos Probio cica",
+        tamanio: "20ml",
+        price: "$16.40",
+        src: "/images/skin1004/crema-ojos-probiocica-20ml.webp",
+        description: "Tipo de piel: Piel seca y con linea de expresión. Anti-edad.",
+        benefits: ["Probado por dermatólogos", 
+        "Contiene bakuchiol para restaurar la firmeza de la piel.",
+      "Propiedades anti-edad que ayudan a reducir la apariencia de líneas finas y arrugas alrededor de los ojos."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-crema-hidratante-probiocica-50ml",
+        name: "Crema Hidratante Probio cica",
+        tamanio: "50ml",
+        price: "$26.10",
+        src: "/images/skin1004/crema-hidratante-probiocica-50ml.webp",
+        description: "Tipo de piel: Piel seca y con linea de expresión. Anti-edad.",
+        benefits: ["Se estira como un hilo, lo que permite masajear y acariciar la piel sin irritación, y equilibra la grasa y la humedad", 
+        "repara la barrera cutánea débil y sensible con ProBio-Cica vegano, cuidando la piel seca y sensible",],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-crema-hidratante-probiocica-15ml",
+        name: "Crema Hidratante Probio cica",
+        tamanio: "15ml",
+        price: "$12.30",
+        src: "/images/skin1004/crema-hidratante-probiocica-15ml.webp",
+        description: "Tipo de piel: Piel seca y con linea de expresión. Anti-edad.",
+        benefits: ["Se estira como un hilo, lo que permite masajear y acariciar la piel sin irritación, y equilibra la grasa y la humedad", 
+        "repara la barrera cutánea débil y sensible con ProBio-Cica vegano, cuidando la piel seca y sensible",],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-crema-hidratante-hyalucica-75ml",
+        name: "Crema Hidratante Hyalu cica",
+        tamanio: "75ml",
+        price: "$24.75",
+        src: "/images/skin1004/crema-hidratante-hyalucica-75ml.png",
+        description: "Tipo de piel: Piel seca,irritada y sensible.",
+        benefits: ["Un humectante que empapa la piel proporciona una hidratación profunda y duradera", 
+        "Calma la piel irritada y fortalece la barrera protectora de la piel",
+      "Mejora la elasticidad de la piel y combate los signos del envejecimiento prematuro."],
+        category: "moisturizer",
+        imageSize: "medium"
+      },
+      //protectores solares
+      {
+        id: "skin1004-bloqueador-solar-centella-madagascar-50ml",
+        name: "Bloqueador Solar Centella Madagascar",
+        tamanio: "50ml",
+        price: "$21.00",
+        src: "/images/skin1004/bloqueador-solar-centella-madagascar-50ml.jpg",
+        description: "Tipo de piel: sensible, irritada y propensa al enrojecimiento.",
+        benefits: ["Un protector solar físico con SPF 30+ protege la piel de los rayos UV.","Disminuye la posible irritación de la piel", "Contiene extracto de centella asiática de Madagascar para un efecto calmante suave pero potente."],
+        category: "sunscreen",
+        imageSize: "medium"
+      },
+      {
+        id: "skin1004-bloqueador-solar-air-fit-plus-50ml",
+        name: "Bloqueador Solar Air Fit Plus Centella Madagascar",
+        tamanio: "50ml",
+        price: "$21.00",
+        src: "/images/skin1004/bloqueador-solar-air-fit-plus-centella-madagascar-50ml.jpg",
+        description: "Tipo de piel: sensible, irritada y propensa al enrojecimiento.",
+        benefits: ["Un protector solar físico con un potente SPF de amplio espectro protege la piel de los rayos UV.","Contiene extracto de Centella Asiática para un excelente efecto calmante",
+         "Enriquecido con niacinamida, ayuda a mejorar el tono general de la piel."],
+        category: "sunscreen",
+        imageSize: "medium"
+      },
+      {
+        id: "skin1004-bloqueador-solar-tono-iluminador-50ml",
+        name: "Bloqueador Solar Tono Iluminador",
+        tamanio: "50ml",
+        price: "$23.50",
+        src: "/images/skin1004/bloqueador-solar-tono-iluminador-50ml.jpg",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Calmante, corrector de manchas y opacidad de la piel",
+         "Protector solar híbrido (combinación de filtros minerales y químicos) con alta protección UV FPS 50+ y PA++++."],
+        category: "sunscreen",
         imageSize: "medium"
       },
       
       {
-        id: "skin1004-probio-cica",
-        name: "Madagascar Centella Probio-Cica Intensive Ampoule",
-        tamanio: "95ml",
-        price: "$38.90",
-        src: "/images/skin1004/probio-cica.webp",
-        description: "Ampolla intensiva con probióticos y centella para piel sensible.",
-        benefits: ["Probióticos", "Fortalece barrera", "Anti-inflamatorio"],
-        category: "treatment",
-        imageSize: "small"
-      },
-      {
-        id: "skin1004-hyalu-cica",
-        name: "Madagascar Centella Hyalu-Cica Blue Toning Toner",
-        tamanio: "210ml",
-        price: "$26.90",
-        src: "/images/skin1004/hyalu-cica-toner.webp",
-        description: "Tónico azul con ácido hialurónico y centella para hidratación.",
-        benefits: ["Ácido hialurónico", "Calma rojeces", "Hidratación intensa"],
-        category: "treatment",
-        imageSize: "extra-large"
-      },
-
-      // HIDRATANTES Y PROTECCIÓN
-      {
-        id: "skin1004-sun-serum",
-        name: "Madagascar Centella Hyalu-Cica Water-Fit Sun Serum",
+        id: "skin1004-bloqueador-solar-liquido-hyalucica-50ml",
+        name: "Bloqueador Solar Líquido Hyalu cica",
         tamanio: "50ml",
-        price: "$26.90",
-        src: "/images/skin1004/sun-serum.webp",
-        description: "Protector solar con ácido hialurónico y centella. SPF 50+ PA++++",
-        benefits: ["SPF 50+ PA++++", "Hidratante", "No deja residuo"],
-        category: "moisturizer",
+        price: "$21.00",
+        src: "/images/skin1004/bloqueador-solar-liquido-hyalucica-50ml.jpg",
+        description: "Tipo de piel: Seca, irritada y sensible.",
+        benefits: ["Ayuda con el enrojecimiento de la piel.",
+         "Combate los problemas con el acné e hipersensibilidad al sol.",
+          "Hidrata profundamente la piel mientras la protege de los rayos UV con SPF50+ PA++++.",
+        "Combate los poros dilatados y mejora la textura de la piel."],
+        category: "sunscreen",
         imageSize: "medium"
       },
       {
-        id: "skin1004-soothing-cream",
-        name: "Madagascar Centella Soothing Cream",
-        tamanio: "75ml",
-        price: "$25.90",
-        src: "/images/skin1004/soothing-cream.webp",
-        description: "Crema calmante e hidratante para finalizar tu rutina de skincare.",
-        benefits: ["Textura ligera", "Calma rojeces", "Hidratación 24h"],
-        category: "moisturizer",
-        imageSize: "large"
-      },
-      {
-        id: "skin1004-air-fit-serum",
-        name: "Madagascar Centella Air-Fit Suncream",
-        tamanio: "50ml",
-        price: "$24.90",
-        src: "/images/skin1004/air-fit-suncream.webp",
-        description: "Protector solar ligero con textura aérea y centella.",
-        benefits: ["Textura ligera", "SPF 50+", "No pegajoso"],
-        category: "moisturizer",
-        imageSize: "small"
-      },
-      {
-        id: "skin1004-hyalu-cica-gel",
-        name: "Madagascar Centella Hyalu-Cica Silky-Fit Sun Stick",
+        id: "skin1004-bloqueador-solar-barra-hyalucica-20g",
+        name: "Bloqueador Solar Barra Hyalu cica",
         tamanio: "20g",
-        price: "$18.90",
-        src: "/images/skin1004/sun-stick.webp",
-        description: "Protector solar en stick para reaplicaciones fáciles.",
-        benefits: ["Formato stick", "Fácil reaplicación", "SPF 50+"],
-        category: "moisturizer",
-        imageSize: "extra-large"
-      }
+        price: "$17.80",
+        src: "/images/skin1004/bloqueador-solar-barra-hyalucica-20g.jpg",
+        description: "Tipo de piel: Seca, irritada y sensible.",
+        benefits: ["Ayuda con el enrojecimiento de la piel.",
+         "Combate los problemas con el acné e hipersensibilidad al sol.",
+          "Hidrata profundamente la piel mientras la protege de los rayos UV con SPF50+ PA++++.",
+        "Combate los poros dilatados y mejora la textura de la piel."],
+        category: "sunscreen",
+        imageSize: "medium"
+      },
+      //Ampollas  - Serums
+      {
+        id: "skin1004-serum-tono-iluminador-30ml",
+        name: "Serum Tono Iluminador",
+        tamanio: "30ml",
+        price: "$13.10",
+        src: "/images/skin1004/serum-tono-iluminador-30ml.jpg",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Elimina celulas muertas de la piel",
+         "Contiene MadeWhite™ con beneficios calmantes y aclarantes de piel.",
+          "Doble función, hidratación profunda y mejora el tono de piel."],
+        category: "serum",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-serum-tono-iluminador-50ml",
+        name: "Serum Tono Iluminador",
+        tamanio: "50ml",
+        price: "$21.00",
+        src: "/images/skin1004/serum-tono-iluminador-50ml.jpg",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Elimina celulas muertas de la piel",
+         "Contiene MadeWhite™ con beneficios calmantes y aclarantes de piel.",
+          "Doble función, hidratación profunda y mejora el tono de piel."],
+        category: "serum",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-serum-tono-iluminador-100ml",
+        name: "Serum Tono Iluminador",
+        tamanio: "100ml",
+        price: "$30.00",
+        src: "/images/skin1004/serum-tono-iluminador-100ml.jpg",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Elimina celulas muertas de la piel",
+         "Contiene MadeWhite™ con beneficios calmantes y aclarantes de piel.",
+          "Doble función, hidratación profunda y mejora el tono de piel."],
+        category: "serum",
+        imageSize: "medium"
+      },
+       	{
+        id: "skin1004-ampolla-serum-poremizing-30ml",
+        name: "Ampolla - Serúm Poremizing",
+        tamanio: "30ml",
+        price: "$12.95",
+        src: "/images/skin1004/ampolla-serum-poremizing-30ml.jpg",
+        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
+        benefits: ["Fortalece la barrera de la piel.",
+         "Diseñada para pieles grasas para minimizar la apariencia de los poros.",
+        "Elimina células muertas de la piel y desechos de los poros."],
+        category: "serum",
+        imageSize: "medium"
+      },
+      
+       	{
+        id: "skin1004-ampolla-serum-poremizing-30ml",
+        name: "Ampolla - Serúm Poremizing",
+        tamanio: "55ml",
+        price: "$21.50",
+        src: "/images/skin1004/ampolla-serum-poremizing-55ml.jpg",
+        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
+        benefits: ["Fortalece la barrera de la piel.",
+         "Diseñada para pieles grasas para minimizar la apariencia de los poros.",
+        "Elimina células muertas de la piel y desechos de los poros."],
+        category: "serum",
+        imageSize: "medium"
+      },
+       	{
+        id: "skin1004-ampolla-serum-poremizing-100ml",
+        name: "Ampolla - Serúm Poremizing",
+        tamanio: "100ml",
+        price: "$27.40",
+        src: "/images/skin1004/ampolla-serum-poremizing-100ml.jpg",
+        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
+        benefits: ["Fortalece la barrera de la piel.",
+         "Diseñada para pieles grasas para minimizar la apariencia de los poros.",
+        "Elimina células muertas de la piel y desechos de los poros."],
+        category: "serum",
+        imageSize: "medium"
+      },
+ 	{
+        id: "skin1004-ampolla-serum-teatrica-30ml",
+        name: "Ampolla - Serúm Tea-Trica",
+        tamanio: "30ml",
+        price: "$12.30",
+        src: "/images/skin1004/ampolla-serum-teatrica-30ml.jpg",
+        description: "Tipo de piel: Grasa propensa al acné.",
+        benefits: ["Efectivo para el cuidado de poros y textura de la piel.",
+        "Regula la producción de sebo.",
+         "Apto para la piel propensa a ser grasa y al acné.",
+        "Efectos calmantes para la irritación de la piel."],
+        category: "serum",
+        imageSize: "medium"
+      },
+
+ 	{
+        id: "skin1004-ampolla-serum-teatrica-100ml",
+        name: "Ampolla - Serúm Tea-Trica",
+        tamanio: "100ml",
+        price: "$30.10",
+        src: "/images/skin1004/ampolla-serum-teatrica-100ml.jpg",
+        description: "Tipo de piel: Grasa propensa al acné.",
+        benefits: ["Efectivo para el cuidado de poros y textura de la piel.",
+        "Regula la producción de sebo.",
+         "Apto para la piel propensa a ser grasa y al acné.",
+        "Efectos calmantes para la irritación de la piel."],
+        category: "serum",
+        imageSize: "medium"
+      },
+
+      //Mascarillas
+    {
+        id: "skin1004-mascarilla-poremizing-27gr",
+        name: "Mascarilla de Arcilla Poremizing",
+        tamanio: "27g",
+        price: "$27.30",
+        src: "/images/skin1004/mascarilla-poremizing-27gr.jpg",
+        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
+        benefits: ["No contiene fragancias ni colorantes, es apta para todo tipo de piel.",
+"Contiene poderosas propiedades limpiadoras de poros y absorbentes de sebo.","Fácil de aplicar sin mancharse las manos."],
+        category: "mascarilla",
+        imageSize: "medium"
+      },
+     
     ];
 
     // Computed properties para organizar productos por categoría
@@ -428,6 +830,15 @@ export default {
 
     const moisturizerProducts = computed(() => 
       products.filter(product => product.category === 'moisturizer')
+    );
+    const serumProducts = computed(() => 
+      products.filter(product => product.category === 'serum')
+    );
+    const sunscreenProducts = computed(() => 
+      products.filter(product => product.category === 'sunscreen')
+    );
+    const mascarillaProducts = computed(() => 
+      products.filter(product => product.category === 'mascarilla')
     );
 
     const addToCart = (product) => {
@@ -459,6 +870,9 @@ export default {
       tonicosProducts,
       treatmentProducts,
       moisturizerProducts,
+      serumProducts,
+      sunscreenProducts,
+      mascarillaProducts,
       addToCart
     };
   },

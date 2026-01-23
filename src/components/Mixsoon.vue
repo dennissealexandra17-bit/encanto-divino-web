@@ -10,13 +10,11 @@
           <div class="brand-info">
             <h1>MIXSOON</h1>
             <p class="brand-description">
-              MIXSOON es una popular marca coreana de skincare famosa
-               por su uso de la Centella Asiática de Madagascar como 
-               ingrediente estrella, ofreciendo productos calmantes 
-               y reparadores, especialmente para pieles sensibles o 
-               irritadas, con fórmulas minimalistas, veganas, hipoalergénicas 
-               y cruelty-free, enfocándose en la pureza y la efectividad para 
-               lograr una "piel de ángel"
+                Mixsoon es una marca coreana de skincare premium especializada en fórmulas minimalistas 
+                y efectivas. Destaca por su uso de la Centella Asiática de Madagascar y el frijol como ingredientes principales, 
+                ofreciendo productos calmantes y reparadores ideales para pieles sensibles e irritadas. 
+                Todos sus productos son veganos, hipoalergénicos y cruelty-free, comprometidos con la pureza de ingredientes y 
+                resultados visibles. Perfecta para lograr una piel radiante, sana y equilibrada.
             </p>
             <div class="brand-features">
               <span class="feature">🌿 Ingredientes Naturales</span>

@@ -5,44 +5,41 @@
         <h2 class="section-title">Marcas</h2>
       </div>
       <div class="marcas-grid">
-        <router-link to="/skin1004">
-        <div class="marcas-card">
+        <router-link to="/skin1004" class="marcas-card">
           <div class="marcas-icon">
-            <img class="skin1004" src="@/assets/skin10042.webp" alt="Skin1004 logo" />
+            <img src="@/assets/skin10042.webp" alt="Skin1004 logo" />
           </div>
           <h3>Skin1004</h3>
-        </div>
         </router-link>
-         <router-link to="/mixsoon">
-        <div class="marcas-card">
+
+        <router-link to="/mixsoon" class="marcas-card">
           <div class="marcas-icon">
-            <img  class="mixsoon" src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
+            <img src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
           </div>
           <h3>Mixsoon</h3>
-        </div>
         </router-link>
-        <div class="marcas-card">
+        <router-link to="/corsx" class="marcas-card">
           <div class="marcas-icon">
             <img class="corsx" src="@/assets/corsx.webp" alt="Corxs logo" />
           </div>
           <h3>Corxs</h3>
-        </div>
-        <div class="marcas-card">
+        </router-link>
+        <router-link to="/anua" class="marcas-card">
           <div class="marcas-icon">🌸</div>
           <h3>Anua</h3>
-        </div>
-        <div class="marcas-card">
+        </router-link>
+        <router-link to="/beauty-of-joseon" class="marcas-card">
           <div class="marcas-icon">🍃</div>
           <h3>Beauty of Joseon</h3>
-        </div>
-        <div class="marcas-card">
+        </router-link>
+        <router-link to="/dr-althea"     class="marcas-card">
           <div class="marcas-icon">☀️</div>
           <h3>Dr. Althea</h3>
-        </div>
-        <div class="marcas-card">
+        </router-link>
+        <router-link to="/celimax" class="marcas-card">
           <div class="marcas-icon">☀️</div>
           <h3>Celimax</h3>
-        </div>
+        </router-link>
       </div>
     </div>
   </section>
@@ -54,15 +51,21 @@ export default {};
 
 <style scoped>
 .section-title {
-  text-align: center;
-  font-size: 35px;
-  color: #8338ec;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  background: #ffe5eca6;
-  padding: 1px 10px;
-  width: fit-content;
-  border-radius: 5px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #5a189a;
+  margin-bottom: 2rem;
+  background: none;
+  padding: 0;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ffafcc;
+  margin: 8px auto 0;
+  border-radius: 10px;
 }
 
 .titulo {
@@ -72,28 +75,30 @@ export default {};
 
 .marcas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
 }
 
 .marcas-card {
-  background: linear-gradient(135deg, #ffafcc, #ffc8dd);
-  padding: 1.5rem;
+  background: #ffffff;
+  padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid transparent;
-  aspect-ratio: 1 / 1.25;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 1 / 1.2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .marcas-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 175, 204, 0.4);
-  border-color: #83c5be;
+
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.575);
 }
 
 .marcas-icon {
@@ -103,6 +108,9 @@ export default {};
   justify-content: center;
   align-items: center;
   height: 60px;
+   width: 140px;
+  height: 100px;
+  margin-bottom: 1rem;
 }
 
 .marcas-icon img {
@@ -112,32 +120,24 @@ export default {};
   border-radius: 8px;
 }
 
-.marcas-icon .mixsoon {
-  max-width: 200%;
-  max-height: 2000%;
-  object-fit: contain;
-  border-radius: 8px;
+.marcas-icon {
+  width: 120px;
+  height: 80px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.marcas-icon .skin1004 {
-  max-width: 230%;
-  max-height: 2000%;
+.marcas-icon img {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 8px;
 }
-
-.marcas-icon .corsx {
-  max-width: 190%;
-  max-height: 2000%;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
 .marcas-card h3 {
-  color: #000000;
-  font-size: 1.1rem;
-  margin-bottom: 0;
-  font-weight: 600;
+  color: #333;
+    margin-top: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
-
 </style>

@@ -68,32 +68,35 @@ export default {
 }
 
 .letras {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 20px;
-  border-radius:5px;
-  /* font-family: 'Courier New', Courier, monospace; */
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: #5a189a;
 }
-
 
 .navbar {
-  padding: 5px 0;
+  padding: 10px 0;
 }
-
 .nav-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  gap: 2rem;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 5rem;
+  gap: 2rem;
 }
+
+.router-link-active::after {
+  width: 100%;
+}
+
 
 .nav-menu a {
   text-decoration: none;
@@ -102,13 +105,20 @@ export default {
 }
 
 .nav-menu a:hover {
-  background: #edafb8;
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .logo img {
-  height: 80px;
+  height: 56px;
   width: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
+.logo:hover img {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
+}
+
+
 /* Hero Section */
 .hero {
   background: linear-gradient(135deg, #ffafcc 0%, #ffc8dd 50%, #bde0fe 100%);
