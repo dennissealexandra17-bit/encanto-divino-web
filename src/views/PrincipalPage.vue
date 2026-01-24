@@ -58,5 +58,12 @@ export default {
   line-height: 1.6;
 }
 
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  background: linear-gradient(180deg, #fbd9e9 0%, #ffdfec 60%, #fcf2f6 100%);
+  border-radius: 10px;
+}
 
 </style>

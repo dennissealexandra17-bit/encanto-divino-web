@@ -4,7 +4,9 @@
     <!-- Categorías Destacadas -->
     <section class="categories" id="productos">
       <div class="container">
-        <h2 class="section-title">Categorías Populares</h2>
+        <div class="titulo">
+          <h2 class="section-title">Categorías Populares</h2>
+        </div>
         <div class="categories-grid">
           <div class="category-card">
             <div class="category-icon">🧴</div>
@@ -50,44 +52,79 @@ export default {
 <style scoped>
 /* Categories */
 .categories {
-  padding: 5rem 0;
-  background: #fff;
+  padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5a189a;
+  margin-bottom: 2rem;
+  background: none;
+  padding: 0;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ffafcc;
+  margin: 8px auto 0;
+  border-radius: 10px;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
 }
 
 .category-card {
-  background: linear-gradient(135deg, #ffafcc, #ffc8dd);
-  padding: 2rem;
+  background: #ffffff;
+  padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 1 / 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255, 175, 204, 0.4);
-  border-color: #83c5be;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.575);
 }
 
 .category-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
 
 .category-card h3 {
-  color: #4a5759;
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  color: #333;
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .category-card p {
   color: #666;
   font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 </style>

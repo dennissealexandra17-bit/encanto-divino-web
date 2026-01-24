@@ -1,25 +1,37 @@
 <template>
   <header class="header">
     <nav class="navbar">
-      <div class="nav-container">
-        
+      <div class="container nav-container">
+
         <!-- Menú izquierdo -->
         <ul class="nav-menu nav-left">
-          <li><router-link to="/" class="letras">Inicio</router-link></li>
-          <li><router-link to="/skin1004" class="letras">Productos</router-link></li>
+          <li>
+            <router-link to="/" class="letras">Inicio</router-link>
+          </li>
+          <li>
+            <router-link to="/skin1004" class="letras">Productos</router-link>
+          </li>
         </ul>
-        
-        <!-- Logo al centro -->
+
+        <!-- Logo centro -->
         <div class="logo">
           <router-link to="/">
             <img src="@/assets/image.png" alt="Encanto Divino K-Beauty" />
           </router-link>
         </div>
-        
+
         <!-- Menú derecho -->
         <ul class="nav-menu nav-right">
-          <li><a class="letras" href="#nosotros" @click="scrollToSection('nosotros')">Nosotros</a></li>
-          <li><a class="letras" href="#contacto" @click="scrollToSection('contacto')">Contacto</a></li>
+          <li>
+            <a class="letras" @click.prevent="scrollToSection('nosotros')">
+              Nosotros
+            </a>
+          </li>
+          <li>
+            <a class="letras" @click.prevent="scrollToSection('contacto')">
+              Contacto
+            </a>
+          </li>
         </ul>
 
       </div>
@@ -29,249 +41,142 @@
 
 <script>
 export default {
-  name: 'MenuSuperior',
+  name: "MenuSuperior",
   methods: {
-    scrollToSection(sectionId) {
-      // Si estamos en la página principal, hacer scroll
-      if (this.$route.path === '/') {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        // Si estamos en otra página, ir a inicio y luego hacer scroll
-        this.$router.push('/').then(() => {
+    scrollToSection(id) {
+      if (this.$route.path !== "/") {
+        this.$router.push("/").then(() => {
           setTimeout(() => {
-            const element = document.getElementById(sectionId);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
+            document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
           }, 100);
         });
+      } else {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
       }
     }
   }
-}
+};
 </script>
 
-
 <style scoped>
-/* Header */
+/* CONTENEDOR GENERAL */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* HEADER */
 .header {
-  background: linear-gradient(135deg, #ffc8dd 30%, #ffafcc 70%);
-  box-shadow: 0 4px 20px rgba(255, 175, 204, 0.25);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-radius: 0 0 15px 15px;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, #fe9dcc 0%, #f9c6db 60%, #fcf2f6 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.letras {
-  font-size: 16px;
-  font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: #5a189a;
-}
-
+/* NAVBAR */
 .navbar {
-  padding: 10px 0;
-}
-.nav-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4rem;
+  padding: 1.2rem 0;
 }
 
+/* GRID */
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+/* MENÚS */
 .nav-menu {
   display: flex;
+ gap: 12rem;
   list-style: none;
-  gap: 2rem;
+  margin: 0;
+  padding: 0;
 }
 
-.router-link-active::after {
-  width: 100%;
+.nav-left {
+  justify-content: flex-start;
 }
 
+.nav-right {
+  justify-content: flex-end;
+}
 
-.nav-menu a {
-  text-decoration: none;
+/* LINKS */
+.letras {
+  font-size: 15px;
   font-weight: 500;
-  transition: color 0.3s;
+   padding: 10px 26px;
+  max-width: 100px;
+  text-align: center;
+  border-radius: 999px;
+  color: #5a189a;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.nav-menu a:hover {
-  background: rgba(255, 255, 255, 0.35);
+.logo::before,
+.logo::after {
+  content: "";
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(to right, transparent, #d8b4fe, transparent);
+  display: block;
 }
+
+
+.letras:hover {
+  background: #f3e8ff;
+  color: #7b2cbf;
+}
+
+/* LINK ACTIVO */
+.letras.router-link-active {
+  background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(123, 44, 191, 0.3);
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 
 .logo img {
-  height: 56px;
-  width: auto;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  height: 65px;
+  padding: 6px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
-.logo:hover img {
+
+.logo img:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.15));
 }
 
-
-/* Hero Section */
-.hero {
-  background: linear-gradient(135deg, #ffafcc 0%, #ffc8dd 50%, #bde0fe 100%);
-  padding: 4rem 0;
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding: 0 2rem;
-}
-
-.hero-text h2 {
-  font-size: 3rem;
-  color: #4a5759;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.hero-text p {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-.cta-button {
-  background: linear-gradient(135deg, #83c5be, #cdb4db);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
-}
-
-.hero-placeholder {
-  background: linear-gradient(135deg, #ffc8dd, #bde0fe);
-  height: 300px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  color: #4a5759;
-  border: 3px dashed #83c5be;
-}
-
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 0 10px;
-  padding: 0 10px;
-}
-
-/* Section Titles */
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #4a5759;
-  margin-bottom: 3rem;
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.section-title::after {
-  content: "";
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(135deg, #83c5be, #cdb4db);
-  border-radius: 2px;
-}
-
-.section-title::before {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 1px;
-  background: rgba(131, 197, 190, 0.3);
-}
-
-/* Responsive Design */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 1rem;
-  }
-
-  .nav-menu {
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .letras {
-    font-size: 14px;
-    padding: 8px 15px;
+  .nav-left,
+  .nav-right {
+    justify-content: center;
   }
 
   .logo img {
-    height: 70px;
-  }
-
-  .hero-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .hero-text h2 {
-    font-size: 2.2rem;
-  }
-
-  .section-title {
-    font-size: 2.2rem;
+    height: 55px;
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .hero-text h2 {
-    font-size: 1.8rem;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .letras {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-}
 </style>

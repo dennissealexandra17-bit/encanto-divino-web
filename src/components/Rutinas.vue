@@ -1,30 +1,74 @@
 <template>
-      <!-- About Section -->
-    <section class="about" id="nosotros">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>¿Por qué K-Beauty?</h2>
-            <p>
+  <!-- About Section -->
+  <section class="about" id="nosotros">
+    <div class="container">
+      <div class="titulo">
+        <h2 class="section-title">¿Por qué K-Beauty?</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-card about-text">
+          <div class="card-content">
+            <p class="intro">
               La belleza coreana se caracteriza por su enfoque en el cuidado
               preventivo, ingredientes naturales innovadores y rutinas que
               priorizan la salud de la piel a largo plazo.
             </p>
-            <ul>
-              <li>✅ Productos auténticos importados</li>
-              <li>✅ Ingredientes naturales y efectivos</li>
-              <li>✅ Rutinas personalizadas</li>
-              <li>✅ Envío rápido y seguro</li>
-            </ul>
+            <div class="features">
+              <div class="feature-item">
+                <span class="feature-icon">✨</span>
+                <div>
+                  <h4>Productos Auténticos</h4>
+                  <p>Importados directamente de Corea</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🌿</span>
+                <div>
+                  <h4>Ingredientes Naturales</h4>
+                  <p>Fórmulas efectivas y seguras</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">💆‍♀️</span>
+                <div>
+                  <h4>Rutinas Personalizadas</h4>
+                  <p>Adaptadas a tu tipo de piel</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <span class="feature-icon">🚚</span>
+                <div>
+                  <h4>Envío Rápido</h4>
+                  <p>Entrega segura a todo el país</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="about-image">
+        </div>
+        <div class="about-card about-image">
+          <div class="image-content">
             <div class="about-placeholder">
               <span>🌸 Cuidado Natural 🌸</span>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <h3>100%</h3>
+                <p>Auténtico</p>
+              </div>
+              <div class="stat">
+                <h3>24/7</h3>
+                <p>Soporte</p>
+              </div>
+              <div class="stat">
+                <h3>500+</h3>
+                <p>Productos</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -36,49 +80,181 @@ export default {
 <style scoped>
 /* About */
 .about {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #bde0fe 0%, #fff 50%, #cdb4db 100%);
+  padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  background: #ffafcc;
+  max-width: 13000px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5a189a;
+  margin-bottom: 3rem;
+  background: none;
+  padding: 0;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ffafcc;
+  margin: 8px auto 0;
+  border-radius: 10px;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  gap: 2rem;
+  align-items: stretch;
 }
 
-.about-text h2 {
-  color: #4a5759;
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.about-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.about-text p {
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.3);
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.intro {
   color: #666;
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
   line-height: 1.8;
+  margin-bottom: 2rem;
+  text-align: justify;
 }
 
-.about-text ul {
-  list-style: none;
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #ffafcc15, #ffc8dd15);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.feature-item:hover {
+  background: linear-gradient(135deg, #ffafcc25, #ffc8dd25);
+  transform: translateX(5px);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.feature-item h4 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.feature-item p {
   color: #666;
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
-.about-text li {
-  margin-bottom: 0.5rem;
-  padding-left: 0.5rem;
+.image-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .about-placeholder {
-  background: linear-gradient(135deg, #ffafcc, #bde0fe);
-  height: 250px;
-  border-radius: 20px;
+  background: linear-gradient(135deg, #ffafcc, #ffc8dd);
+  height: 200px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  color: #4a5759;
-  border: 3px dashed #83c5be;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease;
 }
 
+.about-placeholder:hover {
+  transform: scale(1.02);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.stat {
+  background: linear-gradient(135deg, #83c5be15, #cdb4db15);
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.stat:hover {
+  background: linear-gradient(135deg, #83c5be25, #cdb4db25);
+  transform: translateY(-3px);
+}
+
+.stat h3 {
+  color: #5a189a;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat p {
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .about-card {
+    padding: 2rem;
+  }
+}
 </style>

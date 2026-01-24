@@ -49,15 +49,20 @@ export default {}
 
 <style scoped>
 .footer {
+  padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
   background: linear-gradient(135deg, #ffafcc, #ffc8dd);
   padding: 4rem 1.5rem 2rem;
   color: #4a5759;
+  border-radius: 5px;
 }
 
 /* Contenedor real */
 .footer-wrapper {
   max-width: 1100px;
   margin: 0 auto;
+
 }
 
 /* Grid principal */

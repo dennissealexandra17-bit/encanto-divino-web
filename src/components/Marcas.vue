@@ -50,6 +50,12 @@ export default {};
 </script>
 
 <style scoped>
+
+  .container {
+     padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+  }
 .section-title {
   font-size: 28px;
   font-weight: 600;
@@ -98,7 +104,7 @@ export default {};
 .marcas-card:hover {
 
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.575);
+  box-shadow: 0 16px 32px rgba(255, 15, 179, 0.861);
 }
 
 .marcas-icon {

@@ -37,9 +37,9 @@ export default {
 
 <style scoped>
 .info-section {
-  max-width: 1100px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
+  padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
 }
 
 .section-title {

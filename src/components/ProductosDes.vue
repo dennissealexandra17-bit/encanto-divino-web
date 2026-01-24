@@ -3,7 +3,9 @@
     <!-- Productos Destacados -->
     <section class="featured-products">
       <div class="container">
-        <h2 class="section-title">Productos Destacados</h2>
+        <div class="titulo">
+          <h2 class="section-title">Productos Destacados</h2>
+        </div>
         <div class="products-grid">
           <div class="product-card">
             <div class="product-image">
@@ -56,46 +58,77 @@ export default {
 
 /* Featured Products */
 .featured-products {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #bde0fe 0%, #fff 50%, #ffafcc 100%);
+     padding: 1rem 1rem;
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #5a189a;
+  margin-bottom: 2rem;
+  background: none;
+  padding: 0;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ffafcc;
+  margin: 8px auto 0;
+  border-radius: 10px;
+}
+
+.titulo {
+  display: flex;
+  justify-content: center;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
 }
 
 .product-card {
-  background: white;
+  background: #ffffff;
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(189, 224, 254, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid transparent;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  aspect-ratio: 1 / 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(131, 197, 190, 0.4);
-  border-color: #cdb4db;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.575);
 }
 
 .product-image {
   background: linear-gradient(135deg, #ffafcc, #ffc8dd);
-  height: 150px;
+  width: 100%;
+  height: 120px;
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
   margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .product-card h3 {
-  color: #4a5759;
-  font-size: 1.1rem;
+  color: #333;
+  font-size: 1.05rem;
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
@@ -107,9 +140,9 @@ export default {
 }
 
 .price {
-  color: #4a5759;
-  font-size: 1.2rem;
-  font-weight: bold;
+  color: #5a189a;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
@@ -120,7 +153,7 @@ export default {
   padding: 0.7rem 1.5rem;
   border-radius: 25px;
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   font-size: 0.9rem;
 }
 
