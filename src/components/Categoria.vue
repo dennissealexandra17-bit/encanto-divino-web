@@ -153,4 +153,37 @@ export default {
   font-size: 0.9rem;
   margin-top: 0.5rem;
 }
+@media (max-width: 900px) {
+  .categories {
+    padding: 0.5rem 0.2rem;
+  }
+  .categories-grid {
+    gap: 1rem;
+  }
+  .category-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.95rem;
+  }
+  .category-icon {
+    font-size: 2rem;
+    height: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .categories {
+    padding: 0.2rem 0.1rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .category-card {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  .category-icon {
+    font-size: 1.5rem;
+    height: 32px;
+  }
+}
 </style>

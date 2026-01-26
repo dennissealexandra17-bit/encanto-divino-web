@@ -119,4 +119,29 @@ export default {
   font-weight: bold;
 }
 
+@media (max-width: 900px) {
+  .info-section {
+    padding: 0.5rem 0.2rem;
+  }
+  .info-grid {
+    gap: 1rem;
+  }
+  .info-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .info-section {
+    padding: 0.2rem 0.1rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .info-card {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+}
 </style>

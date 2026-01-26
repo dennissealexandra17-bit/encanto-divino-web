@@ -273,4 +273,37 @@ export default {
     padding: 2rem;
   }
 }
+@media (max-width: 900px) {
+  .about {
+    padding: 0.5rem 0.2rem;
+  }
+  .about-content {
+    gap: 1rem;
+  }
+  .about-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.95rem;
+  }
+  .about-placeholder {
+    height: 120px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .about {
+    padding: 0.2rem 0.1rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .about-card {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  .about-placeholder {
+    height: 80px;
+    font-size: 0.8rem;
+  }
+}
 </style>

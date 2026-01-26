@@ -164,4 +164,37 @@ export default {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
 }
+@media (max-width: 900px) {
+  .featured-products {
+    padding: 0.5rem 0.2rem;
+  }
+  .products-grid {
+    gap: 1rem;
+  }
+  .product-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.95rem;
+  }
+  .product-image {
+    height: 80px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-products {
+    padding: 0.2rem 0.1rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .product-card {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  .product-image {
+    height: 50px;
+    font-size: 1rem;
+  }
+}
 </style>

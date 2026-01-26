@@ -170,4 +170,37 @@ export default {};
   font-size: 1.05rem;
   font-weight: 500;
 }
+@media (max-width: 900px) {
+  .container {
+    padding: 0.5rem 0.2rem;
+  }
+  .marcas-grid {
+    gap: 1rem;
+  }
+  .marcas-card {
+    padding: 1.2rem 0.7rem;
+    font-size: 0.95rem;
+  }
+  .marcas-icon {
+    height: 60px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0.2rem 0.1rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .marcas-card {
+    padding: 0.7rem 0.3rem;
+    font-size: 0.85rem;
+  }
+  .marcas-icon {
+    height: 40px;
+    width: 50px;
+  }
+}
 </style>
