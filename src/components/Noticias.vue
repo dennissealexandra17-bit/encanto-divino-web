@@ -39,14 +39,27 @@ export default {
 .info-section {
   padding: 1rem 1rem;
   margin-top: 2rem;
-  border-radius: 10px;
+  border-radius: 14px;
+  background: #efb9cb37;
+  border: 2px solid #E6ADEC;
+  box-shadow: 0 4px 18px #E6ADEC33;
 }
 
 .section-title {
   text-align: center;
   font-size: 1.8rem;
-  color: #5a189a;
+  color: #C287E8;
   margin-bottom: 2.5rem;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #8129bc;
+  margin: 8px auto 0;
+  border-radius: 10px;
 }
 
 /* Grid */
@@ -58,18 +71,21 @@ export default {
 
 /* Cards */
 .info-card {
-  background: linear-gradient(135deg, #ffe5ec, #fff);
+  background: linear-gradient(135deg, #FFFFFF 80%, #eecdf4 100%);
   border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px #EFB9CB33;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.info-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-}
 
+.info-card:hover {
+  background: linear-gradient(135deg, #eecdf4 10%, #FFFFFF 20%);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px #EFB9CB33;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 .info-card h3 {
   font-size: 1.3rem;
   color: #5a189a;

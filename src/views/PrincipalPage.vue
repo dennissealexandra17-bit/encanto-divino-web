@@ -5,7 +5,6 @@
   <Categoria/>
   <ProductosDes/>
   <Rutinas/>
-  <Footer/>
 </div>
 
 </template>
@@ -16,7 +15,6 @@ import Marcas from "@/components/Marcas.vue";
 import Categoria from "@/components/Categoria.vue";
 import ProductosDes from "@/components/ProductosDes.vue";
 import Rutinas from "@/components/Rutinas.vue";
-import Footer from "@/components/Footer.vue";
 
 export default {
   name: "PrincipalPage",
@@ -26,7 +24,6 @@ export default {
     Categoria,
     ProductosDes,
     Rutinas,
-    Footer
   },
   data() {
     return {
@@ -45,6 +42,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 * {
   margin: 0;
@@ -52,18 +50,21 @@ export default {
   box-sizing: border-box;
 }
 
-
 .principal-page {
   font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
+  background: #d2d6ca; /* Ash Grey, fondo general */
+  min-height: 100vh;
 }
 
 .container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 0 2.5rem;
-  background: linear-gradient(180deg, #fbd9e9 0%, #ffdfec 60%, #fcf2f6 100%);
-  border-radius: 10px;
+  padding: 2.5rem 2.5rem;
+  background: #FFFFFFCC; /* Blanco translúcido para resaltar el contenido */
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(200, 135, 232, 0.10);
+  border: 2px solid #E6ADEC;
 }
 
 </style>

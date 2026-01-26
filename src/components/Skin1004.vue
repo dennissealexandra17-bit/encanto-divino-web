@@ -235,41 +235,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Rutina completa -->
-        <div class="routine-section">
-          <h2 class="routine-title">Rutina Completa SKIN1004</h2>
-          <div class="routine-steps">
-            <div class="routine-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h4>Aceite Limpiador</h4>
-                <p>Remueve maquillaje y protector solar</p>
-              </div>
-            </div>
-            <div class="routine-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h4>Espuma Limpiadora</h4>
-                <p>Limpieza profunda y suave</p>
-              </div>
-            </div>
-            <div class="routine-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h4>Ampolla de Centella</h4>
-                <p>Calma e hidrata intensamente</p>
-              </div>
-            </div>
-            <div class="routine-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h4>Crema Hidratante</h4>
-                <p>Sella la hidratación</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   </div>

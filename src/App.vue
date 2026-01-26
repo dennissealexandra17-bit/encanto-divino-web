@@ -4,18 +4,21 @@
     
     <router-view />
     <CartSystem />
+    <Footer />
   </div>
 </template>
 
 <script>
 import CartSystem from '@/components/CartSystem.vue'
 import MenuSuperior from '@/components/MenuSuperior.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: "App",
   components: {
     CartSystem,
-    MenuSuperior
+    MenuSuperior,
+    Footer
   }
 };
 </script>

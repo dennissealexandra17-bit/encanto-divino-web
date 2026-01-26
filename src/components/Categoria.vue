@@ -54,13 +54,16 @@ export default {
 .categories {
   padding: 1rem 1rem;
   margin-top: 2rem;
-  border-radius: 10px;
+  border-radius: 14px;
+  background: #efb9cb37;
+  border: 2px solid #E6ADEC;
+  box-shadow: 0 4px 18px #E6ADEC33;
 }
 
 .section-title {
   font-size: 28px;
   font-weight: 600;
-  color: #5a189a;
+  color: #a447e2;
   margin-bottom: 2rem;
   background: none;
   padding: 0;
@@ -71,7 +74,7 @@ export default {
   display: block;
   width: 60px;
   height: 4px;
-  background: #ffafcc;
+  background: #8129bc;
   margin: 8px auto 0;
   border-radius: 10px;
 }
@@ -88,13 +91,22 @@ export default {
 }
 
 .category-card {
-  background: #ffffff;
+  background: linear-gradient(135deg, #FFFFFF 80%, #B5B7B8 110%);
+  background-size: 200% 200%;
+  background-position: right bottom;
+
   padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-position 0.35s ease;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   aspect-ratio: 1 / 1.2;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -102,9 +114,23 @@ export default {
 }
 
 .category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(223, 65, 176, 0.575);
+    background: linear-gradient(135deg, #8F9192 10%,#FFFFFF 70%);
+     background-size: 200% 200%;
+  background-position: right bottom;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-position 0.35s ease;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  aspect-ratio: 1 / 1.2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
 
 .category-icon {
   font-size: 2.5rem;

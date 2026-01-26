@@ -46,25 +46,40 @@
           </div>
         </div>
         <div class="about-card about-image">
-          <div class="image-content">
-            <div class="about-placeholder">
-              <span>🌸 Cuidado Natural 🌸</span>
+           <!-- Rutina completa -->
+        <div class="routine-section">
+          <h2 class="routine-title">Rutina Completa SKIN1004</h2>
+          <div class="routine-steps">
+            <div class="routine-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h4>Aceite Limpiador</h4>
+                <p>Remueve maquillaje y protector solar</p>
+              </div>
             </div>
-            <div class="stats">
-              <div class="stat">
-                <h3>100%</h3>
-                <p>Auténtico</p>
+            <div class="routine-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h4>Espuma Limpiadora</h4>
+                <p>Limpieza profunda y suave</p>
               </div>
-              <div class="stat">
-                <h3>24/7</h3>
-                <p>Soporte</p>
+            </div>
+            <div class="routine-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h4>Ampolla de Centella</h4>
+                <p>Calma e hidrata intensamente</p>
               </div>
-              <div class="stat">
-                <h3>500+</h3>
-                <p>Productos</p>
+            </div>
+            <div class="routine-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h4>Crema Hidratante</h4>
+                <p>Sella la hidratación</p>
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -82,9 +97,10 @@ export default {
 .about {
   padding: 1rem 1rem;
   margin-top: 2rem;
-  border-radius: 10px;
-  background: #ffafcc;
-  max-width: 13000px;
+  border-radius: 14px;
+  background: #efb9cb37;
+  border: 2px solid #E6ADEC;
+  box-shadow: 0 4px 18px #E6ADEC33;
 }
 
 .section-title {
