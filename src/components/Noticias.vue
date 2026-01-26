@@ -122,6 +122,8 @@ export default {
 @media (max-width: 900px) {
   .info-section {
     padding: 0.7rem 0.7rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
   }
   .info-grid {
     gap: 1rem;
@@ -140,6 +142,10 @@ export default {
     font-size: 1.2rem;
   }
   .info-card {
+  .info-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
     padding: 0.7rem 0.3rem;
     font-size: 0.85rem;
   }
