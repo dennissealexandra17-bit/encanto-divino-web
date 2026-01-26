@@ -238,15 +238,25 @@
       </div>
     </section>
   </div>
+  <div v-if="showToast" class="toast">
+  {{ toastMessage }}
+</div>
+
 </template>
 
 <script>
 import { cartStore } from "@/store/cart.js";
 import { computed } from 'vue';
+import { ref } from "vue";
 
 export default {
   name: "Skin1004Page",
   setup() {
+
+const showToast = ref(false);
+const toastMessage = ref("");
+let toastTimer = null;
+
     // Productos de Skin1004 organizados
     const products = [
       // LIMPIADORES
@@ -812,14 +822,14 @@ export default {
         if (cartStore && cartStore.addItem) {
           cartStore.addItem(product);
           
-          // Feedback visual
-          const event = new CustomEvent("product-added", {
-            detail: { productName: product.name },
-          });
-          window.dispatchEvent(event);
 
-          // Notificación mejorada
-          alert(`✅ ${product.name} ${product.tamanio ? `(${product.tamanio})` : ''} agregado al carrito!`);
+      toastMessage.value = `🛒 ${product.name} ${product.tamanio ? `(${product.tamanio})` : ""} agregado al carrito`;
+      showToast.value = true;
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        showToast.value = false;
+      }, 3000);
         } else {
           console.error("Cart store no está disponible");
           alert("Error: No se pudo agregar al carrito");
@@ -838,7 +848,9 @@ export default {
       serumProducts,
       sunscreenProducts,
       mascarillaProducts,
-      addToCart
+      addToCart,
+      showToast,
+  toastMessage
     };
   },
 };
@@ -1171,6 +1183,33 @@ export default {
   color: #666;
   font-size: 0.9rem;
 }
+.toast {
+  position: fixed;
+  top: 34px;
+  left: 40%;
+  transform:translateX(-50%);
+  background: linear-gradient(135deg, #f9dbbd, #ffa5ab, #da627d);
+  color: #4a5759;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: toastSlideIn 0.3s ease;
+  z-index: 5000;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 /* Responsive Design */
 @media (max-width: 1200px) {
