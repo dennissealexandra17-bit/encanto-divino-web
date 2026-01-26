@@ -172,7 +172,7 @@ export default {};
 }
 @media (max-width: 900px) {
   .container {
-    padding: 0.5rem 0.2rem;
+    padding: 0.7rem 0.7rem;
   }
   .marcas-grid {
     gap: 1rem;
@@ -189,7 +189,7 @@ export default {};
 
 @media (max-width: 600px) {
   .container {
-    padding: 0.6rem 0.1rem;
+    padding: 0.7rem 0.7rem;
   }
   .section-title {
     font-size: 1.2rem;
