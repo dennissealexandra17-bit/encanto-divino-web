@@ -189,7 +189,7 @@ export default {};
 
 @media (max-width: 600px) {
   .container {
-    padding: 0.2rem 0.1rem;
+    padding: 0.6rem 0.1rem;
   }
   .section-title {
     font-size: 1.2rem;
