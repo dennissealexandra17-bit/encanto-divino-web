@@ -9,7 +9,7 @@
             <router-link to="/" class="letras">Inicio</router-link>
           </li>
           <li>
-            <router-link to="/skin1004" class="letras">Productos</router-link>
+            <router-link to="/marcas" class="letras">Productos</router-link>
           </li>
         </ul>
 
@@ -108,18 +108,18 @@ export default {
 }
 
 .letras {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 550;
   padding: 12px 38px; 
   min-width: 140px;    
   text-align: center;
   border-radius: 999px;
-  color: #d217b3;
+  color: #FFFFFF;
   text-decoration: none;
   transition: all 0.3s ease;
-  border: 2px solid #C287E8;
-  box-shadow: 0 2px 8px #C287E833;
-  background: #c066d862;
+  border: 2px solid #003459;
+  box-shadow: 0 2px 8px #00A8E8;
+  background: #007EA7;
 }
 
 
@@ -134,16 +134,18 @@ export default {
 
 
 .letras:hover {
-  background: #9655db72;
-  color: #ffffff;
+  background: #E39695;
+  color: #CC444B;
+  border: dashed 2px #CC444B;
 }
 
 /* LINK ACTIVO */
 .letras.router-link-active {
-  background: linear-gradient(135deg, #dd2d4a, #f26a8d,#f49cbb);
-  color: #ffffff;
+  background: linear-gradient(135deg, #F283B6, #E06C9F,#F283B6);
+  color: #990D35;
   font-weight: 600;
   box-shadow: 0 6px 16px rgba(126, 75, 171, 0.3);
+  border: double  3px #D52941;
 }
 
 /* LOGO */
@@ -160,7 +162,7 @@ export default {
   border-radius: 14px;
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; 
 }
 
 .logo img:hover {

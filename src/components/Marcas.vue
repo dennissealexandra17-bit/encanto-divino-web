@@ -7,38 +7,37 @@
       <div class="marcas-grid">
         <router-link to="/skin1004" class="marcas-card">
           <div class="marcas-icon">
-            <img src="@/assets/skin10042.webp" alt="Skin1004 logo" />
+            <img src="@/assets/skin1004.webp" alt="Skin1004 logo" />
           </div>
-          <h3>Skin1004</h3>
         </router-link>
-
         <router-link to="/mixsoon" class="marcas-card">
           <div class="marcas-icon">
             <img src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
           </div>
-          <h3>Mixsoon</h3>
         </router-link>
         <router-link to="/corsx" class="marcas-card">
           <div class="marcas-icon">
             <img class="corsx" src="@/assets/corsx.webp" alt="Corxs logo" />
           </div>
-          <h3>Corxs</h3>
         </router-link>
         <router-link to="/anua" class="marcas-card">
-          <div class="marcas-icon">🌸</div>
-          <h3>Anua</h3>
+          <div class="marcas-icon">
+            <img class="anua" src="@/assets/anua.png" alt="Anua logo" />
+          </div>
         </router-link>
         <router-link to="/beauty-of-joseon" class="marcas-card">
-          <div class="marcas-icon">🍃</div>
-          <h3>Beauty of Joseon</h3>
+          <div class="marcas-icon"> <img class="beauty-of-joseon" src="@/assets/joseon.png" alt="Beauty of Joseon logo" />
+</div>
         </router-link>
         <router-link to="/dr-althea"     class="marcas-card">
-          <div class="marcas-icon">☀️</div>
-          <h3>Dr. Althea</h3>
+          <div class="marcas-icon">
+            <img class="dr-althea" src="@/assets/dr-althea.webp" alt="Dr. Althea logo" />
+          </div>
         </router-link>
         <router-link to="/celimax" class="marcas-card">
-          <div class="marcas-icon">☀️</div>
-          <h3>Celimax</h3>
+          <div class="marcas-icon">
+            <img class="celimax" src="@/assets/celimax.webp" alt="Celimax logo" />
+          </div>
         </router-link>
       </div>
     </div>
@@ -89,19 +88,12 @@ export default {};
 }
 
 .marcas-card {
-  background: linear-gradient(135deg, #FFFFFF 80%, #E8B4A2 110%);
-  background-size: 200% 200%;
-  background-position: right bottom;
-
+  position: relative;
+  background: linear-gradient(135deg, #FFFFFF 80%, #ff0000 110%);
   padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background-position 0.35s ease;
-
+  transition: transform 0.3s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s, background 0.3s;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   aspect-ratio: 1 / 1.2;
 
@@ -109,45 +101,59 @@ export default {};
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   text-decoration: none;
+  overflow: hidden; /* importante */
+  border: 2px double #ff000067; /* para evitar que el borde afecte el tamaño del elemento */
 
 }
+
+/* Animación para la imagen y el texto */
+.marcas-icon,
+.marcas-card h3 {
+  transition: transform 0.35s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s;
+}
+.marcas-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px; /* grosor del borde */
+border: 1px solid #ff0000; /* para evitar que el borde afecte el tamaño del elemento */
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff6b6b,
+    #ff0000
+  );
+
+  background-size: 200% 200%;
+  animation: borderMove 4s linear infinite;
+
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
 
 .marcas-card:hover {
-    background: linear-gradient(135deg, #E8B4A2 10%,#FFFFFF 80%);
-     background-size: 200% 200%;
-  background-position: right bottom;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background-position 0.35s ease;
+  background: linear-gradient(135deg, #ff0000a9 10%, #FFFFFF 80%);
+  background-position: left top;
 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  aspect-ratio: 1 / 1.2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  transform: translateY(-6px);
+ border: 2px solid #ff0000;
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.25);
 }
-
-.marcas-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-   width: 140px;
-  height: 100px;
-  margin-bottom: 1rem;
-}
-
-.marcas-icon img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
+.marcas-card:hover .marcas-icon,
+.marcas-card:hover h3 {
+  transform: translateY(-10px) scale(1.07);
+  box-shadow: 0 8px 24px 0 rgba(164,71,226,0.10);
 }
 
 .marcas-icon {
@@ -160,10 +166,11 @@ export default {};
 }
 
 .marcas-icon img {
-  width: 100%;
-  height: 100%;
+  width: 150%;
+  height: 150%;
   object-fit: contain;
 }
+
 .marcas-card h3 {
   color: #333;
     margin-top: 0.75rem;

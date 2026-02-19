@@ -1,4 +1,5 @@
 <template>
+      
   <div class="mixsoon-page">
     <!-- Header de la marca -->
     <section class="brand-header">
@@ -20,7 +21,7 @@
               <span class="feature">🌿 Ingredientes Naturales</span>
               <span class="feature">✨ Piel Sensible</span>
               <span class="feature">🇰🇷 K-Beauty Auténtico</span>
-              <span class="feature">🍃 Centella Asiática</span>
+              <span class="feature">🍃 Frijol Fermentado</span>
             </div>
           </div>
         </div>
@@ -33,26 +34,25 @@
         <!-- Limpiadores -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">🧴</span>
+            <span class="category-icon">🫧</span>
             Limpiadores
           </h2>
           <div class="products-grid">
-            <!-- Producto dinámico usando v-for -->
             <div 
-              v-for="product in cleansingProducts" 
-              :key="product.id"
+              v-for="product in (cleansingProducts || [])" 
+              :key="product.id || product.name"
               class="product-card"
             >
               <div class="product-image" :class="`image-${product.imageSize}`">
                 <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">🧴</span>
+                <span v-else class="product-placeholder">🫧</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
                 <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
                 <p class="product-description">{{ product.description }}</p>
                 <div class="product-benefits">
-                  <span v-for="benefit in product.benefits" :key="benefit">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
                     • {{ benefit }}
                   </span>
                 </div>
@@ -65,30 +65,29 @@
           </div>
         </div>
 
-         <!-- Serums -->
+        <!-- Serums -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">✨</span>
+            <span class="category-icon">💧</span>
             Serums
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in serumsProducts" 
-              :key="product.id"
+              v-for="product in (serumsProducts || [])" 
+              :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
             >
-            <!--  <div v-if="product.featured" class="featured-badge">Bestseller</div>-->
               <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
                 <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">✨</span>
+                <span v-else class="product-placeholder">💧</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
                 <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
                 <p class="product-description">{{ product.description }}</p>
                 <div class="product-benefits">
-                  <span v-for="benefit in product.benefits" :key="benefit">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
                     • {{ benefit }}
                   </span>
                 </div>
@@ -104,27 +103,26 @@
         <!-- Tonicos -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">✨</span>
+            <span class="category-icon">🍃</span>
             Tónicos
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in tonicosProducts" 
-              :key="product.id"
+              v-for="product in (tonicosProducts || [])" 
+              :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
             >
-            <!--  <div v-if="product.featured" class="featured-badge">Bestseller</div>-->
               <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
                 <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">✨</span>
+                <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
                 <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
                 <p class="product-description">{{ product.description }}</p>
                 <div class="product-benefits">
-                  <span v-for="benefit in product.benefits" :key="benefit">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
                     • {{ benefit }}
                   </span>
                 </div>
@@ -140,25 +138,25 @@
         <!-- Cremas Hidratantes -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">💧</span>
+            <span class="category-icon">🥛</span>
             Cremas Hidratantes
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in creamProducts" 
-              :key="product.id"
+              v-for="product in (moisturizerProducts || [])" 
+              :key="product.id || product.name"
               class="product-card"
             >
               <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
                 <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">💧</span>
+                <span v-else class="product-placeholder">🥛</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
                 <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
                 <p class="product-description">{{ product.description }}</p>
                 <div class="product-benefits">
-                  <span v-for="benefit in product.benefits" :key="benefit">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
                     • {{ benefit }}
                   </span>
                 </div>
@@ -170,37 +168,68 @@
             </div>
           </div>
         </div>
-
-        <!-- Rutina completa -->
-        <div class="routine-section">
-          <h2 class="routine-title">Rutina Completa SKIN1004</h2>
-          <div class="routine-steps">
-            <div class="routine-step">
-              <div class="step-number">1</div>
-              <div class="step-content">
-                <h4>Aceite Limpiador</h4>
-                <p>Remueve maquillaje y protector solar</p>
+        <!-- Protectores Solares-->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">☀️</span>
+            Protectores Solares
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (sunscreenProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">☀️</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
               </div>
             </div>
-            <div class="routine-step">
-              <div class="step-number">2</div>
-              <div class="step-content">
-                <h4>Espuma Limpiadora</h4>
-                <p>Limpieza profunda y suave</p>
+          </div>
+        </div>
+        <!-- Balsamos en barra y crema de ojos-->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🧴</span>
+            Balsamos en Barra y Cremas de Ojos
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (balsamoProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">🧴</span>
               </div>
-            </div>
-            <div class="routine-step">
-              <div class="step-number">3</div>
-              <div class="step-content">
-                <h4>Ampolla de Centella</h4>
-                <p>Calma e hidrata intensamente</p>
-              </div>
-            </div>
-            <div class="routine-step">
-              <div class="step-number">4</div>
-              <div class="step-content">
-                <h4>Crema Hidratante</h4>
-                <p>Sella la hidratación</p>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
               </div>
             </div>
           </div>
@@ -208,15 +237,23 @@
       </div>
     </section>
   </div>
+   <div v-if="showToast" class="toast">
+  {{ toastMessage }}
+</div>
+
 </template>
 
 <script>
 import { cartStore } from "@/store/cart.js";
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 export default {
-  name: "Skin1004Page",
+  name: "MixsoonPage",
   setup() {
+
+    const showToast = ref(false);
+const toastMessage = ref("");
+let toastTimer = null;
     // Productos de Skin1004 organizados
       const products = [
       // LIMPIADORES
@@ -284,7 +321,7 @@ export default {
         src: "/images/mixsoon/5. Ácido hiaulurónico.png",
         description: "Sérum de ácido hialurónico con agua glacial ofrece un efecto hidratante instantáneo para la piel seca.",
         benefits: ["Efecto hidratante instantáneo para piel seca. ","Forma una barrera humectante con 3 capas de ácido hialurónico. ","La textura densa y rica del suero ayuda a crear una piel radiante."],
-        category: "serum",
+        category: "serum-essence",
         imageSize: "medium-large"
       },
 	{
@@ -295,7 +332,7 @@ export default {
         src: "/images/mixsoon/6. Ácido hiaulurónico 100 ml.png",
         description: "Sérum de ácido hialurónico con agua glacial ofrece un efecto hidratante instantáneo para la piel seca.",
         benefits: ["Efecto hidratante instantáneo para piel seca. ","Forma una barrera humectante con 3 capas de ácido hialurónico. ","La textura densa y rica del suero ayuda a crear una piel radiante."],
-        category: "serum",
+        category: "serum-essence",
         imageSize: "medium-large"
       },
 	{
@@ -306,7 +343,7 @@ export default {
         src: "/images/mixsoon/7. Ácido hiaulurónico 300 ml.png",
         description: "Sérum de ácido hialurónico con agua glacial ofrece un efecto hidratante instantáneo para la piel seca.",
         benefits: ["Efecto hidratante instantáneo para piel seca. ","Forma una barrera humectante con 3 capas de ácido hialurónico. ","La textura densa y rica del suero ayuda a crear una piel radiante."],
-        category: "serum",
+        category: "serum-essence",
         imageSize: "medium-large"
       },
 	
@@ -319,7 +356,7 @@ export default {
         src: "/images/mixsoon/9. mixsoon bean essence 20 ml.png",
         description: "Esencia refrescante que contiene extracto fermentado de soja.",
         benefits: ["Reduce las células muertas mientras hidrata la piel seca."," Revitaliza y suaviza la textura de piel."," La rica textura puede parecer pegajosa pero en realidad deja un acabado refrescante."], 
-        category: "essence",
+        category: "serum-essence",
         imageSize: "large"
       },
 	{
@@ -330,7 +367,7 @@ export default {
         src: "/images/mixsoon/10. mixsoon bean essence 50 ml.png",
         description: "Esencia refrescante que contiene extracto fermentado de soja.",
         benefits: ["Reduce las células muertas mientras hidrata la piel seca."," Revitaliza y suaviza la textura de piel."," La rica textura puede parecer pegajosa pero en realidad deja un acabado refrescante."], 
-        category: "essence",
+        category: "serum-essence",
         imageSize: "large"
       },
 	{
@@ -341,7 +378,7 @@ export default {
         src: "/images/mixsoon/11. mixsoon esencia de centella asiatica.png",
         description: "Esencia facial de Mixsoon, que trata diversas preocupaciones de la piel",
         benefits: ["Brinda un efecto calmante inmediato para la piel irritada y sensible."," Compuesta al 100 % por ingredientes derivados de centella asiática."," Aporta nutrientes y ayuda a reducir la irritación."], 
-        category: "essence",
+        category: "serum-essence",
         imageSize: "large"
       },
 	{
@@ -352,7 +389,7 @@ export default {
         src: "/images/mixsoon/12. mixsoon esencia de bifida.png",
         description: "Esencia facial de Mixsoon, que trata diversas preocupaciones de la piel",
         benefits: ["Forma una barrera de humedad para una piel saludable con extracto de fermento de Bífida puro. ","Hidrata la piel cansada y ofrece un excelente efecto revitalizante."], 
-        category: "essence",
+        category: "serum-essence",
         imageSize: "large"
       },
 	{
@@ -363,7 +400,7 @@ export default {
         src: "/images/mixsoon/13. esencia de galactomices.png",
         description: "Esencia facial de Mixsoon, que trata diversas preocupaciones de la piel",
         benefits: ["Proporciona hidratación profunda para mejorar la piel apagada y cansada con filtrado de fermento de Galactomyces puro. ","Revitaliza la piel y crea una tez luminosa y transparente."], 
-        category: "essence",
+        category: "serum-essence",
         imageSize: "large"
       },
 //CREMA
@@ -434,43 +471,80 @@ export default {
         category: "tónico",
         imageSize: "medium"
       },
+
+       // PROTECTOR SOLAR
+  	{
+        id: "mixsoon-bloqueador-solar-50gr",
+        name: "Bloqueador solar centella",
+        tamanio: "50 gr",
+        price: "$26",
+        src: "/images/mixsoon/20. Bloqueador solar.png",
+        description: "Crema solar hidratante y calmante sin tintes blancos",
+        benefits: ["Proporciona FPS 50+ PA++++ de amplio espectro para proteger de los rayos UVB que causan quemaduras solares y de los rayos UVA que provocan el envejecimiento prematuro de la piel.","Su textura en forma de sérum se absorbe rápidamente, dejando la piel fresca y con una sensación agradable.","Contiene centella asiática y otros ingredientes nutritivos para mantener la piel hidratada y tersa, al tiempo que refuerza la barrera cutánea protectora."], 
+        category: "protector solar",
+        imageSize: "medium"
+      },
+      //crema de ojos
+      {
+        id: "mixsoon-crema-de-ojos-20ml",
+        name: "Crema de ojos",
+        tamanio: "20 ml",
+        price: "$26",
+        src: "/images/mixsoon/1. mixsoon crema de ojos.png",
+        description: "Crema hidratante  para el contorno de ojos ",
+        benefits: ["Brinda un efecto calmante, a la vez que minimiza las arrugas y estimula la renovación celular.","Potencia la hidratación de la piel y la síntesis de colágeno.","Test de irritación cutánea superado."], 
+        category: "Balsamo en barra",
+        imageSize: "medium"
+      },
+      {
+        id: "mixsoon-balsamo-en-barra-11.5ml",
+        name: "Bálsamo en barra de frijol",
+        tamanio: "11.5 ml",
+        price: "$26",
+        src: "/images/mixsoon/2. balsamo en barra.png",
+        description: "Bálsamo en barra que hidrata y nutre la piel en cualquier momento del día.",
+        benefits: ["Formulado con aceite de soya (Glycine soja), ingrediente exclusivo de mixsoon, que brinda nutrición profunda y refuerza la barrera cutánea.","Enriquecido con 9 tipos de probióticos que ayudan a mantener el equilibrio natural de la piel.","Deja la piel con un brillo saludable y un aspecto visiblemente más relleno."], 
+        category: "Balsamo en barra",
+        imageSize: "medium"
+      },
 ];
 
 
     // Computed properties para organizar productos por categoría
     const cleansingProducts = computed(() => 
-      products.filter(product => product.category === 'cleansing')
+      (products.filter(product => product.category === 'cleansing') || []).filter(p => p && p.id)
     );
-
     const tonicosProducts = computed(() => 
-      products.filter(product => product.category === 'tónico')
+      (products.filter(product => product.category === 'tónico') || []).filter(p => p && p.id)
     );
-
-    const creamProducts = computed(() => 
-      products.filter(product => product.category === 'cream')
-    );
-
     const moisturizerProducts = computed(() => 
-      products.filter(product => product.category === 'essence')
+      (products.filter(product => product.category === 'cream') || []).filter(p => p && p.id)
     );
     const serumsProducts = computed(() => 
-      products.filter(product => product.category === 'serum')
+      (products.filter(product => product.category === 'serum-essence') || []).filter(p => p && p.id)
     );
-
+    const sunscreenProducts = computed(() => 
+      (products.filter(product => product.category === 'protector solar') || []).filter(p => p && p.id)
+    );
+  
+    const balsamoProducts = computed(() => 
+      (products.filter(product => product.category === 'Balsamo en barra') || []).filter(p => p && p.id)
+    );
+ 
     const addToCart = (product) => {
       try {
         // Verificar que cartStore existe antes de usarlo
         if (cartStore && cartStore.addItem) {
           cartStore.addItem(product);
           
-          // Feedback visual
-          const event = new CustomEvent("product-added", {
-            detail: { productName: product.name },
-          });
-          window.dispatchEvent(event);
 
-          // Notificación mejorada
-          alert(`✅ ${product.name} ${product.tamanio ? `(${product.tamanio})` : ''} agregado al carrito!`);
+      toastMessage.value = `🛒 ${product.name} ${product.tamanio ? `(${product.tamanio})` : ""} agregado al carrito`;
+      showToast.value = true;
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        showToast.value = false;
+      }, 3000);
         } else {
           console.error("Cart store no está disponible");
           alert("Error: No se pudo agregar al carrito");
@@ -481,13 +555,17 @@ export default {
       }
     };
 
-    return {
-      cleansingProducts,
-      tonicosProducts,
-      creamProducts,
-      moisturizerProducts,
-      serumsProducts,
-    };
+  return {
+  cleansingProducts,
+  tonicosProducts,
+  moisturizerProducts,
+  serumsProducts,
+  sunscreenProducts,
+  balsamoProducts,
+  addToCart,
+  showToast,
+  toastMessage
+   };
   },
 };
 </script>
@@ -499,7 +577,7 @@ export default {
   box-sizing: border-box;
 }
 
-.skin1004-page {
+.mixsoon-page {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;
 }
@@ -747,8 +825,8 @@ export default {
 
 .add-to-cart-btn {
   width: 100%;
-  background: linear-gradient(135deg, #83c5be, #cdb4db);
-  color: white;
+  background: linear-gradient(135deg, #1100ffaf,#564fea90, #1100ffaf);
+  color: rgb(7, 7, 7);
   border: none;
   padding: 0.8rem 1rem;
   border-radius: 15px;
@@ -762,97 +840,23 @@ export default {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
 }
-
-/* Sección de rutina */
-.routine-section {
-  background: linear-gradient(135deg, #bde0fe 0%, #fff 50%, #cdb4db 100%);
-  padding: 3rem;
-  border-radius: 25px;
-  margin-top: 4rem;
+.toast {
+  position: fixed;
+  top: 34px;
+  left: 40%;
+  transform:translateX(-50%);
+  background: linear-gradient(130deg, #c28e00, rgb(250, 168, 46), #FFBC0A);
+  color: #02090d;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: toastSlideIn 0.3s ease;
+  z-index: 5000;
 }
-
-.routine-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #4a5759;
-  margin-bottom: 3rem;
-  font-weight: 800;
-}
-
-.routine-steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.routine-step {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(189, 224, 254, 0.2);
-}
-
-.step-number {
-  background: linear-gradient(135deg, #83c5be, #cdb4db);
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.2rem;
-}
-
-.step-content h4 {
-  color: #4a5759;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.step-content p {
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .brand-intro {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 2rem;
-  }
-  
-  .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .products-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-  
-  .brand-header {
-    padding: 2rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-  }
-  
   .product-card {
     max-width: 100%;
   }
-}
-</style>
 
+</style>

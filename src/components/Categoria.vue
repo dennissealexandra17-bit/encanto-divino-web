@@ -91,19 +91,11 @@ export default {
 }
 
 .category-card {
-  background: linear-gradient(135deg, #FFFFFF 80%, #B5B7B8 110%);
-  background-size: 200% 200%;
-  background-position: right bottom;
-
+  background: linear-gradient(135deg, #FFFFFF 70%, #6D696A 110%);
   padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background-position 0.35s ease;
-
+ transition: transform 0.3s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s, background 0.3s;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   aspect-ratio: 1 / 1.2;
 
@@ -111,26 +103,30 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  text-decoration: none;
+  overflow: hidden; 
+  border: 2px double #6D696A; 
+
 }
+.marcas-icon,
+.marcas-card h3 {
+  transition: transform 0.35s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s;
+}
+
 
 .category-card:hover {
-    background: linear-gradient(135deg, #8F9192 10%,#FFFFFF 70%);
-     background-size: 200% 200%;
-  background-position: right bottom;
+    background: linear-gradient(135deg, #757575 30%,#FFFFFF 80%);
+     
+   background-position: left top;
+     transform: translateY(-6px);
+ border: 2px solid #6D696A;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background-position 0.35s ease;
-
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  aspect-ratio: 1 / 1.2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  box-shadow: 0 0 0 3px rgba(133, 133, 133, 0.25);
 }
-
 
 .category-icon {
   font-size: 2.5rem;
