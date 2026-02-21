@@ -1030,6 +1030,44 @@ let toastTimer = null;
         category: "mascarilla",
         imageSize: "medium"
       },
+       {
+        id: "skin1004-mascarilla-tea-trica",
+        name: "Mascarilla de Tea - Trica",
+        tamanio: "1 pieza",
+        price: "$3.50",
+        src: "/images/skin1004/mascarilla-tea-trica.jpeg",
+        description: "Mascarilla con centella y tea -trica.",
+        benefits: ["Ofrece un efecto calmante e hidrtante instantáneo para la piel.",
+        "El ácido salicílico y la niacinamida limpian los poros y suavizan la textura de la piel.",
+      "Supera la prueba de irritación cutánea, por lo que es apta para todo tipo de piel."],
+        category: "mascarilla",
+        imageSize: "medium"
+      },
+       {
+        id: "skin1004-mascarilla-poremizing",
+        name: "Mascarilla Poremizing",
+        tamanio: "1 pieza",
+        price: "$3.50",
+        src: "/images/skin1004/mascarilla-poremizing.jpg",
+        description: "Combate los problemas de los poros.",
+        benefits: ["Elimina eficazmente las impurezas y el exceso de sebo de los poros, dejando la piel fresca y limpia.",
+        "Proporciona un efecto de peeling rápido y uniforme, dejando la piel más suave y refinada.",
+      "Ayuda a reducir la apariencia de los poros dilatados y mejora la textura de la piel."],
+        category: "mascarilla",
+        imageSize: "medium"
+      },
+          {
+        id: "skin1004-mascarilla-tono-iluminador",
+        name: "Mascarilla Tono Iluminador",
+        tamanio: "1 pieza",
+        price: "$3.50",
+        src: "/images/skin1004/mascarilla-tono-iluminador.jpg",
+        description: "Ilumina y suaviza la piel.",
+        benefits: ["Reduce las manchas oscuras y mejora el tono de la piel.",
+        "Minimiza la irritación y proporcina un efecto calmante."],
+        category: "mascarilla",
+        imageSize: "medium"
+      },
     ];
 
     // Computed properties para organizar productos por categoría

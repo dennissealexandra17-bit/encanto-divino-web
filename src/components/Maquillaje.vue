@@ -2,43 +2,28 @@
     <section class="categories" id="productos">
       <div class="container">
         <div class="titulo">
-          <h2 class="section-title">Categorías Populares</h2>
+          <h2 class="section-title">Maquillaje Asiático</h2>
         </div>
         <div class="categories-grid">
           <div class="category-card">
-            <div class="category-icon">
-              <img class="img-limpiadores" src="../assets/categorias/limpiadores.jpg" alt="Limpiadores">
-            </div>
-            <h3 class="category-title">Limpiadores</h3>
+            <div class="category-icon">🧴</div>
+            <h3>Sombras</h3>
             <p>Gel, espuma y aceites desmaquillantes</p>
           </div>
           <div class="category-card">
-            <div class="category-icon">
-              <img class="img-tonicos" src="../assets/categorias/tonicos.jpg" alt="Tónicos">
-            </div>
-            <h3 class="category-title">Tónicos</h3>
+            <div class="category-icon">💧</div>
+            <h3>Labiales</h3>
             <p>Hidratación y preparación de la piel</p>
           </div>
           <div class="category-card">
-            <div class="category-icon">
-              <img class="img-esencias" src="../assets/categorias/esencias.png" alt="Esencias">
-            </div>
-            <h3 class="category-title">Serums y Esencias</h3>
+            <div class="category-icon">✨</div>
+            <h3>Máscaras de pestañas</h3>
             <p>Nutrición profunda y luminosidad</p>
           </div>
           <div class="category-card">
-            <div class="category-icon">
-              <img class="img-mascarillas" src="../assets/categorias/mascarillas.jpeg" alt="Mascarillas">
-            </div>
-            <h3 class="category-title">Mascarillas</h3>
-            <p>Hidratación intensiva y cuidado</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">
-              <img class="img-protector" src="../assets/categorias/protector solar.jpg" alt="Cremas">
-            </div>
-            <h3 class="category-title">Protección Solar</h3>
-            <p>Protección UV con textura ligera</p>
+            <div class="category-icon">🌸</div>
+            <h3>Base</h3>
+            <p>Tratamientos concentrados específicos</p>
           </div>
         </div>
       </div>
@@ -136,80 +121,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1 1 auto;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  min-width: 0;
+  height: 60px;
 }
-
-.category-icon img {
-  width: auto;
-  height: auto;
-}
-
-.img-limpiadores {
-  max-width: 202px;
-  max-height: 202px;
-  object-fit: cover;
-    margin-top: 28px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-.img-tonicos {
-   max-width: 202px;
-  max-height: 212px;
-  object-fit: cover;
-    margin-top: 5px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-.img-esencias {
-  max-width: 202px;
-  max-height: 212px;
-  object-fit: cover;
-  margin-top: -10px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-.img-mascarillas {
-  max-width: 202px;
-  max-height: 202px;
-  object-fit: cover;
-  margin-top: -10px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-.img-protector {
-  max-width: 202px;
-  max-height: 200px;
-  object-fit: cover;
-  margin-top: 40px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-
 
 .category-card h3 {
-  color: #590d22;
-  margin-top: 1rem;
-  font-size: 1rem;
-  font-weight: 550;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  color: #333;
+  margin-top: 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 500;
 }
 
 .category-card p {
-  color: #540b0e;
+  color: #666;
   font-size: 0.9rem;
   margin-top: 0.5rem;
 }
-
-.img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 @media (max-width: 900px) {
   .categories {
     padding: 0.7rem 0.7rem;

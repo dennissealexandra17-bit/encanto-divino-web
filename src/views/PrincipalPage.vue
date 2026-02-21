@@ -3,7 +3,7 @@
   <Noticias/>
   <Marcas/>
   <Categoria/>
-  <ProductosDes/>
+  <Maquillaje/>
   <Rutinas/>
 </div>
 
@@ -13,7 +13,7 @@
 import Noticias from "@/components/Noticias.vue";
 import Marcas from "@/components/Marcas.vue";
 import Categoria from "@/components/Categoria.vue";
-import ProductosDes from "@/components/ProductosDes.vue";
+import Maquillaje from "@/components/Maquillaje.vue";
 import Rutinas from "@/components/Rutinas.vue";
 
 export default {
@@ -22,7 +22,7 @@ export default {
     Noticias,
     Marcas,
     Categoria,
-    ProductosDes,
+    Maquillaje,
     Rutinas,
   },
   data() {
