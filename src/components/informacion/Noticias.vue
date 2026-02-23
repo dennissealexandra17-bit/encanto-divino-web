@@ -21,6 +21,10 @@
           </div>
         </div>
 
+        <!-- Botones de navegación anterior/siguiente -->
+        <button class="nav-arrow prev-arrow" @click="previousNews" title="Anterior">❮</button>
+        <button class="nav-arrow next-arrow" @click="nextNews" title="Siguiente">❯</button>
+
         <!-- Puntos indicadores de navegación -->
         <div class="carousel-dots">
           <button 
@@ -28,7 +32,7 @@
             :key="index"
             class="dot"
             :class="{ active: currentNewsIndex === index }"
-            @click="currentNewsIndex = index"
+            @click="goToSlide(index)"
           ></button>
         </div>
       </div>
@@ -56,7 +60,7 @@ export default {
       {
         icon: '🎁',
         title: 'Promoción Especial',
-        description: 'Compra 2 productos y obtén 15% descuento. Válido hasta el próximo viernes en toda nuestra colección.',
+        description: 'Por compras de 90 dolares o más, el envío es completamente gratis. ¡Aprovecha esta oferta limitada!',
         cta: 'Comprar Ahora'
       },
       {
@@ -76,7 +80,7 @@ export default {
     const startAutoPlay = () => {
       autoPlayInterval = setInterval(() => {
         currentNewsIndex.value = (currentNewsIndex.value + 1) % newsItems.length
-      },57000)
+      }, 5000)
     }
 
     const stopAutoPlay = () => {
@@ -95,6 +99,24 @@ export default {
       // Aquí puedes agregar navegación o acciones según la noticia
     }
 
+    const nextNews = () => {
+      currentNewsIndex.value = (currentNewsIndex.value + 1) % newsItems.length
+      stopAutoPlay()
+      startAutoPlay()
+    }
+
+    const previousNews = () => {
+      currentNewsIndex.value = (currentNewsIndex.value - 1 + newsItems.length) % newsItems.length
+      stopAutoPlay()
+      startAutoPlay()
+    }
+
+    const goToSlide = (index) => {
+      currentNewsIndex.value = index
+      stopAutoPlay()
+      startAutoPlay()
+    }
+
     onMounted(() => {
       // Mostrar modal cada vez que se ingresa a la página
       setTimeout(() => {
@@ -108,7 +130,10 @@ export default {
       closeNewsModal,
       currentNewsIndex,
       newsItems,
-      handleNewsCTA
+      handleNewsCTA,
+      nextNews,
+      previousNews,
+      goToSlide
     }
   }
 }
@@ -227,6 +252,39 @@ export default {
   box-shadow: 0 8px 20px rgba(17, 0, 255, 0.3);
 }
 
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(131, 197, 190, 0.9);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+
+.nav-arrow:hover {
+  background: linear-gradient(135deg, #83c5be, #26c0b1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(131, 197, 190, 0.4);
+}
+
+.prev-arrow {
+  left: -50px;
+}
+
+.next-arrow {
+  right: -50px;
+}
+
 .carousel-dots {
   display: flex;
   gap: 0.6rem;
@@ -291,6 +349,20 @@ export default {
 
   .carousel-slides {
     min-height: 300px;
+  }
+
+  .nav-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+
+  .prev-arrow {
+    left: 5px;
+  }
+
+  .next-arrow {
+    right: 5px;
   }
 }
 </style>
