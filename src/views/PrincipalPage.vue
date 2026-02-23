@@ -30,6 +30,10 @@ export default {
       // Aquí puedes agregar datos reactivos si es necesario
     };
   },
+  mounted() {
+    // Desplazar al inicio de la página cuando el componente se monta
+    window.scrollTo(0, 0);
+  },
   methods: {
     // Aquí puedes agregar métodos para interactividad
     scrollToSection(sectionId) {

@@ -42,8 +42,8 @@
               :key="product.id || product.name"
               class="product-card"
             >
-              <div class="product-image" :class="`image-${product.imageSize}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🫧</span>
               </div>
               <div class="product-info">
@@ -77,8 +77,8 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">💧</span>
               </div>
               <div class="product-info">
@@ -112,8 +112,8 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
@@ -136,9 +136,17 @@
       </div>
     </section>
   </div>
-     <div v-if="showToast" class="toast">
-  {{ toastMessage }}
-</div>
+  <div v-if="showToast" class="toast">
+    {{ toastMessage }}
+  </div>
+
+  <!-- Modal para ver imagen en grande -->
+  <div v-if="showModal" class="modal-overlay" @click="closeImageModal">
+    <div class="modal-content" @click.stop>
+      <button class="modal-close" @click="closeImageModal">✕</button>
+      <img :src="selectedImage" :alt="selectedImage" class="modal-image" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -151,8 +159,10 @@ export default {
 
     
     const showToast = ref(false);
-const toastMessage = ref("");
-let toastTimer = null;
+    const toastMessage = ref("");
+    const showModal = ref(false);
+    const selectedImage = ref("");
+    let toastTimer = null;
     // Productos de Skin1004 organizados
        const products = [
       // ANUA
@@ -282,6 +292,18 @@ let toastTimer = null;
       (products.filter(product => product.category === 'exfoliante') || []).filter(p => p && p.id)
     );
 
+  const openImageModal = (imageSrc) => {
+    selectedImage.value = imageSrc;
+    showModal.value = true;
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeImageModal = () => {
+    showModal.value = false;
+    selectedImage.value = "";
+    document.body.style.overflow = "auto";
+  };
+
   const addToCart = (product) => {
       try {
         // Verificar que cartStore existe antes de usarlo
@@ -307,16 +329,20 @@ let toastTimer = null;
     };
 
   return {
-  cleansingProducts,
-  tonicosProducts,
-  moisturizerProducts,
-  serumsProducts,
-  sunscreenProducts,
-  exfoliantesProducts,
-  addToCart,
-  showToast,
-  toastMessage
-   };
+    cleansingProducts,
+    tonicosProducts,
+    moisturizerProducts,
+    serumsProducts,
+    sunscreenProducts,
+    exfoliantesProducts,
+    addToCart,
+    showToast,
+    toastMessage,
+    showModal,
+    selectedImage,
+    openImageModal,
+    closeImageModal
+  };
   },
 };
 </script>
@@ -539,7 +565,7 @@ let toastTimer = null;
 }
 
 .product-size {
-  color: #83c5be;
+  color: #26c0b1;
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -559,12 +585,12 @@ let toastTimer = null;
   margin-bottom: 1rem;
 }
 
+
 .product-benefits span {
-  color: #83c5be;
+  color: #58bab0;
   font-size: 0.8rem;
   font-weight: 500;
 }
-
 .product-price {
   font-size: 1.3rem;
   font-weight: 800;
@@ -591,6 +617,82 @@ let toastTimer = null;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
 }
+
+/* Estilos para el Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  background: rgba(104, 102, 102, 0.58);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90vh;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #e71919, #d61e09e1,#eb0a0a);
+  color: rgba(252, 255, 255, 0.989);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .toast {
   position: fixed;
   top: 34px;

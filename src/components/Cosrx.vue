@@ -1,13 +1,27 @@
 <template>   
-  <div class="mascarillas-page">
+  <div class="tocobo-page">
+    <!-- Header de la marca -->
     <section class="brand-header">
       <div class="container">
         <div class="brand-intro">
           <div class="brand-logo">
+            <img src="@/assets/tocobo.png" alt="Tocobo" />
           </div>
           <div class="brand-info">
-            <h1>Mascarillas y Parches para el acné</h1>
-           
+            <h1>Tocobo</h1>
+            <p class="brand-description">
+                  Tocobo es una marca coreana de cuidado de la piel reconocida 
+                  por su enfoque minimalista y fórmulas innovadoras. Sus productos 
+                  destacan por ingredientes naturales, texturas ligeras y resultados 
+                  visibles, ideales para quienes buscan una rutina efectiva y sencilla.
+                   Descubre la esencia de la belleza coreana con Tocobo.
+            </p>
+            <div class="brand-features">
+                <span class="feature">☀️ Proteccion Solar superior</span>
+                <span class="feature">🧖‍♀️ Texturas Ligeras y Sedosas</span>
+                <span class="feature">🌱 Fórmulas veganas y Cruelty-Free</span>
+                <span class="feature">🧴 Fácil de aplicar</span>
+            </div>
           </div>
         </div>
       </div>
@@ -15,23 +29,21 @@
     <!-- Productos por categorías -->
     <section class="products-section">
       <div class="container">
-       
-        <!-- COSRX -->
+        <!-- Esencias -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">🍃</span>
-            COSRX
+            <span class="category-icon">💧</span>
+            Esencias
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in (cosrxProducts || [])" 
+              v-for="product in (esenciasProducts || [])" 
               :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                          <div class="product-image" :class="`image-${product.imageSize}`" @click="openImageModal(product.src)">
                 <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
-                <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
@@ -49,23 +61,22 @@
               </div>
             </div>
           </div>
-        </div>    
-        <!-- Skin1004 -->
+        </div>
+  <!-- Protector Solar -->
         <div class="category-section">
           <h2 class="category-title">
-            <span class="category-icon">🍃</span>
-            Skin1004
+            <span class="category-icon">🧴</span>
+            Protector Solar
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in (skin1004Products || [])" 
+              v-for="product in (sunscreenProducts || [])" 
               :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                         <div class="product-image" :class="`image-${product.imageSize}`" @click="openImageModal(product.src)">
                 <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
-                <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
                 <h3>{{ product.name }}</h3>
@@ -83,21 +94,53 @@
               </div>
             </div>
           </div>
-        </div>          
+        </div>
+        <!-- mascarillas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+            Mascarillas
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (mascarillaProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+                        <div class="product-image" :class="`image-${product.imageSize}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                                             <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>     
+        </div>            
       </div>
     </section>
   </div>
-  <div v-if="showToast" class="toast">
-    {{ toastMessage }}
+     <div v-if="showToast" class="toast">
+  {{ toastMessage }}
+</div>
+<!-- Modal para ver imagen en grande -->
+<div v-if="showModal" class="modal-overlay" @click="closeImageModal">
+  <div class="modal-content" @click.stop>
+    <button class="modal-close" @click="closeImageModal">✕</button>
+    <img :src="selectedImage" :alt="selectedImage" class="modal-image" />
   </div>
-
-  <!-- Modal para ver imagen en grande -->
-  <div v-if="showModal" class="modal-overlay" @click="closeImageModal">
-    <div class="modal-content" @click.stop>
-      <button class="modal-close" @click="closeImageModal">✕</button>
-      <img :src="selectedImage" :alt="selectedImage" class="modal-image" />
-    </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -105,20 +148,17 @@ import { cartStore } from "@/store/cart.js";
 import { computed, ref } from 'vue';
 
 export default {
-  name: "Categorias",
+  name: "Skin1004Page",
   setup() {
-
+const showModal = ref(false);
+const selectedImage = ref("");
     
     const showToast = ref(false);
-    const toastMessage = ref("");
-    const showModal = ref(false);
-    const selectedImage = ref("");
-    let toastTimer = null;
+const toastMessage = ref("");
+let toastTimer = null;
     // Productos de Skin1004 organizados
        const products = [
-        //anua
-      //boj
-     // COSRX
+ // COSRX
       {
         id: "COSRX-mascarilla-nocturna-60ml",
         name: "Mascarilla noctura de arroz 60 ml",
@@ -127,171 +167,57 @@ export default {
         src: "/images/varias-marcas/8. cosrx mascarilla.png",
         description: "Mascarilla nocturna que contiene un 65% de extracto de arroz y otros ingredientes naturales para hidratar, nutrir e iluminar la piel mientras duermes.",
         benefits: ["Hidrata, ilumina y nutre la piel mientras duermes.","Aplica como último paso de la rutina del cuidado de la piel y lava con abundante agua en la mañana siguiente."],  
-        category: "cosrx",
+        category: "mascarilla",
         imageSize: "medium"
       },
-      //mixsoon
+      {
+        id: "COSRX-esencia-caracol-100ml",
+        name: "Esencia con baba de caracol 96 de 100 ml",
+        tamanio: "100 ml",
+        price: "$18.70",
+        src: "/images/varias-marcas/7.cosrx esencia.png",
+        description: "La esencia de mucina de caracol agrega humectación intensa para hidratar la piel mientras ayuda a repararla, reduce el enrojecimiento y mejora la textura y pigmentación de la piel.",
+        benefits: ["Hidrata la piel y alivia la sequedad de la piel. Ayuda a reparar la piel dañada y reducir la hiperpigmentación y las líneas finas.","Está dirigido a diversos problemas de la piel y es  adecuado."],  
+        category: "esencia",
+        imageSize: "medium"
+      },
+      {
+        id: "COSRX-bloqueador-solar-50ml",
+        name: "Bloqueador solar iluminador aloe 54.2 aqua",
+        tamanio: "50 ml",
+        price: "$18.50",
+        src: "/images/varias-marcas/28. cosrx bloqueador solar.png",
+        description: "Este protector solar utiliza filtros químicos para ofrecer protección SPF 50+ PA++++.",
+        benefits: ["Protege la piel del daño de los rayos UV con SPF 50+ PA++++ mientras brinda propiedades calmantes e hidratantes.","Le da a la piel un tinte rosado natural y vivo y también difumina la apariencia de los poros y la textura de la piel.","Brinda un acabado suave y aireado y no deja una sensación grasosa en la piel."],  
+        category: "bloqueador solar",
+        imageSize: "medium"
+      },
 
-      //skin1004
-        {
-        id: "skin1004-mascarilla-poremizing-27gr",
-        name: "Mascarilla de Arcilla Poremizing",
-        tamanio: "27g",
-        price: "$27.30",
-        src: "/images/skin1004/mascarilla-poremizing-27gr.webp",
-        description: "Tipo de piel: Grasa con poros abiertos y puntos negros.",
-        benefits: ["No contiene fragancias ni colorantes, es apta para todo tipo de piel.",
-"Contiene poderosas propiedades limpiadoras de poros y absorbentes de sebo.","Fácil de aplicar sin mancharse las manos."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-         {
-        id: "skin1004-mascarilla-nocturna-hyalucica-30ml",
-        name: "Mascarilla Nocturna Hyalu-Cica",
-        tamanio: "30ml",
-        price: "$10.60",
-        src: "/images/skin1004/mascarilla-nocturna-hyalucica-30ml.jpg",
-        description: "Tipo de piel: Piel seca, irritada y sensible.",
-        benefits: ["Piel suave, rejuvenecida y radiante.",
-"Contiene ingredientes humectantes y calmantes para una piel más hidratada y equilibrada.",
-"Hidratación profunda y duradera."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-      {
-        id: "skin1004-mascarilla-nocturna-hyalucica-100ml",
-        name: "Mascarilla Nocturna Hyalu-Cica",
-        tamanio: "100ml",
-        price: "$22.00",
-        src: "/images/skin1004/mascarilla-nocturna-hyalucica-100ml.webp",
-        description: "Tipo de piel: Piel seca, irritada y sensible.",
-        benefits: ["Piel suave, rejuvenecida y radiante.",
-"Contiene ingredientes humectantes y calmantes para una piel más hidratada y equilibrada.",
-"Hidratación profunda y duradera."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-      {
-        id: "skin1004-pack-mascarillas-calabaza-16-piezas",
-        name: "Pack de 16 Mascarillas Calabaza",
-        tamanio: "16 piezas",
-        price: "$16.00",
-        src: "/images/skin1004/mascarilla-calabaza-16-piezas.webp",
-        description: "Mascarillas multifuncionales diseñadas para pieles deshidratas y flacidas.",
-        benefits: ["Mejora la textura de la piel gracias al extracto de miel, el extracto de jalea real y el extracto de propóleo.",
-"Enriquecida con polvo y aceite de té verde para una revitalización cutánea excepcional."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-         {
-        id: "skin1004-witch-pack-mascarillas-16-piezas",
-        name: "Witch Pack de 16 Mascarillas",
-        tamanio: "16 piezas",
-        price: "$15.50",
-        src: "/images/skin1004/mascarilla-witch-pack-16-piezas.jpg",
-        description: "Mascarillas multifuncionales diseñadas para pieles deshidratas y flacidas.",
-        benefits: ["Además, ayuda a reducir la apariencia de los poros dilatados y elimina suavemente las células muertas",
-        "Contiene un 71 % de agua de té verde, que hidrata profundamente y calma la piel cansada e hinchada."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-       {
-        id: "skin1004-zombie-pack-mascarillas-16-piezas",
-        name: "Zombie Pack de 16 Mascarillas",
-        tamanio: "16 piezas",
-        price: "$25.00",
-        src: "/images/skin1004/mascarilla-zombie-16-piezas.jpg",
-        description: "Combate los puntos negros y ofrece un efecto lifting.",
-        benefits: ["Enriquecido con adenosina, albúmina, pantenol y extracto de propóleo antibacteriano.",
-        "Sin parabenos, aceites minerales, TEA, alcohol ni colorantes artificiales."],
-        category: "skin1004",
-        imageSize: "medium"
-      }, {
-        id: "skin1004-parches-tea-trica",
-        name: "Parches de Tea - Trica",
-        tamanio: "22 piezas",
-        price: "$6.00",
-        src: "/images/skin1004/parches-tea-trica.webp",
-        description: "Parches para acné en diferentes tamaños.",
-        benefits: ["Especialmente diseñado para pieles con problemas y propensas al acné.",
-        "Los parches hidrocoloides absorben el pus y protegen la herida gracias a sus ingredientes activos.",
-      "Probado dermatológicamente."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-       {
-        id: "skin1004-mascarilla-tea-trica",
-        name: "Mascarilla de Tea - Trica",
-        tamanio: "1 pieza",
-        price: "$3.50",
-        src: "/images/skin1004/mascarilla-tea-trica.jpeg",
-        description: "Mascarilla con centella y tea -trica.",
-        benefits: ["Ofrece un efecto calmante e hidrtante instantáneo para la piel.",
-        "El ácido salicílico y la niacinamida limpian los poros y suavizan la textura de la piel.",
-      "Supera la prueba de irritación cutánea, por lo que es apta para todo tipo de piel."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-       {
-        id: "skin1004-mascarilla-poremizing",
-        name: "Mascarilla Poremizing",
-        tamanio: "1 pieza",
-        price: "$3.50",
-        src: "/images/skin1004/mascarilla-poremizing.jpg",
-        description: "Combate los problemas de los poros.",
-        benefits: ["Elimina eficazmente las impurezas y el exceso de sebo de los poros, dejando la piel fresca y limpia.",
-        "Proporciona un efecto de peeling rápido y uniforme, dejando la piel más suave y refinada.",
-      "Ayuda a reducir la apariencia de los poros dilatados y mejora la textura de la piel."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-          {
-        id: "skin1004-mascarilla-tono-iluminador",
-        name: "Mascarilla Tono Iluminador",
-        tamanio: "1 pieza",
-        price: "$3.50",
-        src: "/images/skin1004/mascarilla-tono-iluminador.jpg",
-        description: "Ilumina y suaviza la piel.",
-        benefits: ["Reduce las manchas oscuras y mejora el tono de la piel.",
-        "Minimiza la irritación y proporcina un efecto calmante."],
-        category: "skin1004",
-        imageSize: "medium"
-      },
-        
     ];
 
 
     // Computed properties para organizar productos por categoría
-    const anuaProducts = computed(() => 
-      (products.filter(product => product.category === 'anua') || []).filter(p => p && p.id)
-    );
-  const bojProducts = computed(() => 
-      (products.filter(product => product.category === 'boj') || []).filter(p => p && p.id)
-    );
-     const mixsoonProducts = computed(() => 
-      (products.filter(product => product.category === 'mixsoon') || []).filter(p => p && p.id)
-    );
-     const skin1004Products = computed(() => 
-      (products.filter(product => product.category === 'skin1004') || []).filter(p => p && p.id)
-    );
-     const celimaxProducts = computed(() => 
-      (products.filter(product => product.category === 'celimax') || []).filter(p => p && p.id)
-    );
-  const cosrxProducts = computed(() => 
-      (products.filter(product => product.category === 'cosrx') || []).filter(p => p && p.id)
-    );
-  const openImageModal = (imageSrc) => {
-    selectedImage.value = imageSrc;
-    showModal.value = true;
-    document.body.style.overflow = "hidden";
-  };
 
-  const closeImageModal = () => {
-    showModal.value = false;
-    selectedImage.value = "";
-    document.body.style.overflow = "auto";
-  };
+    const esenciasProducts = computed(() => 
+      (products.filter(product => product.category === 'esencia') || []).filter(p => p && p.id)
+    );
+    const sunscreenProducts = computed(() => 
+      (products.filter(product => product.category === 'bloqueador solar') || []).filter(p => p && p.id)
+    );
+    const mascarillaProducts = computed(() => 
+      (products.filter(product => product.category === 'mascarilla') || []).filter(p => p && p.id)
+    );
+const openImageModal = (imageSrc) => {
+  selectedImage.value = imageSrc;
+  showModal.value = true;
+  document.body.style.overflow = "hidden";
+};
 
+const closeImageModal = () => {
+  showModal.value = false;
+  selectedImage.value = "";
+  document.body.style.overflow = "auto";
+};
   const addToCart = (product) => {
       try {
         // Verificar que cartStore existe antes de usarlo
@@ -317,20 +243,17 @@ export default {
     };
 
   return {
-    anuaProducts,
-    bojProducts,
-    mixsoonProducts,
-    skin1004Products,
-    celimaxProducts,
-    cosrxProducts,
-    addToCart,
-    showToast,
-    toastMessage,
+  esenciasProducts,
+  sunscreenProducts,
+  mascarillaProducts,
+  addToCart,
+  showToast,
+  toastMessage,
     showModal,
-    selectedImage,
-    openImageModal,
-    closeImageModal
-  };
+  selectedImage,
+  openImageModal,
+  closeImageModal
+   };
   },
 };
 </script>
@@ -342,7 +265,7 @@ export default {
   box-sizing: border-box;
 }
 
-.mascarillas-page {
+.anua-page {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;
 }
@@ -479,7 +402,6 @@ export default {
   padding: 6px;
 }
 
-
 .image-small {
   height: 120px;
 }
@@ -558,6 +480,7 @@ export default {
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+
 .product-description {
   color: #666;
   margin-bottom: 0.8rem;
@@ -571,41 +494,6 @@ export default {
   gap: 0.2rem;
   margin-bottom: 1rem;
 }
-
-
-.product-benefits span {
-  color: #58bab0;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
-.product-price {
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: #4a5759;
-  margin-bottom: 1rem;
-  margin-top: auto;
-  text-align: center;
-}
-
-.add-to-cart-btn {
-  width: 100%;
-  background: linear-gradient(135deg, #1100ffaf,#564fea90, #1100ffaf);
-  color: rgb(7, 7, 7);
-  border: none;
-  padding: 0.8rem 1rem;
-  border-radius: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.add-to-cart-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
-}
-
 /* Estilos para el Modal */
 .modal-overlay {
   position: fixed;
@@ -656,7 +544,6 @@ export default {
   justify-content: center;
   transition: transform 0.2s ease;
 }
-
 .modal-close:hover {
   transform: scale(1.1);
 }
@@ -681,6 +568,37 @@ export default {
   }
 }
 
+.product-benefits span {
+  color: #58bab0;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.product-price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #4a5759;
+  margin-bottom: 1rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #1100ffaf,#564fea90, #1100ffaf);
+  color: rgb(7, 7, 7);
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
+}
 .toast {
   position: fixed;
   top: 34px;

@@ -12,6 +12,9 @@ import mascarillasPage from '@/components/categorias/mascarillas.vue'
 import protectoresPage from '@/components/categorias/proteccionSolar.vue'
 import SerumsEsenciasPage from '@/components/categorias/SerumsEsencias.vue'
 import hidratantesPage from '@/components/categorias/hidratantes.vue'
+import tocoboPage from '@/components/Tocobo.vue'
+import CosrxPage from '@/components/Cosrx.vue'
+import variasMarcasPage from '@/components/VariasMarcas.vue'
   
 const routes = [
   {
@@ -48,6 +51,21 @@ const routes = [
       path: '/celimax',
       name: 'Celimax',
       component: CelimaxPage
+    },
+    {
+      path: '/tocobo',
+      name: 'Tocobo',
+      component: tocoboPage
+    },
+    {
+      path: '/cosrx',
+      name: 'Cosrx',
+      component: CosrxPage
+    },
+    {
+      path: '/varias-marcas',
+      name: 'Varias Marcas',
+      component: variasMarcasPage
     },
     {
       path: '/tonicos',

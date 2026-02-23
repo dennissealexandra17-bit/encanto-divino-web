@@ -28,8 +28,8 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
@@ -62,8 +62,42 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <!-- cosrx -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+            Cosrx
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (cosrxProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
@@ -96,8 +130,8 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
@@ -130,8 +164,8 @@
               class="product-card"
               :class="{ featured: product.featured }"
             >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
+             <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
                 <span v-else class="product-placeholder">🍃</span>
               </div>
               <div class="product-info">
@@ -150,13 +184,54 @@
               </div>
             </div>
           </div>
-        </div>            
+        </div>   
+         <!-- tocobo -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+            Tocobo
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (tocoboProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>           
       </div>
     </section>
+    <!-- Modal para ver imagen en tamaño grande -->
+    <div v-if="showModal" class="modal-overlay" @click="closeImageModal">
+      <div class="modal-content" @click.stop>
+        <button class="modal-close" @click="closeImageModal">✕</button>
+        <img :src="selectedImage" :alt="selectedImage" class="modal-image" />
+      </div>
+    </div>
+    <div v-if="showToast" class="toast">
+      {{ toastMessage }}
+    </div>
   </div>
-     <div v-if="showToast" class="toast">
-  {{ toastMessage }}
-</div>
 </template>
 <script>
 import { cartStore } from "@/store/cart.js";
@@ -166,10 +241,11 @@ export default {
   name: "Categorias",
   setup() {
 
-    
+    const showModal = ref(false);
+    const selectedImage = ref("");
     const showToast = ref(false);
-const toastMessage = ref("");
-let toastTimer = null;
+    const toastMessage = ref("");
+    let toastTimer = null;
     // Productos de Skin1004 organizados
        const products = [
         //boj
@@ -207,6 +283,19 @@ let toastTimer = null;
         category: "celimax",
         imageSize: "medium"
       },
+      //cosrx
+       {
+        id: "COSRX-bloqueador-solar-50ml",
+        name: "Bloqueador solar iluminador aloe 54.2 aqua",
+        tamanio: "50 ml",
+        price: "$18.50",
+        src: "/images/varias-marcas/28. cosrx bloqueador solar.png",
+        description: "Este protector solar utiliza filtros químicos para ofrecer protección SPF 50+ PA++++.",
+        benefits: ["Protege la piel del daño de los rayos UV con SPF 50+ PA++++ mientras brinda propiedades calmantes e hidratantes.","Le da a la piel un tinte rosado natural y vivo y también difumina la apariencia de los poros y la textura de la piel.","Brinda un acabado suave y aireado y no deja una sensación grasosa en la piel."],  
+        category: "cosrx",
+        imageSize: "medium"
+      },
+
       //mixsoon
       {
         id: "mixsoon-bloqueador-solar-50gr",
@@ -285,6 +374,51 @@ let toastTimer = null;
         category: "skin1004",
         imageSize: "medium"
       },
+      //tocobo
+       {
+        id: "tocobo-bloqueador-solar-bio-watery-50ml",
+        name: "Bloqueador solar bio watery de 50 ml",
+        tamanio: "50 ml",
+        price: "$24",
+        src: "/images/varias-marcas/3. tocobo bloqueador azul liquido.png",
+        description: "Este bloqueador solar calma la irritación y ataca las marcas del acné, contiene bio-ácido hialurónico que aumenta la humectación de la piel.",
+        benefits: ["No deja residuos blancos ni grumos con otros cosméticos. Amplio espectro SPF 50 + PA.","Refuerza la hidratación de la piel con ácido hialurónico."], 
+        category: "tocobo",
+        imageSize: "medium"
+      },
+      {
+        id: "tocobo-bloqueador-solar-bio-watery-19gr",
+        name: "Bloqueador solar bio watery de 19 gramos",
+        tamanio: "19 gr",
+        price: "$24.60",
+        src: "/images/varias-marcas/4. tocobo bloqueador azul barra.png",
+        description: "Este bloqueador solar calma la irritación y ataca las marcas del acné, contiene bio-ácido hialurónico que aumenta la humectación de la piel. Con su presentación en barra para una fácil aplicación",
+        benefits: ["No deja residuos blancos ni grumos con otros cosméticos. Amplio espectro SPF 50 + PA.","Refuerza la hidratación de la piel con ácido hialurónico."], 
+        category: "tocobo",
+        imageSize: "medium"
+      },
+      {
+        id: "tocobo-bloqueador-solar-cica-calmante-50ml",
+        name: "Bloqueador solar cica calmante 50 ml",
+        tamanio: "50 ml",
+        price: "$20.80",
+        src: "/images/varias-marcas/5. tocobo verde liquido.png",
+        description: "Protector solar químico que tiene un SPF50+ PA++++ para proteger la piel de los rayos del sol, y está formulado con extractos de centella asiática y aloe vera para calmar la inflamación y las quemaduras solares al instante.",
+        benefits: ["Reduce la inflamación de la piel mientras retiene la humedad. Amplio espectro SPF 50 + PA","Brinda un efecto refrescante e hidratación"],
+        category: "tocobo",
+        imageSize: "medium"
+      },
+      {
+        id: "tocobo-bloqueador-solar-cica-calmante-19gr",
+        name: "Bloqueador solar cica calmante 19 gramos",
+        tamanio: "19 gr",
+        price: "$21",
+        src: "/images/varias-marcas/6. tocobo bloqueador verde barra.png",
+        description: "Protector solar químico que tiene un SPF50+ PA++++ para proteger la piel de los rayos del sol, y está formulado con extractos de centella asiática y aloe vera para calmar la inflamación y las quemaduras solares al instante.",
+        benefits: ["Reduce la inflamación de la piel mientras retiene la humedad. Amplio espectro SPF 50 + PA","Brinda un efecto refrescante e hidratación"],
+        category: "tocobo",
+        imageSize: "medium"
+      },
      
     ];
 
@@ -305,6 +439,12 @@ let toastTimer = null;
      const celimaxProducts = computed(() => 
       (products.filter(product => product.category === 'celimax') || []).filter(p => p && p.id)
     );
+ const cosrxProducts = computed(() => 
+      (products.filter(product => product.category === 'cosrx') || []).filter(p => p && p.id)
+    );
+   const tocoboProducts = computed(() => 
+      (products.filter(product => product.category === 'tocobo') || []).filter(p => p && p.id)
+    ); 
 
   const addToCart = (product) => {
       try {
@@ -330,16 +470,34 @@ let toastTimer = null;
       }
     };
 
-  return {
-  anuaProducts,
-  bojProducts,
-  mixsoonProducts,
-  skin1004Products,
-  celimaxProducts,
-  addToCart,
-  showToast,
-  toastMessage
-   };
+    const openImageModal = (imageSrc) => {
+      selectedImage.value = imageSrc;
+      showModal.value = true;
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeImageModal = () => {
+      showModal.value = false;
+      selectedImage.value = "";
+      document.body.style.overflow = "auto";
+    };
+
+    return {
+    anuaProducts,
+    bojProducts,
+    mixsoonProducts,
+    skin1004Products,
+    celimaxProducts,
+    cosrxProducts,
+    tocoboProducts,
+    addToCart,
+    showToast,
+    toastMessage,
+    showModal,
+    selectedImage,
+    openImageModal,
+    closeImageModal
+    };
   },
 };
 </script>
@@ -562,7 +720,7 @@ let toastTimer = null;
 }
 
 .product-size {
-  color: #83c5be;
+  color: #26c0b1;
   font-size: 0.9rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -582,8 +740,9 @@ let toastTimer = null;
   margin-bottom: 1rem;
 }
 
+
 .product-benefits span {
-  color: #83c5be;
+  color: #58bab0;
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -614,6 +773,82 @@ let toastTimer = null;
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(131, 197, 190, 0.4);
 }
+
+/* Estilos para el Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  background: rgba(104, 102, 102, 0.58);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90vh;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #e71919, #d61e09e1,#eb0a0a);
+  color: rgba(252, 255, 255, 0.989);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .toast {
   position: fixed;
   top: 34px;

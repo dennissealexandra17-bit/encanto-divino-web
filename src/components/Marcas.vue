@@ -15,9 +15,9 @@
             <img src="@/assets/mixsoon.webp" alt="Mixsoon logo" />
           </div>
         </router-link>
-        <router-link to="/corsx" class="marcas-card">
+        <router-link to="/cosrx" class="marcas-card">
           <div class="marcas-icon">
-            <img class="corsx" src="@/assets/corsx.webp" alt="Corxs logo" />
+            <img class="corsx" src="@/assets/cosrx.webp" alt="Cosrx logo" />
           </div>
         </router-link>
         <router-link to="/anua" class="marcas-card">
@@ -34,21 +34,31 @@
             />
           </div>
         </router-link>
-        <router-link to="/dr-althea" class="marcas-card">
-          <div class="marcas-icon">
-            <img
-              class="dr-althea"
-              src="@/assets/dr-althea.webp"
-              alt="Dr. Althea logo"
-            />
-          </div>
-        </router-link>
+        
         <router-link to="/celimax" class="marcas-card">
           <div class="marcas-icon">
             <img
               class="celimax"
               src="@/assets/celimax.webp"
               alt="Celimax logo"
+            />
+          </div>
+        </router-link>
+         <router-link to="/tocobo" class="marcas-card">
+          <div class="marcas-icon">
+            <img
+              class="tocobo"
+              src="@/assets/tocobo.png"
+              alt="Tocobo logo"
+            />
+          </div>
+        </router-link>
+        <router-link to="/varias-marcas" class="marcas-card">
+          <div class="marcas-icon">
+            <img
+              class="varias-marcas"
+              src="@/assets/varias-marcas.png"
+              alt="Varias Marcas"
             />
           </div>
         </router-link>
