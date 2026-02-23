@@ -1,21 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import PrincipalPage from '@/views/PrincipalPage.vue'
-import Skin1004Page from '@/components/Skin1004.vue'
-import MixsoonPage from '@/components/Mixsoon.vue'  
-import BeautyofjoseonPage from '@/components/Beautyofjoseon.vue'  
+import Skin1004Page from '@/components/marcas/Skin1004.vue'
+import MixsoonPage from '@/components/marcas/Mixsoon.vue'  
+import BeautyofjoseonPage from '@/components/marcas/Beautyofjoseon.vue'  
 import MarcasPage from '@/components/Marcas.vue'
-import AnuaPage from '@/components/Anua.vue'
-import CelimaxPage from '@/components/Celimax.vue'
+import AnuaPage from '@/components/marcas/Anua.vue'
+import CelimaxPage from '@/components/marcas/Celimax.vue'
 import tonicosPage from '@/components/categorias/tonicos.vue' 
 import limpiadoresPage from '@/components/categorias/limpiadores.vue'
 import mascarillasPage from '@/components/categorias/mascarillas.vue'
 import protectoresPage from '@/components/categorias/proteccionSolar.vue'
 import SerumsEsenciasPage from '@/components/categorias/SerumsEsencias.vue'
 import hidratantesPage from '@/components/categorias/hidratantes.vue'
-import tocoboPage from '@/components/Tocobo.vue'
-import CosrxPage from '@/components/Cosrx.vue'
-import variasMarcasPage from '@/components/VariasMarcas.vue'
+import tocoboPage from '@/components/marcas/Tocobo.vue'
+import CosrxPage from '@/components/marcas/Cosrx.vue'
+import variasMarcasPage from '@/components/marcas/VariasMarcas.vue'
 import labialesPage from '@/components/maquillaje/labiales.vue'
+import categoriasPage from '@/components/Categoria.vue'
+import RutinasPage from '@/components/Rutinas.vue'
   
 const routes = [
   {
@@ -102,7 +104,17 @@ const routes = [
       path: '/labiales',
       name: 'Labiales',
       component: labialesPage
-    }
+    },
+     {
+      path: '/categorias',
+      name: 'Categorias',
+      component: categoriasPage
+    },
+    {
+      path: '/rutinas',
+      name: 'Rutinas',
+      component: RutinasPage
+    },
 
 ]
 

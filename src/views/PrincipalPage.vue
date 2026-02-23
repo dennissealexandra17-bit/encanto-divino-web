@@ -1,5 +1,6 @@
 <template>
 <div class="container">
+  <Informacion compact/>
   <Noticias/>
   <Marcas/>
   <Categoria/>
@@ -10,11 +11,12 @@
 </template>
 
 <script>
-import Noticias from "@/components/Noticias.vue";
+import Noticias from "@/components/informacion/Noticias.vue";
 import Marcas from "@/components/Marcas.vue";
 import Categoria from "@/components/Categoria.vue";
 import Maquillaje from "@/components/Maquillaje.vue";
 import Rutinas from "@/components/Rutinas.vue";
+import Informacion from "@/components/informacion/informacion.vue";
 
 export default {
   name: "PrincipalPage",
@@ -24,6 +26,7 @@ export default {
     Categoria,
     Maquillaje,
     Rutinas,
+    Informacion,
   },
   data() {
     return {
@@ -54,18 +57,10 @@ export default {
   box-sizing: border-box;
 }
 
-.principal-page {
-  font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  background: #d2d6ca; /* Ash Grey, fondo general */
-  min-height: 100vh;
-}
-
 .container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 2.5rem 2.5rem;
-  background: #FFFFFFCC; /* Blanco translúcido para resaltar el contenido */
+  background: #e8dcdcd4; /* Blanco translúcido para resaltar el contenido */
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(200, 135, 232, 0.10);
   border: 2px solid #E6ADEC;

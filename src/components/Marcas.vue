@@ -74,10 +74,10 @@ export default {};
 <style scoped>
 .container {
   padding: 1rem 1rem;
-  margin-top: 2rem;
   border-radius: 14px;
   background: #efb9cb37;
   border: 2px solid #e6adec;
+    margin: 5px 22px 0px 22px;
   box-shadow: 0 4px 18px #e6adec33;
 }
 .section-title {

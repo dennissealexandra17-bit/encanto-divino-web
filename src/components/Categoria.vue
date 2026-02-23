@@ -108,7 +108,7 @@ export default {};
 /* Categories */
 .categories {
   padding: 1rem 1rem;
-  margin-top: 2rem;
+    margin: 5px 22px 0px 22px;
   border-radius: 14px;
   background: #efb9cb37;
   border: 2px solid #e6adec;
@@ -148,6 +148,7 @@ export default {};
 .category-card {
   background: linear-gradient(135deg, #ffffff 70%, #6d696a 110%);
   padding: 2rem 1.5rem;
+  
   border-radius: 20px;
   text-align: center;
   transition: transform 0.3s cubic-bezier(0.4, 1.5, 0.5, 1), box-shadow 0.3s,

@@ -108,7 +108,7 @@ export default {
   right: 2rem;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #83C5BE, #CDB4DB);
+  background: linear-gradient(135deg, #1f9630, #1f9367);
   border-radius: 50%;
   display: flex;
   align-items: center;

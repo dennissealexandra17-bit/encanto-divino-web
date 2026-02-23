@@ -286,7 +286,7 @@
 <script>
 import { cartStore } from "@/store/cart.js";
 import { computed, ref } from 'vue';
-import Cosrx from "../Cosrx.vue";
+import Cosrx from "../marcas/Cosrx.vue";
 
 export default {
   name: "Categorias",
