@@ -6,6 +6,12 @@ import BeautyofjoseonPage from '@/components/Beautyofjoseon.vue'
 import MarcasPage from '@/components/Marcas.vue'
 import AnuaPage from '@/components/Anua.vue'
 import CelimaxPage from '@/components/Celimax.vue'
+import tonicosPage from '@/components/categorias/tonicos.vue' 
+import limpiadoresPage from '@/components/categorias/limpiadores.vue'
+import mascarillasPage from '@/components/categorias/mascarillas.vue'
+import protectoresPage from '@/components/categorias/proteccionSolar.vue'
+import SerumsEsenciasPage from '@/components/categorias/SerumsEsencias.vue'
+import hidratantesPage from '@/components/categorias/hidratantes.vue'
   
 const routes = [
   {
@@ -42,6 +48,36 @@ const routes = [
       path: '/celimax',
       name: 'Celimax',
       component: CelimaxPage
+    },
+    {
+      path: '/tonicos',
+      name: 'Tónicos',
+      component: tonicosPage
+    },
+    {
+      path: '/limpiadores',
+      name: 'Limpiadores',
+      component: limpiadoresPage
+    },
+    {
+      path: '/proteccion-solar',
+      name: 'Protectores Solares',
+      component: protectoresPage
+    },
+    {
+      path: '/esencias-y-serums',
+      name: 'Esencias y Serums',
+      component: SerumsEsenciasPage
+    },
+    {
+      path: '/mascarillas',
+      name: 'Mascarillas y Parches',
+      component: mascarillasPage
+    },
+    {
+      path: '/hidratantes',
+      name: 'Cremas hidratantes',
+      component: hidratantesPage
     }
 
 ]

@@ -1,113 +1,29 @@
 <template>   
-  <div class="celimax-page">
-    <!-- Header de la marca -->
+  <div class="proteccionSolar-page">
     <section class="brand-header">
       <div class="container">
         <div class="brand-intro">
           <div class="brand-logo">
-            <img src="@/assets/celimax.webp" alt="Celimax" />
           </div>
           <div class="brand-info">
-            <h1>Celimax</h1>
-            <p class="brand-description">
-                Celimax es una marca coreana que se distingue por su honestidad y transparencia 
-                en la formulación de productos para el cuidado de la piel. Su filosofía se basa 
-                en escuchar las necesidades reales de los usuarios y ofrecer soluciones efectivas, 
-                seguras y libres de ingredientes irritantes. Celimax utiliza ingredientes 
-                cuidadosamente seleccionados y fórmulas minimalistas para garantizar resultados 
-                visibles, priorizando la salud y el bienestar de la piel sensible. Es ideal para 
-                quienes buscan rutinas sencillas, efectivas y confiables, especialmente para 
-                personas con piel propensa al acné o imperfecciones.
-            </p>
-            <div class="brand-features">
-              <span class="feature">🌸 Ingredientes Naturales</span>
-              <span class="feature">🧖‍♀️ Texturas Ligeras</span>
-              <span class="feature">🌱 Aptas para pieles sensibles</span>
-              <span class="feature">💎 Enfoque en poros</span>
+            <h1>Protectores Solares</h1>
             </div>
-          </div>
         </div>
       </div>
     </section>
     <!-- Productos por categorías -->
     <section class="products-section">
       <div class="container">
-        <!-- Limpiadores -->
-        <div class="category-section">
-          <h2 class="category-title">
-            <span class="category-icon">🫧</span>
-            Limpiadores
-          </h2>
-          <div class="products-grid">
-            <div 
-              v-for="product in (cleansingProducts || [])" 
-              :key="product.id || product.name"
-              class="product-card"
-            >
-              <div class="product-image" :class="`image-${product.imageSize}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">🫧</span>
-              </div>
-              <div class="product-info">
-                <h3>{{ product.name }}</h3>
-                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
-                <p class="product-description">{{ product.description }}</p>
-                <div class="product-benefits">
-                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
-                    • {{ benefit }}
-                  </span>
-                </div>
-                <div class="product-price">{{ product.price }}</div>
-                <button class="add-to-cart-btn" @click="addToCart(product)">
-                  Agregar al Carrito
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Serums -->
-        <div class="category-section">
-          <h2 class="category-title">
-            <span class="category-icon">💧</span>
-            Serums
-          </h2>
-          <div class="products-grid">
-            <div 
-              v-for="product in (serumsProducts || [])" 
-              :key="product.id || product.name"
-              class="product-card"
-              :class="{ featured: product.featured }"
-            >
-              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
-                <img v-if="product.src" :src="product.src" :alt="product.name" />
-                <span v-else class="product-placeholder">💧</span>
-              </div>
-              <div class="product-info">
-                <h3>{{ product.name }}</h3>
-                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
-                <p class="product-description">{{ product.description }}</p>
-                <div class="product-benefits">
-                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
-                    • {{ benefit }}
-                  </span>
-                </div>
-                <div class="product-price">{{ product.price }}</div>
-                <button class="add-to-cart-btn" @click="addToCart(product)">
-                  Agregar al Carrito
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+        <!-- Beauty of Joseon -->
         <div class="category-section">
           <h2 class="category-title">
             <span class="category-icon">🍃</span>
-            Cremas Humectantes
+            Beauty of Joseon
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in (moisturizerProducts || [])" 
+              v-for="product in (bojProducts || [])" 
               :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
@@ -132,15 +48,16 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> 
+         <!-- Celimax -->
         <div class="category-section">
           <h2 class="category-title">
             <span class="category-icon">🍃</span>
-            Protector Solar
+            Celimax
           </h2>
           <div class="products-grid">
             <div 
-              v-for="product in (sunscreenProducts || [])" 
+              v-for="product in (celimaxProducts || [])" 
               :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
@@ -165,14 +82,16 @@
               </div>
             </div>
           </div>
-        </div>  
-         <div class="category-section">
+        </div> 
+        <!-- Mixsoon -->
+        <div class="category-section">
           <h2 class="category-title">
             <span class="category-icon">🍃</span>
-Exfoliantes          </h2>
+            Mixsoon
+          </h2>
           <div class="products-grid">
             <div 
-              v-for="product in (exfoliantesProducts || [])" 
+              v-for="product in (mixsoonProducts || [])" 
               :key="product.id || product.name"
               class="product-card"
               :class="{ featured: product.featured }"
@@ -197,7 +116,41 @@ Exfoliantes          </h2>
               </div>
             </div>
           </div>
-        </div>          
+        </div> 
+        <!-- Skin1004 -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+            Skin1004
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (skin1004Products || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`">
+                <img v-if="product.src" :src="product.src" :alt="product.name" />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>            
       </div>
     </section>
   </div>
@@ -205,13 +158,12 @@ Exfoliantes          </h2>
   {{ toastMessage }}
 </div>
 </template>
-
 <script>
 import { cartStore } from "@/store/cart.js";
 import { computed, ref } from 'vue';
 
 export default {
-  name: "Skin1004Page",
+  name: "Categorias",
   setup() {
 
     
@@ -219,96 +171,31 @@ export default {
 const toastMessage = ref("");
 let toastTimer = null;
     // Productos de Skin1004 organizados
-      const products = [
-      // CELIMAX
+       const products = [
+        //boj
       {
-        id: "Celimax-Aceite-limpiador-derma-natura-20ml",
-        name: "Aceite limpiador derma nature fresh 20 ml",
-        tamanio: "20 ml",
-        price: "$8.90",
-        src: "/images/celimax/1. aceite mini.png",
-        description: "Aceite limpiador que desobstruye los poros y disuelve suavemente los puntos negros, los puntos blancos y el exceso de sebo, dejando la piel limpia.",
-        benefits: ["Ayuda a eliminar a fondo el maquillaje, las impurezas y el exceso de sebo de la piel mediante la emulsificación.","Formulado con 8 tipos de aceites de origen vegetal que aportan una limpieza suave sin obstruir los poros y mantienen la piel fresca."], 
-        category: "cleansing",
-        imageSize: "medium"
-      },
-      {
-        id: "Celimax-Aceite-limpiador-derma-natura-1500ml",
-        name: "Aceite limpiador derma nature fresh 150 ml",
-        tamanio: "150 ml",
-        price: "$25.50",
-        src: "/images/celimax/2. aceite limpiador jumbo.jpg",
-        description: "Aceite limpiador que desobstruye los poros y disuelve suavemente los puntos negros, los puntos blancos y el exceso de sebo, dejando la piel limpia.",
-        benefits: ["Ayuda a eliminar a fondo el maquillaje, las impurezas y el exceso de sebo de la piel mediante la emulsificación.","Formulado con 8 tipos de aceites de origen vegetal que aportan una limpieza suave sin obstruir los poros y mantienen la piel fresca."], 
-        category: "cleansing",
-        imageSize: "medium"
-      },
-      {
-        id: "celimax-bruma-facial-the-real-noni-50ml",
-        name: "Bruma facial the real noni mist 50 ml",
+        id: "BOJ-protector-solar-relief-sun",
+        name: "Protector solar Relief sun 50 ml",
         tamanio: "50 ml",
-        price: "$30",
-        src: "/images/celimax/3. Bruma facial.png",
-        description: "Bruma facial que te ayuda a eliminar las impurezas de la piel al mismo tiempo que te deja suave e hidratada.",
-        benefits: ["Limpia a fondo y con suavidad las impurezas de la piel y elimina el exceso de sebo.","Elimina suavemente las células muertas y ayuda a calmar la piel con tendencia acneica.","Su fórmula hipoalergénica es apta para todo tipo de piel, incluidas las sensibles y con tendencia acneica."], 
-        category: "cleansing",
+        price: "$23.50",
+        src: "/images/mixsoon/9. mixsoon bean essence 20 ml.png",
+        description: "Protector solar orgánico con textura ligera que se absorbe rápido y no deja rastro blanco.",
+        benefits: ["Enriquecido con un 30 % de extracto de arroz y probióticos derivados de granos que hidratan y nutren la piel.","Es suave pero potente, ofrece un bloqueo UV eficaz con SPF50+ PA++++ de amplio espectro.","Contiene ingredientes con beneficios calmantes, adecuado para pieles sensibles."], 
+        category: "boj",
         imageSize: "medium"
       },
       {
-        id: "celimax-espuma-facial-the-real-noni-150ml",
-        name: "Bruma facial the real noni mist 150 ml",
-        tamanio: "150 ml",
-        price: "$28.90",
-        src: "/images/celimax/4. espuma limpiadora facial.png",
-        description: "Elimina a fondo las impurezas de la piel y el exceso de sebo sin resecarla, gracias a esta espuma limpiadora con pH balanceado.",
-        benefits: ["Limpia a fondo y con suavidad las impurezas de la piel y elimina el exceso de sebo.","Elimina suavemente las células muertas y ayuda a calmar la piel con tendencia acneica.","Su fórmula hipoalergénica es apta para todo tipo de piel, incluidas las sensibles y con tendencia acneica."], 
-        category: "cleansing",
+        id: "BOJ-protector-solar-barra-18gr",
+        name: "Protector solar mate en barra 18 gr",
+        tamanio: "18 gr",
+        price: "$19.40",
+        src: "/images/mixsoon/10. Protector solar en barra mate.png",
+        description: "Protector solar ideal para quienes prefieren una protección solar práctica en barra",
+        benefits: ["Rico en vitamica A y C y minerales, ayuda a nutrir y calmar la piel. SPF 50 - Amplio espectro.","Aplicación suave y fresca sin grumos ni sensación grasosa"], 
+        category: "boj",
         imageSize: "medium"
       },
-      {
-        id: "Celimax-ampolla-the-real-noni-30ml",
-        name: "Ampolla calmante the real noni 30 ml",
-        tamanio: "30 ml",
-        price: "$30.10",
-        src: "/images/celimax/5. ampolla noni.png",
-        description: "Con un 71.77% de extracto de la fruta noni rica en nutrientes, esta ampolla hidrata la piel y proporciona más luminosidad para un aspecto saludable",
-        benefits: ["Hidratar la piel y darle un aspecto fresco y saludable.","Ayuda a calmar y revitalizar la piel irritada para un acabado suave y radiante con aceite de romero.","Ayuda a reducir la apariencia de líneas finas y arrugas."], 
-        category: "sérum",
-        imageSize: "medium"
-      },
-      {
-        id: "Celimax-ampolla-the-real-noni-50ml",
-        name: "Ampolla calmante the real noni 50 ml",
-        tamanio: "50 ml",
-        price: "$45.10",
-        src: "/images/celimax/5. ampolla noni.png",
-        description: "Con un 71.77% de extracto de la fruta noni rica en nutrientes, esta ampolla hidrata la piel y proporciona más luminosidad para un aspecto saludable",
-        benefits: ["Hidratar la piel y darle un aspecto fresco y saludable.","Ayuda a calmar y revitalizar la piel irritada para un acabado suave y radiante con aceite de romero.","Ayuda a reducir la apariencia de líneas finas y arrugas."], 
-        category: "sérum",
-        imageSize: "medium"
-      },
-      {
-        id: "Celimax-the-vita-A-retinol-shot-20ml",
-        name: "The vita A retinal shot 20 ml",
-        tamanio: "20 ml",
-        price: "$26.80",
-        src: "/images/celimax/6. retina shot vita A.png",
-        description: "Este tratamiento antiedad combina 0.1% de retinal en tamaño nano con liposomas para cuidar suavemente los poros y mejorar la elasticidad. ",
-        benefits: ["Formulado con una alta concentración de retinal, para un cuidado más eficaz de la elasticidad interna.","Cuanto más hormigueo, más notable el cambio en la piel.","Contiene maxytryl similar al retinol."], 
-        category: "sérum",
-        imageSize: "medium"
-      },
-      {
-        id: "Celimax-serum-the-vita-A-50ml",
-        name: "Sérum the vita A retinal shot 50 ml",
-        tamanio: "50 ml",
-        price: "$25.90",
-        src: "/images/celimax/7. ampolla retinal shot.png",
-        description: "Este tratamiento antiedad combina 0.1% de retinal en tamaño nano con liposomas para cuidar suavemente los poros y mejorar la elasticidad.",
-        benefits: ["Aumenta la elasticidad, suaviza las líneas de expresión y la textura, y minimiza la apariencia de los poros.","Penetra profundamente para llevar los ingredientes activos justo donde la piel más los necesita.","Enriquecido con ingredientes calmantes para aliviar los efectos secundarios del retinol, como la sequedad o la sensibilidad."], 
-        category: "sérum",
-        imageSize: "medium"
-      },
+      //celimax
       {
         id: "Celimax-bloqueador-solar-50ml",
         name: "Bloqueador solar oil control 50 ml",
@@ -317,53 +204,106 @@ let toastTimer = null;
         src: "/images/celimax/8. bloqueador solar.png",
         description: "Este protector solar híbrido mineral y químico ofrece protección solar de amplio espectro de FPS 50+ PA++++ añadiendo beneficios reguladores del sebo.",
         benefits: ["Tiene un amplio espectro de FPS 50+ PA++++ .","Controla eficazmente el exceso de producción de sebo.","La textura sedosa, suave y ligera proporciona un acabado refrescante, sin dejar acabados blancos."], 
-        category: "protector solar",
+        category: "celimax",
+        imageSize: "medium"
+      },
+      //mixsoon
+      {
+        id: "mixsoon-bloqueador-solar-50gr",
+        name: "Bloqueador solar centella",
+        tamanio: "50 gr",
+        price: "$26",
+        src: "/images/mixsoon/20. Bloqueador solar.png",
+        description: "Crema solar hidratante y calmante sin tintes blancos",
+        benefits: ["Proporciona FPS 50+ PA++++ de amplio espectro para proteger de los rayos UVB que causan quemaduras solares y de los rayos UVA que provocan el envejecimiento prematuro de la piel.","Su textura en forma de sérum se absorbe rápidamente, dejando la piel fresca y con una sensación agradable.","Contiene centella asiática y otros ingredientes nutritivos para mantener la piel hidratada y tersa, al tiempo que refuerza la barrera cutánea protectora."], 
+        category: "mixsoon",
+        imageSize: "medium"
+      },
+
+      //skin1004
+      {
+        id: "skin1004-bloqueador-solar-centella-madagascar-50ml",
+        name: "Bloqueador Solar Centella Madagascar",
+        tamanio: "50ml",
+        price: "$23.50",
+        src: "/images/skin1004/bloqueador-solar-centella-madagascar-50ml.jpg",
+        description: "Tipo de piel: sensible, irritada y propensa al enrojecimiento.",
+        benefits: ["Un protector solar físico con SPF 30+ protege la piel de los rayos UV.","Disminuye la posible irritación de la piel", "Contiene extracto de centella asiática de Madagascar para un efecto calmante suave pero potente."],
+        category: "skin1004",
         imageSize: "medium"
       },
       {
-        id: "Celimax-crema-reparadora-50ml",
-        name: "Crema facual reparadora de noni de 50 ml",
-        tamanio: "50 ml",
-        price: "$39.10",
-        src: "/images/celimax/9. Crema reparadora.png",
-        description: "Crema facial reparadora, enriquecida con un 55% de extracto de noni y un 1% de aceite de semilla de noni, que calma e ilumina la piel dañada.",
-        benefits: ["Calma e hidrata la piel seca y dañada. Contiene ceramida para fortalecer la barrera de humedad y ayudar a prevenir la pérdida de agua de la piel.","Mejora las arrugas, y se funde en la piel con una textura ligera y suave y deja un aroma a romero."], 
-        category: "cream",
+        id: "skin1004-bloqueador-solar-air-fit-plus-50ml",
+        name: "Bloqueador Solar Air Fit Plus Centella Madagascar",
+        tamanio: "50ml",
+        price: "$21.00",
+        src: "/images/skin1004/bloqueador-solar-air-fit-plus-centella-madagascar-50ml.jpg",
+        description: "Tipo de piel: sensible, irritada y propensa al enrojecimiento.",
+        benefits: ["Un protector solar físico con un potente SPF de amplio espectro protege la piel de los rayos UV.","Contiene extracto de Centella Asiática para un excelente efecto calmante",
+         "Enriquecido con niacinamida, ayuda a mejorar el tono general de la piel."],
+        category: "skin1004",
         imageSize: "medium"
       },
-         {
-        id: "Celimax-pad-exfoliante-60pcs",
-        name: "Pad exfoliante jowoogae heartleaf BHA 60 piezas",
-        tamanio: "60 piezas",
-        price: "$26",
-        src: "/images/celimax/10. peeling pad.png",
-        description: "Estas almohadillas multitarea empapadas en tónico de ácido hialurónico eliminan y pulen las impurezas de la piel, como la suciedad y las células muertas.",
-        benefits: ["Su suave formulación y sus ingredientes que fortalecen la piel lo hacen adecuado para el uso diario.","BHA ayuda a exfoliar las células muertas de la piel y el sebo sin causar estimulación.",
-        "El ácido hialurónico suave y agradable a la piel se infiltra profundamente en la piel para una hidratación duradera."], 
-       category: "exfoliante",
+      {
+        id: "skin1004-bloqueador-solar-tono-iluminador-50ml",
+        name: "Bloqueador Solar Tono Iluminador",
+        tamanio: "50ml",
+        price: "$25.50",
+        src: "/images/skin1004/bloqueador-solar-tono-iluminador-50ml.jpg",
+        description: "Tipo de piel: hiperpigmentación, descoloración e inflamación.",
+        benefits: ["Calmante, corrector de manchas y opacidad de la piel",
+         "Protector solar híbrido (combinación de filtros minerales y químicos) con alta protección UV FPS 50+ y PA++++."],
+        category: "skin1004",
         imageSize: "medium"
-      }
+      },
+      
+      {
+        id: "skin1004-bloqueador-solar-liquido-hyalucica-50ml",
+        name: "Bloqueador Solar Líquido Hyalu cica",
+        tamanio: "50ml",
+        price: "$22.00",
+        src: "/images/skin1004/bloqueador-solar-liquido-hyalucica-50ml.jpg",
+        description: "Tipo de piel: Seca, irritada y sensible.",
+        benefits: ["Ayuda con el enrojecimiento de la piel.",
+         "Combate los problemas con el acné e hipersensibilidad al sol.",
+          "Hidrata profundamente la piel mientras la protege de los rayos UV con SPF50+ PA++++.",
+        "Combate los poros dilatados y mejora la textura de la piel."],
+        category: "skin1004",
+        imageSize: "medium"
+      },
+      {
+        id: "skin1004-bloqueador-solar-barra-hyalucica-20g",
+        name: "Bloqueador Solar Barra Hyalu cica",
+        tamanio: "20g",
+        price: "$19.80",
+        src: "/images/skin1004/bloqueador-solar-barra-hyalucica-20g.jpg",
+        description: "Tipo de piel: Seca, irritada y sensible.",
+        benefits: ["Ayuda con el enrojecimiento de la piel.",
+         "Combate los problemas con el acné e hipersensibilidad al sol.",
+          "Hidrata profundamente la piel mientras la protege de los rayos UV con SPF50+ PA++++.",
+        "Combate los poros dilatados y mejora la textura de la piel."],
+        category: "skin1004",
+        imageSize: "medium"
+      },
+     
     ];
 
 
     // Computed properties para organizar productos por categoría
-    const cleansingProducts = computed(() => 
-      (products.filter(product => product.category === 'cleansing') || []).filter(p => p && p.id)
+    const anuaProducts = computed(() => 
+      (products.filter(product => product.category === 'anua') || []).filter(p => p && p.id)
     );
-    const tonicosProducts = computed(() => 
-      (products.filter(product => product.category === 'tónico') || []).filter(p => p && p.id)
+  const bojProducts = computed(() => 
+      (products.filter(product => product.category === 'boj') || []).filter(p => p && p.id)
     );
-    const moisturizerProducts = computed(() => 
-      (products.filter(product => product.category === 'cream') || []).filter(p => p && p.id)
+     const mixsoonProducts = computed(() => 
+      (products.filter(product => product.category === 'mixsoon') || []).filter(p => p && p.id)
     );
-    const serumsProducts = computed(() => 
-      (products.filter(product => product.category === 'sérum') || []).filter(p => p && p.id)
+     const skin1004Products = computed(() => 
+      (products.filter(product => product.category === 'skin1004') || []).filter(p => p && p.id)
     );
-    const sunscreenProducts = computed(() => 
-      (products.filter(product => product.category === 'protector solar') || []).filter(p => p && p.id)
-    );
-    const exfoliantesProducts = computed(() => 
-      (products.filter(product => product.category === 'exfoliante') || []).filter(p => p && p.id)
+     const celimaxProducts = computed(() => 
+      (products.filter(product => product.category === 'celimax') || []).filter(p => p && p.id)
     );
 
   const addToCart = (product) => {
@@ -391,12 +331,11 @@ let toastTimer = null;
     };
 
   return {
-  cleansingProducts,
-  tonicosProducts,
-  moisturizerProducts,
-  serumsProducts,
-  sunscreenProducts,
-  exfoliantesProducts,
+  anuaProducts,
+  bojProducts,
+  mixsoonProducts,
+  skin1004Products,
+  celimaxProducts,
   addToCart,
   showToast,
   toastMessage
@@ -412,7 +351,7 @@ let toastTimer = null;
   box-sizing: border-box;
 }
 
-.celimax-page {
+.proteccionSolar-page {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;
 }

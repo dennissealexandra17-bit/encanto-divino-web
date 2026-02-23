@@ -1,54 +1,110 @@
 <template>
-    <section class="categories" id="productos">
-      <div class="container">
-        <div class="titulo">
-          <h2 class="section-title">Categorías Populares</h2>
-        </div>
-        <div class="categories-grid">
-          <div class="category-card">
-            <div class="category-icon">
-              <img class="img-limpiadores" src="../assets/categorias/limpiadores.jpg" alt="Limpiadores">
-            </div>
-            <h3 class="category-title">Limpiadores</h3>
-            <p>Gel, espuma y aceites desmaquillantes</p>
+  <section class="categories" id="productos">
+    <div class="container">
+      <div class="titulo">
+        <h2 class="section-title">Categorías Populares</h2>
+      </div>
+      <div class="categories-grid">
+                <router-link to="/limpiadores" class="link">
+
+        <div class="category-card">
+          <div class="category-icon">
+            <img
+              class="img-limpiadores"
+              src="../assets/categorias/limpiadores.jpg"
+              alt="Limpiadores"
+            />
           </div>
+          <div class="texto">
+             <h3 class="category-title">Limpiadores</h3>
+          <p>Gel, espuma y aceites desmaquillantes</p>
+          </div>
+        </div>
+        </router-link>
+        <router-link to="/tonicos" class="link">
           <div class="category-card">
             <div class="category-icon">
-              <img class="img-tonicos" src="../assets/categorias/tonicos.jpg" alt="Tónicos">
+              <img
+                class="img-tonicos"
+                src="../assets/categorias/tonicos.jpg"
+                alt="Tónicos"
+              />
             </div>
+                      <div class="texto">
+
             <h3 class="category-title">Tónicos</h3>
             <p>Hidratación y preparación de la piel</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">
-              <img class="img-esencias" src="../assets/categorias/esencias.png" alt="Esencias">
             </div>
-            <h3 class="category-title">Serums y Esencias</h3>
-            <p>Nutrición profunda y luminosidad</p>
           </div>
-          <div class="category-card">
-            <div class="category-icon">
-              <img class="img-mascarillas" src="../assets/categorias/mascarillas.jpeg" alt="Mascarillas">
-            </div>
+        </router-link>
+                <router-link to="/esencias-y-serums" class="link">
+
+        <div class="category-card">
+          <div class="category-icon">
+            <img
+              class="img-esencias"
+              src="../assets/categorias/esencias.png"
+              alt="Esencias"
+            />
+          </div>
+          <div class="texto">
+          <h3 class="category-title" id="serums">Serums y Esencias</h3>
+          <p>Nutrición profunda y luminosidad</p></div>
+        </div>
+        </router-link>
+                <router-link to="/mascarillas" class="link">
+
+        <div class="category-card">
+          <div class="category-icon">
+            <img
+              class="img-mascarillas"
+              src="../assets/categorias/mascarillas.jpeg"
+              alt="Mascarillas"
+            />
+          </div>
+          <div class="texto">
             <h3 class="category-title">Mascarillas</h3>
-            <p>Hidratación intensiva y cuidado</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">
-              <img class="img-protector" src="../assets/categorias/protector solar.jpg" alt="Cremas">
-            </div>
-            <h3 class="category-title">Protección Solar</h3>
-            <p>Protección UV con textura ligera</p>
+          <p>Hidratación intensiva y cuidado</p>
           </div>
         </div>
-      </div>
-    </section>
+     </router-link>
+        <router-link to="/hidratantes" class="link">
+        <div class="category-card">
+          <div class="category-icon">
+            <img
+              class="img-protector"
+              src="../assets/categorias/hidratantes.jpeg"
+              alt="Cremas"
+            />
+          </div>
+          <div class="texto">
+          <h3 class="category-title">Cremas Hidratantes</h3>
+          <p>Cremas hidratantes para la cara y los ojos</p></div>
+        </div>
+              </router-link>
+      <router-link to="/proteccion-solar" class="link">
+        <div class="category-card">
+          <div class="category-icon">
+            <img
+              class="img-protector"
+              src="../assets/categorias/protector solar.jpg"
+              alt="Cremas"
+            />
+          </div>
+          <div class="texto">
+          <h3 class="category-title">Protección Solar</h3>
+          <p>Protección UV con textura ligera</p></div>
+        </div>
+              </router-link>
+
+        </div>
+
+    </div>
+  </section>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -58,8 +114,8 @@ export default {
   margin-top: 2rem;
   border-radius: 14px;
   background: #efb9cb37;
-  border: 2px solid #E6ADEC;
-  box-shadow: 0 4px 18px #E6ADEC33;
+  border: 2px solid #e6adec;
+  box-shadow: 0 4px 18px #e6adec33;
 }
 
 .section-title {
@@ -93,11 +149,12 @@ export default {
 }
 
 .category-card {
-  background: linear-gradient(135deg, #FFFFFF 70%, #6D696A 110%);
+  background: linear-gradient(135deg, #ffffff 70%, #6d696a 110%);
   padding: 2rem 1.5rem;
   border-radius: 20px;
   text-align: center;
- transition: transform 0.3s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s, background 0.3s;
+  transition: transform 0.3s cubic-bezier(0.4, 1.5, 0.5, 1), box-shadow 0.3s,
+    background 0.3s;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   aspect-ratio: 1 / 1.2;
 
@@ -106,26 +163,25 @@ export default {
   justify-content: center;
   align-items: center;
 
-  text-decoration: none;
-  overflow: hidden; 
-  border: 2px double #6D696A; 
+  overflow: hidden;
+  border: 2px double #6d696a;
+}
 
+.link{
+  text-decoration: none;
 }
 .marcas-icon,
 .marcas-card h3 {
-  transition: transform 0.35s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s;
+  transition: transform 0.35s cubic-bezier(0.4, 1.5, 0.5, 1), box-shadow 0.3s;
 }
 
-
 .category-card:hover {
-    background: linear-gradient(135deg, #757575 30%,#FFFFFF 80%);
-     
-   background-position: left top;
-     transform: translateY(-6px);
- border: 2px solid #6D696A;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
+  background: linear-gradient(135deg, #757575 30%, #ffffff 80%);
+
+  background-position: left top;
+  transform: translateY(-6px);
+  border: 2px solid #6d696a;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
     background-position 0.35s ease;
   box-shadow: 0 0 0 3px rgba(133, 133, 133, 0.25);
 }
@@ -149,53 +205,53 @@ export default {
 }
 
 .img-limpiadores {
-  max-width: 202px;
-  max-height: 202px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: cover;
-    margin-top: 28px;
+  margin-top: 50px;
   border-radius: 15px;
   border: 1px solid #ddd;
 }
 .img-tonicos {
-   max-width: 202px;
-  max-height: 212px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: cover;
-    margin-top: 5px;
+  margin-top: 50px;
   border-radius: 15px;
   border: 1px solid #ddd;
 }
 .img-esencias {
-  max-width: 202px;
-  max-height: 212px;
+  max-width: 200px;
+  max-height: 200px;
   object-fit: cover;
-  margin-top: -10px;
+  margin-top: 60px;
   border-radius: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
 }
 .img-mascarillas {
-  max-width: 202px;
-  max-height: 202px;
-  object-fit: cover;
-  margin-top: -10px;
-  border-radius: 15px;
-  border: 1px solid #ddd;
-}
-.img-protector {
-  max-width: 202px;
+  max-width: 200px;
   max-height: 200px;
   object-fit: cover;
-  margin-top: 40px;
+  margin-top: 50px;
   border-radius: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #ddd; 
 }
-
+.img-protector {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
+  margin-top: 50px;
+  border-radius: 15px;
+  border: 1px solid #ddd; 
+}
 
 .category-card h3 {
   color: #590d22;
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 17px;
   font-weight: 550;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .category-card p {
@@ -204,10 +260,9 @@ export default {
   margin-top: 0.5rem;
 }
 
-.img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
+
+.texto{
+  margin-top: 60px;
 }
 
 @media (max-width: 900px) {

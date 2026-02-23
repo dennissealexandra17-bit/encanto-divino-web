@@ -278,7 +278,7 @@ let toastTimer = null;
         src: "/images/boj/4. BOJ limpiador en agua.png",
         description: "Tónico humectante que contiene un 80% de agua de raíz de ginseng ",
         benefits: ["Aporta a la piel abundante hidratación y nutrientes, además de una hidratación duradera.","Mantiene la piel hidratada en profundidad durante mucho tiempo y la mantiene sana."], 
-        category: "Esencia",
+        category: "serum-esencia",
         imageSize: "medium"
       },
       {
@@ -286,10 +286,10 @@ let toastTimer = null;
         name: "Esencia mini de agua de ginseng",
         tamanio: "40 ml",
         price: "$12.10",
-        src: "/images/mixsoon/4. BOJ limpiador en agua.png",
+        src: "/images/boj/4. BOJ limpiador en agua.png",
         description: "Tónico humectante que contiene un 80% de agua de raíz de ginseng ",
         benefits: ["Aporta a la piel abundante hidratación y nutrientes, además de una hidratación duradera.","Mantiene la piel hidratada en profundidad durante mucho tiempo y la mantiene sana."], 
-        category: "Esencia",
+        category: "serum-esencia",
         imageSize: "medium"
       },
       {
@@ -300,7 +300,7 @@ let toastTimer = null;
         src: "/images/boj/5. serum revive ginseng.png",
         description: "Enriquecido con 63% de agua de raíz de ginseng y 3% de baba de caracol",
         benefits: ["Repara la piel dañada, suaviza las arrugas y aumenta la elasticidad de la piel.","Hidrata profundamente la piel, previniendo el envejecimiento y la pigmentación, para crear un cutis claro y joven."], 
-        category: "Serum",
+        category: "serum-esencia",
         imageSize: "medium"
       },
       {
@@ -311,7 +311,7 @@ let toastTimer = null;
         src: "/images/boj/6. Serum de ojos.png",
         description: "Crema para contornos de ojos",
         benefits: ["Mejora las arrugas en el área sensible de los ojos. Brinda una rica hidratación profunda en la piel y la mantienen completamente hidratada durante todo el día.","Aplicación suave y deja un acabado sedoso no pegajoso."], 
-        category: "crema de ojos",
+        category: "cream",
         imageSize: "medium"
       },
       {
@@ -333,7 +333,7 @@ let toastTimer = null;
         src: "/images/boj/8.Serum_glow_deep.png",
         description: "Serúm facial con una fórmula mejorada para piel con manchas e imperfecciones",
         benefits: ["Diseñado para personas con problemas de pigmentación y piel con imperfecciones.","Enriquecido con un 68 % de agua de salvado de arroz y un 2 % de alfa arbutina, actúa eficazmente para iluminar y mejorar la salud de la piel."], 
-        category: "serúm",
+        category: "serum-esencia",
         imageSize: "medium"
       },
       {
@@ -388,7 +388,7 @@ let toastTimer = null;
         src: "/images/boj/13. Serum de te verde.png",
         description: "Sérum con un 76% de extracto de té verde, un 2% de pantenol y vitamina C que calma la piel dañada y sensible",
         benefits: ["Repara la piel dañada, suaviza las arrugas y aumenta la elasticidad de la piel.","Hidrata profundamente la piel, previniendo el envejecimiento y la pigmentación, para crear un cutis claro y joven."], 
-        category: "serúm",
+        category: "serum-esencia",
         imageSize: "medium"
       },
       {
@@ -399,7 +399,7 @@ let toastTimer = null;
         src: "/images/boj/14. Serum con niacinamida + propolis.png",
         description: "Mejora la piel apagada con este potente sérum facial infusionado con un 60% de propolis y 2% de niacinamida para atacar la inflamación, controlar la producción de sebo y tratar la hiperpigmentación",
         benefits: ["Este sérum está diseñado para quienes sufren de poros dilatados y enrojecimiento de la piel.","Con una mezcla de 60% de extracto de propóleo y 2 % de niacinamida, hidrata la piel."], 
-        category: "serúm",
+        category: "serum-esencia",
         imageSize: "medium"
       },
 
@@ -418,7 +418,7 @@ let toastTimer = null;
       (products.filter(product => product.category === 'cream') || []).filter(p => p && p.id)
     );
     const serumsProducts = computed(() => 
-      (products.filter(product => product.category === 'serum' || product.category === 'serúm') || []).filter(p => p && p.id)
+      (products.filter(product => product.category === 'serum-esencia') || []).filter(p => p && p.id)
     );
     const sunscreenProducts = computed(() => 
       (products.filter(product => product.category === 'protector solar') || []).filter(p => p && p.id)
