@@ -150,7 +150,42 @@
               </div>
             </div>
           </div>
-        </div>            
+        </div>  
+        <!-- Varias marcas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+            Varias marcas
+          </h2>
+          <div class="products-grid">
+            <div 
+              v-for="product in (variasProducts || [])" 
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
+                <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <h4>{{ product.marca }}</h4>
+                <p v-if="product.tamanio" class="product-size">{{ product.tamanio }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span v-for="benefit in (product.benefits || [])" :key="benefit">
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>           
       </div>
     </section>
   </div>
@@ -391,8 +426,111 @@ export default {
         category: "skin1004",
         imageSize: "medium"
       },
-
-     
+//varias 
+{
+        id: "Dr.Althea-crema-facial-147-50ml",
+        name: "Crema facial hidratante 147",
+        tamanio: "50 ml",
+        marca: "Dr. Althea",
+        price: "$35.50",
+        src: "/images/varias-marcas/15. dr althea crema 147.png",
+        description:
+          "Hidratante calmante enriquecida con azuleno derivado de las flores de manzanilla, que ayuda a aliviar la irritación.",
+        benefits: [
+          "Calma la piel desigual e irritada, dejándola hidratada.",
+          "Hidrata la piel en profundidad y forma una barrera de humedad para una hidratación duradera.",
+          "No contiene fragancias artificiales, colorantes ni conservantes.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Dr.Althea-crema-facial-345-50ml",
+        name: "Crema facial hidratante 345",
+        tamanio: "50 ml",
+        marca: "Dr. Althea",
+        price: "$30.25",
+        src: "/images/varias-marcas/16. dr althea crema 345.png",
+        description:
+          "Suave pero potente, la 345 Relief Cream combina tres ingredientes para tratar imperfecciones, cuatro ingredientes nutritivos y cinco ingredientes calmantes para un cuidado completo post-acné. ",
+        benefits: [
+          "Protege la piel de agresores externos y cuenta con función antioxidante con Resveratrol.",
+          "Mejora las lineas de la piel con Adenosina para un resultado brillante y elástico en la piel.",
+          "Nutre y humecta la piel con extracto de calendula, extracto de girasol y Propolis.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Medicube-crema-vita-C-55gr",
+        name: "Crema facial deep vita C cápsula",
+        marca: "Medicube",
+        tamanio: "55 gramos",
+        price: "$34.50",
+        src: "/images/varias-marcas/23. MEDICUBE CREMA VITA C.png",
+        description:
+          "La fotogénica Deep Vita C Capsule Cream de medicube contiene cápsulas doradas que incluyen agua de espino amarillo, niacinamida y cinco derivados de vitamina C para reducir manchas y marcas en la piel.",
+        benefits: [
+          "Ofrece la posibilidad de borrar imperfecciones y pecas profundas y antiguas.",
+          "La cápsula de vitamina C logra el poderoso efecto blanqueador de la piel.",
+          "Ayuda a refinar la textura de la piel y mejora su elasticidad para lograr una apariencia radiante y luminosa.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+       //SEOUL 1988
+      {
+        id: "Seoul-1988-crema-ojos-30ml",
+        name: "Crema de contorno de ojos: retinal liposome 4% + frijol fermentado",
+        marca: "Seoul 1988",
+        tamanio: "30 ml",
+        price: "$21",
+        src: "/images/varias-marcas/29. seoul 1988 crema de ojos.png",
+        description:
+          "Crema de contorno de ojos eficaz para líneas de expresión y ojeras.",
+        benefits: [
+          "Reduce visiblemente las bolsas bajo los ojos, suavizar las líneas de expresión e iluminar la piel cansada.",
+          "Estimula el colágeno y reduce la apariencia de las patas de gallo.",
+          "Rápida absorción se siente suave y no grasa; sin sensación pegajosa, solo confort.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+     {
+        id: "Seoul-1988-crema-50ml",
+        name: "Crema facial: retinal liposome 1% + arroz fermentado",
+        marca: "Seoul 1988",
+        tamanio: "50 ml",
+        price: "$24.60",
+        src: "/images/varias-marcas/31. seoul 1988 serum.png",
+        description:
+          "Crema antienvejecimiento con 1% de liposoma de retinal y filtrado de fermento de arroz que reduce la apariencia de líneas de expresión y arrugas mientras mejora la elasticidad y firmeza de la piel.",
+        benefits: [
+          "Proporciona efectos antiedad e iluminadores, además de mejorar la elasticidad de la piel con mínima irritación.",
+          "Estimula la producción de colágeno para un efecto antiarrugas.",
+          "Su textura suave y cremosa se absorbe al instante, hidratando sin dejar sensación pegajosa y con un acabado suave.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      //MARY&MAY
+      {
+        id: "Mary&May-crema-ojos-20ml",
+        name: "Crema de contorno de ojos ácido tranexamic + glutathione",
+        marca: "Mary & May",
+        tamanio: "20 ml",
+        price: "$4.50",
+        src: "/images/varias-marcas/32. mary&may crema de ojos.png",
+        description:
+          "Crema para contorno de ojos enriquecida con 1,000ppm de ácido tranexámico y glutatión que ilumina las ojeras y revitaliza la piel.",
+        benefits: [
+          "Mejoar la apariencia de ojeras y pecas, logrando una mirada más luminosa y definida.",
+          "Ilumina la piel e inhiben la síntesis de melanina para revitalizar la mirada.",
+          "Su fórmula con vitamina C mejora la apariencia de las pecas y favorece la formación de colágeno.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
     ];
 
 
@@ -412,7 +550,9 @@ export default {
      const celimaxProducts = computed(() => 
       (products.filter(product => product.category === 'celimax') || []).filter(p => p && p.id)
     );
-
+     const variasProducts = computed(() => 
+      (products.filter(product => product.category === 'varias') || []).filter(p => p && p.id)
+    );
   const openImageModal = (imageSrc) => {
     selectedImage.value = imageSrc;
     showModal.value = true;
@@ -455,6 +595,7 @@ export default {
     mixsoonProducts,
     skin1004Products,
     celimaxProducts,
+    variasProducts,
     addToCart,
     showToast,
     toastMessage,
@@ -478,7 +619,13 @@ export default {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;
 }
-
+.product-info h4 {
+  color: #b218ca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
 /* Header de la marca */
 .brand-header {
   background: linear-gradient(135deg, #ffafcc 0%, #ffc8dd 50%, #bde0fe 100%);

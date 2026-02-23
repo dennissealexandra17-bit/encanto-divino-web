@@ -83,7 +83,57 @@
               </div>
             </div>
           </div>
-        </div>          
+        </div>     
+        <!-- varias marcas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+           Varias Marcas
+          </h2>
+          <div class="products-grid">
+            <div
+              v-for="product in variasProducts || []"
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div
+                class="product-image"
+                :class="`image-${product.imageSize || 'medium'}`"
+                @click="openImageModal(product.src)"
+              >
+                <img
+                  v-if="product.src"
+                  :src="product.src"
+                  :alt="product.name"
+                  style="cursor: pointer"
+                />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                                <h4>{{ product.marca }}</h4>
+
+                <p v-if="product.tamanio" class="product-size">
+                  {{ product.tamanio }}
+                </p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span
+                    v-for="benefit in product.benefits || []"
+                    :key="benefit"
+                  >
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>     
       </div>
     </section>
   </div>
@@ -257,6 +307,77 @@ export default {
         category: "skin1004",
         imageSize: "medium"
       },
+      //varias
+      {
+        id: "Macqueen-balsamo-vita-colageno-10gr",
+        name: "Bálsamo vita de colágeno de 10 gr",
+        tamanio: "10 gramos",
+        marca: "Macqueen",
+        price: "$14.90",
+        src: "/images/varias-marcas/10. macqueen balsamo.png",
+        description:
+          "Bálsamo facial nutritivo con colágeno, complejo de péptidos y vitamina C que ofrece potentes beneficios antienvejecimiento para la piel flácida.",
+        benefits: [
+          "Mantiene radiante, hidratada y rellana la piel.",
+          "Contiene ingredientes con excelentes propiedades antienvejecimiento.",
+          "Previene la pérdida de humedad de la piel",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Rohto-Mentholatum-balsamo-labial-",
+        name: "Bálsamo labial con protector solar SPF 20 PA++ sin fragancia",
+        tamanio: "15 gramos",
+        marca: "Rohto-Mentholatum",
+        price: "$5",
+        src: "/images/varias-marcas/11. ronhto - balsamo sin fragancia.png",
+        description:
+          "Este bálsamo labial combina el poder hidratante del super ácido hialurónico y el colágeno para mantener los labios frescos y con volumen.",
+        benefits: [
+          "Proporciona hidratación y ayuda a retener la humedad de los labios.",
+          "Combina ácido hialurónico con colágeno.",
+          "Protege a los labios contra la resequedad y rayos ultravioletas.",
+          "Combina ácido hialurónico con colágeno.",
+          "Protege a los labios contra la resequedad y rayos ultravioletas",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Rohto-Mentholatum-balsamo-labial-",
+        name: "Bálsamo labial con protector solar SPF 20 PA++ fragancia de menta",
+        tamanio: "15 gramos",
+        marca: "Rohto-Mentholatum",
+        price: "$5",
+        src: "/images/varias-marcas/12. rohto balsamo de menta.png",
+        description:
+          "Este bálsamo labial combina el poder hidratante del super ácido hialurónico y el colágeno para mantener los labios frescos y con volumen.",
+        benefits: [
+          "Proporciona hidratación y ayuda a retener la humedad de los labios.",
+          "Combina ácido hialurónico con colágeno.",
+          "Protege a los labios contra la resequedad y rayos ultravioletas",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Rohto-Mentholatum-balsamo-labial-",
+        name: "Bálsamo labial con protector solar SPF 20 PA++ fragancia de leche",
+        tamanio: "15 gramos",
+        marca: "Rohto-Mentholatum",
+        price: "$5",
+        src: "/images/varias-marcas/13. rohto balsamo leche.png",
+        description:
+          "Este bálsamo labial combina el poder hidratante del super ácido hialurónico y el colágeno para mantener los labios frescos y con volumen.",
+        benefits: [
+          "Proporciona hidratación y ayuda a retener la humedad de los labios.",
+          "Combina ácido hialurónico con colágeno.",
+          "Protege a los labios contra la resequedad y rayos ultravioletas.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
         
     ];
 
@@ -279,6 +400,9 @@ export default {
     );
   const cosrxProducts = computed(() => 
       (products.filter(product => product.category === 'cosrx') || []).filter(p => p && p.id)
+    );
+     const variasProducts = computed(() => 
+      (products.filter(product => product.category === 'varias') || []).filter(p => p && p.id)
     );
   const openImageModal = (imageSrc) => {
     selectedImage.value = imageSrc;
@@ -323,6 +447,7 @@ export default {
     skin1004Products,
     celimaxProducts,
     cosrxProducts,
+    variasProducts,
     addToCart,
     showToast,
     toastMessage,
@@ -390,7 +515,13 @@ export default {
   margin-bottom: 2rem;
   line-height: 1.8;
 }
-
+.product-info h4 {
+  color: #b218ca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
 .brand-features {
   display: flex;
   gap: 1rem;

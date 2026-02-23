@@ -92,6 +92,8 @@
             <div 
               v-for="product in (mixsoonProducts || [])" 
               :key="product.id || product.name"
+              class="product-card"
+              :data-category="product.category"
             >
               <div class="product-image" :class="`image-${product.imageSize || 'medium'}`" @click="openImageModal(product.src)">
                 <img v-if="product.src" :src="product.src" :alt="product.name" style="cursor: pointer;" />
@@ -148,6 +150,56 @@
             </div>
           </div>
         </div>            
+        <!-- varias marcas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+           Varias Marcas
+          </h2>
+          <div class="products-grid">
+            <div
+              v-for="product in variasProducts || []"
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div
+                class="product-image"
+                :class="`image-${product.imageSize || 'medium'}`"
+                @click="openImageModal(product.src)"
+              >
+                <img
+                  v-if="product.src"
+                  :src="product.src"
+                  :alt="product.name"
+                  style="cursor: pointer"
+                />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                                <h4>{{ product.marca }}</h4>
+
+                <p v-if="product.tamanio" class="product-size">
+                  {{ product.tamanio }}
+                </p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span
+                    v-for="benefit in product.benefits || []"
+                    :key="benefit"
+                  >
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -239,7 +291,7 @@ export default {
         description: "Almohadillas tónicas hidratantes con ingredientes.",
         benefits: ["Almohadillas tónicas hidratantes con ingredientes de centella para calmar la piel irritada. ","Contiene extracto de Centella Asiática que tiene sinergia con alatoína, betaína y ceramida NP para proporcionar fuertes propiedades calmantes, calmantes y reparadoras de la piel. Las almohadillas se pueden dividir fácilmente en 2 pedazos para aplicarlas en diferentes áreas de la piel."], 
         category: "mixsoon",
-        imageSize: "medium-large"
+        imageSize: "medium"
       },
 	{
         id: "mixsoon-galactomices-toner-pad-280ml",
@@ -250,7 +302,7 @@ export default {
         description: "Almohadillas tónicas hidratantes con ingredientes.",
         benefits: ["Toner pads hidratantes con galactomyces que ayudan a iluminar y mejorar el tono desigual de la piel. ","El galactomyces es rico en nutrientes como aminoácidos, vitaminas, proteínas y homo-péptidos que revitalizan la piel opaca para un acabado suave tipo porcelana. ","Formulado con alantoína para hidratar la piel y darle un brillo saludable. Los pads pueden dividirse fácilmente en 2 partes para aplicarlos en diferentes zonas del rostro."], 
         category: "mixsoon",
-        imageSize: "medium-large"
+        imageSize: "medium"
       },
 	{
         id: "mixsoon-bean-toner-pad-280ml",
@@ -261,7 +313,7 @@ export default {
         description: "Almohadillas tónicas hidratantes con ingredientes.",
         benefits: ["Almohadillas tónicas hidratantes con ingredientes de frijoles ricos en proteínas para nutrir profundamente la piel. ","Contiene 7 tipos de extractos de frijol, como semillas de frijol, lentejas y soja silvestre, que contienen ricos aminoácidos con Lactobacillus para recargar nutrientes y proporcionar beneficios antienvejecimiento. ","Formulado con ácido hialurónico y alatoína para hidratar la piel y fortalecer la barrera de humedad de la piel. El material de la almohadilla está hecho de algodón natural que es suave y también contiene semillas de algodón para una exfoliación suave. Las almohadillas se pueden dividir fácilmente en 2 pedazos para aplicarlas en diferentes áreas de la piel."], 
         category: "mixsoon",
-        imageSize: "medium-large"
+        imageSize: "medium"
       },
 	{
         id: "mixsoon-bifida-toner-pad-280ml",
@@ -389,7 +441,23 @@ export default {
         featured: true,
         imageSize: "large"
       },
-
+//varias marcas
+//pyunkang yul
+      {
+        id: "Pyunkang-yul-tonico-200ml",
+        name: "Tónico facial",
+        marca: "Pyunkang Yul",
+        tamanio: "200 ml",
+        price: "$21.90",
+        src: "/images/varias-marcas/27. Pyukay tónico.png",
+        description:
+          "Ayuda a reducir la inflamación y fortalecer la barrera de la piel, pero son los hidratantes sencillos como la glicerina y el butilenglicol los que lo hacen el tónico ideal para pieles deshidratadas y estresadas.",
+        benefits: [
+          "Un tónico hidratante formulado con hidroxietilcelulosa, arginina y extracto de raíz de astrágalo para mejorar la tez.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
      
     ];
 
@@ -409,6 +477,9 @@ export default {
     );
      const celimaxProducts = computed(() => 
       (products.filter(product => product.category === 'celimax') || []).filter(p => p && p.id)
+    );
+    const variasProducts = computed(() => 
+      (products.filter(product => product.category === 'varias') || []).filter(p => p && p.id)
     );
 
   const openImageModal = (imageSrc) => {
@@ -452,6 +523,7 @@ export default {
     bojProducts,
     mixsoonProducts,
     skin1004Products,
+    variasProducts,
     addToCart,
     showToast,
     toastMessage,
@@ -470,7 +542,13 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.product-info h4 {
+  color: #b218ca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
 .tonico-page {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;

@@ -217,7 +217,56 @@
               </div>
             </div>
           </div>
-        </div>            
+        </div>       
+        <!-- varias marcas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+           Varias Marcas
+          </h2>
+          <div class="products-grid">
+            <div
+              v-for="product in variasProducts || []"
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div
+                class="product-image"
+                :class="`image-${product.imageSize || 'medium'}`"
+                @click="openImageModal(product.src)"
+              >
+                <img
+                  v-if="product.src"
+                  :src="product.src"
+                  :alt="product.name"
+                  style="cursor: pointer"
+                />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <h4>{{ product.marca }}</h4>
+                <p v-if="product.tamanio" class="product-size">
+                  {{ product.tamanio }}
+                </p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span
+                    v-for="benefit in product.benefits || []"
+                    :key="benefit"
+                  >
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>     
       </div>
     </section>
   </div>
@@ -787,7 +836,126 @@ export default {
         category: "skin1004",
         imageSize: "medium"
       },
-     
+      //varias marcas
+      {
+        id: "VT-reddle-shot-50ml",
+        name: "Reddle shot 50 agujas",
+        tamanio: "50 ml",
+        marca: "VT cosmetics",
+        price: "$37.50",
+        src: "/images/varias-marcas/20. VT reedle shot 50.png",
+        description:
+          "Esta ampolla esta llena con varios calmante para la piel como extracto de cica, madecassoside y extracto de propóleos que ofrecen beneficios anti-inflamatorios.",
+        benefits: [
+          "Contiene extracto de Centella Asiática y ácido hialurónico de molécula pequeña, eficaz en la hidratación y protección de la piel.",
+          "Utiliza ingredientes en forma de microagujas que proporcionan una mejor absorción y eficacia.",
+          "Producto para el tratamiento de la piel, apto para todo tipo de puel , incluidas las pieles sensibles y propensas al acné.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "VT-reddle-shot-50ml",
+        name: "Reddle shot 100 agujas",
+        tamanio: "50 ml",
+        marca: "VT cosmetics",
+        price: "$43",
+        src: "/images/varias-marcas/19. VT REEDLE SHOT 100.png",
+        description:
+          "Esta ampolla esta llena con varios calmante para la piel como extracto de cica, madecassoside y extracto de propóleos que ofrecen beneficios anti-inflamatorios.",
+        benefits: [
+          "Contiene extracto de Centella Asiática y ácido hialurónico de molécula pequeña, eficaz en la hidratación y protección de la piel.",
+          "Utiliza ingredientes en forma de microagujas que proporcionan una mejor absorción y eficacia.",
+          "Producto para el tratamiento de la piel, apto para todo tipo de puel , incluidas las pieles sensibles y propensas al acné.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "VT-reddle-shot-50ml",
+        name: "Reddle shot 300 agujas",
+        marca: "VT cosmetics",
+        tamanio: "50 ml",
+        price: "$57",
+        src: "/images/varias-marcas/21. VT reedle shot 300.png",
+        description:
+          "Esta ampolla esta llena con varios calmante para la piel como extracto de cica, madecassoside y extracto de propóleos que ofrecen beneficios anti-inflamatorios.",
+        benefits: [
+          "Contiene extracto de Centella Asiática y ácido hialurónico de molécula pequeña, eficaz en la hidratación y protección de la piel.",
+          "Utiliza ingredientes en forma de microagujas que proporcionan una mejor absorción y eficacia.",
+          "Producto para el tratamiento de la piel, apto para todo tipo de puel , incluidas las pieles sensibles y propensas al acné.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "VT-reddle-shot-50ml",
+        name: "Reddle shot 700 agujas",
+        marca: "VT cosmetics",
+        tamanio: "50 ml",
+        price: "$63.50",
+        src: "/images/varias-marcas/22. VT reedle shot 700.png",
+        description:
+          "Esta ampolla esta llena con varios calmante para la piel como extracto de cica, madecassoside y extracto de propóleos que ofrecen beneficios anti-inflamatorios.",
+        benefits: [
+          "Contiene extracto de Centella Asiática y ácido hialurónico de molécula pequeña, eficaz en la hidratación y protección de la piel.",
+          "Utiliza ingredientes en forma de microagujas que proporcionan una mejor absorción y eficacia.",
+          "Producto para el tratamiento de la piel, apto para todo tipo de puel , incluidas las pieles sensibles y propensas al acné.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Medicube-serum-one-day-30ml",
+        name: "sérum obe day exosome 7500",
+        marca: "Medicube",
+        tamanio: "30 ml",
+        price: "$30.30",
+        src: "/images/varias-marcas/24. medicube one day shot.png",
+        description:
+          "Este sérum esta infusionado con 7,500ppm de exosomas más pantenol y adenosina para barrer las impurezas de los poros, aumenta la elasticidad de la piel y aumenta los neveles de hidratción en la piel.",
+        benefits: [
+          "Reafirmación inmediata y definitiva de los poros notables.",
+          "Las inyecciones de exosomas penetran la piel profunda y directamente, lo que mejora su absorción.",
+          "Penetra en diez capas de la piel sin dejar sensación pegajosa.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      //ARENCIA
+      {
+        id: "Arencia-ampolla-holy-hyssop-50gr",
+        name: "Sérum holy hyssop 30",
+        marca: "Arencia",
+        tamanio: "50 gramos",
+        price: "$26.40",
+        src: "/images/varias-marcas/25. Arencia holy hysoop.png",
+        description:
+          "Este sérum como gelatina esta formulado con extracto de hisopo francés, complejo de vitamina ACE y niacinamida para combatir la hiperpigmentación y redefine la textura de la piel.",
+        benefits: [
+          "Revitaliza e ilumina la piel apagada. Cuida los poros y ayuda a mejorar la textura de la piel.",
+          "Potencia la luminosidad de la piel. Textura elástica que se siente ligera, fresca e hidratante.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Seoul-1988-serum-30ml",
+        name: "Sérum facial: retinal liposome 2% + frijol fermentado",
+        marca: "Seoul 1988",
+        tamanio: "30 ml",
+        price: "$30",
+        src: "/images/varias-marcas/30. seoul 1988 crema.png",
+        description:
+          "El sérum SEOUL 1988 aporta los potentes efectos antiedad del 2% de retinal en liposomas a las capas más profundas de la piel para mejorar la elasticidad y combatir líneas finas, manchas oscuras y textura irregular.",
+        benefits: [
+          "Enriquecido con un 2% de retinal en liposomas y extracto de ginseng negro, el sérum SEOUL 1988 suaviza las líneas finas y las arrugas.",
+          "Contiene niacinamida para difuminar la decoloración y aportar luminosidad a las zonas apagadas, logrando una apariencia más clara y uniforme.",
+          "Contiene humectantes como la glicerina para atraer la humedad a la piel, junto con ingredientes calmantes como el bakuchiol. Esta combinación ayuda a reforzar la barrera cutánea y a minimizar los efectos secundarios comunes del retinal.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
     ];
 
 
@@ -809,6 +977,9 @@ export default {
     );
    const cosrxProducts = computed(() => 
       (products.filter(product => product.category === 'cosrx') || []).filter(p => p && p.id)
+    );
+     const variasProducts = computed(() => 
+      (products.filter(product => product.category === 'varias') || []).filter(p => p && p.id)
     );
   const openImageModal = (imageSrc) => {
     selectedImage.value = imageSrc;
@@ -853,6 +1024,7 @@ export default {
     skin1004Products,
     celimaxProducts,
     cosrxProducts,
+      variasProducts,
     addToCart,
     showToast,
     toastMessage,
@@ -906,7 +1078,13 @@ export default {
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(255, 175, 204, 0.3);
 }
-
+.product-info h4 {
+  color: #b218ca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
 .brand-info h1 {
   font-size: 3rem;
   color: #4a5759;

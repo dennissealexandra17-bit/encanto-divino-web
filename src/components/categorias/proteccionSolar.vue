@@ -218,7 +218,57 @@
               </div>
             </div>
           </div>
-        </div>           
+        </div>     
+        <!-- varias marcas -->
+        <div class="category-section">
+          <h2 class="category-title">
+            <span class="category-icon">🍃</span>
+           Varias Marcas
+          </h2>
+          <div class="products-grid">
+            <div
+              v-for="product in variasProducts || []"
+              :key="product.id || product.name"
+              class="product-card"
+              :class="{ featured: product.featured }"
+            >
+              <div
+                class="product-image"
+                :class="`image-${product.imageSize || 'medium'}`"
+                @click="openImageModal(product.src)"
+              >
+                <img
+                  v-if="product.src"
+                  :src="product.src"
+                  :alt="product.name"
+                  style="cursor: pointer"
+                />
+                <span v-else class="product-placeholder">🍃</span>
+              </div>
+              <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                                <h4>{{ product.marca }}</h4>
+
+                <p v-if="product.tamanio" class="product-size">
+                  {{ product.tamanio }}
+                </p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="product-benefits">
+                  <span
+                    v-for="benefit in product.benefits || []"
+                    :key="benefit"
+                  >
+                    • {{ benefit }}
+                  </span>
+                </div>
+                <div class="product-price">{{ product.price }}</div>
+                <button class="add-to-cart-btn" @click="addToCart(product)">
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>      
       </div>
     </section>
     <!-- Modal para ver imagen en tamaño grande -->
@@ -419,7 +469,57 @@ export default {
         category: "tocobo",
         imageSize: "medium"
       },
-     
+      //varias marcas
+      {
+        id: "Isntree-bloquedor-acido-hialuronico-50ml",
+        name: "Bloqueador con ácido hialurónico - Isntree",
+        tamanio: "50 ml",
+        marca: "Isntree",
+        price: "$32",
+        src: "/images/varias-marcas/14 Isntree bloqueador.png",
+        description:
+          "Protector solar acuoso en gel que cuida tu piel de los rayos dañinos UV y aporta hidratación con ocho tipos de ácido hialurónico de distintos pesos moleculares.",
+        benefits: [
+          "Calma la irritación y suaviza la textura de la piel.",
+          "Amplio espectro SPF 50 + PA. Contiene ocho tipos de ácido hialurónico, astaxantina y ceramida.",
+          ],
+          category: "varias",
+        imageSize: "medium",
+      },
+       {
+        id: "Dr.Althea-bloqueador-solar-45ml",
+        name: "Bloqueador solar de te verde - Dr. Althea",
+        tamanio: "45 ml",
+        marca: "Dr. Althea",
+        price: "$21",
+        src: "/images/varias-marcas/18. dr althea bloqueador solar.png",
+        description:
+          "Protector solar químico ligero que protege la piel contra los dañinos rayos UV y proporciona protección de amplio espectro SPF50+ PA++++.",
+        benefits: [
+          "Ayuda a calmar la piel irritada y a atenuar las imperfecciones.",
+          "Ayuda a potenciar el proceso natural de regeneración de la piel para una tez más saludable.",
+          "Es apta para todo tipo de piel, como piel seca y sensible.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      },
+      {
+        id: "Purito-bloqueador-solar-60ml",
+        name: "Bloqueador solar suave",
+        marca: "Purito",
+        tamanio: "60 ml",
+        price: "$19.50",
+        src: "/images/varias-marcas/26. purito bloqueador solar.png",
+        description:
+          "Protector solar vegano compuesto por filtros químicos para proporcionar una protección solar de amplio espectro de SPF 50+ PA++++.",
+        benefits: [
+          "Ofrece protección solar SPF50+ PA++++ y una poderosa barrera de defensa para proporcionar 10 horas de protección sin necesidad de múltiples reaplicaciones.",
+          "Proporciona 5 niveles de defensa al aire libre, agua, al sudor y a la arena.",
+          "No grasosa, ligera con un acabado no pegajoso.",
+        ],
+        category: "varias",
+        imageSize: "medium",
+      }
     ];
 
 
@@ -444,6 +544,9 @@ export default {
     );
    const tocoboProducts = computed(() => 
       (products.filter(product => product.category === 'tocobo') || []).filter(p => p && p.id)
+    ); 
+   const variasProducts = computed(() => 
+      (products.filter(product => product.category === 'varias') || []).filter(p => p && p.id)
     ); 
 
   const addToCart = (product) => {
@@ -490,6 +593,7 @@ export default {
     celimaxProducts,
     cosrxProducts,
     tocoboProducts,
+    variasProducts,
     addToCart,
     showToast,
     toastMessage,
@@ -508,7 +612,13 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.product-info h4 {
+  color: #b218ca;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
 .proteccionSolar-page {
   font-family: "Nunito", "Segoe UI", sans-serif;
   line-height: 1.6;
