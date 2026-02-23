@@ -76,7 +76,7 @@ export default {
     const startAutoPlay = () => {
       autoPlayInterval = setInterval(() => {
         currentNewsIndex.value = (currentNewsIndex.value + 1) % newsItems.length
-      }, 7000)
+      },57000)
     }
 
     const stopAutoPlay = () => {
