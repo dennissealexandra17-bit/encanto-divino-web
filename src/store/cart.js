@@ -7,16 +7,22 @@ export const cartStore = reactive({
 
   // Agregar producto al carrito
   addItem(product) {
-    const existingItem = this.items.find(item => item.id === product.id)
+    // Crear una clave única que incluya el tono si existe
+    const tonoKey = product.tonoSeleccionado ? `_${product.tonoSeleccionado.nombre.replace(/\s+/g, '-')}` : ''
+    const uniqueId = product.id + tonoKey
+    
+    const existingItem = this.items.find(item => item.uniqueId === uniqueId)
     
     if (existingItem) {
       existingItem.quantity += 1
     } else {
       this.items.push({
         id: product.id,
+        uniqueId: uniqueId,
         name: product.name,
         price: product.price,
         image: product.image,
+        tonoSeleccionado: product.tonoSeleccionado || null,
         quantity: 1
       })
     }
@@ -24,7 +30,8 @@ export const cartStore = reactive({
 
   // Remover producto del carrito
   removeItem(productId) {
-    const index = this.items.findIndex(item => item.id === productId)
+    // Aceptar tanto productId como uniqueId
+    const index = this.items.findIndex(item => item.uniqueId === productId || item.id === productId)
     if (index > -1) {
       this.items.splice(index, 1)
     }
@@ -32,7 +39,8 @@ export const cartStore = reactive({
 
   // Actualizar cantidad
   updateQuantity(productId, quantity) {
-    const item = this.items.find(item => item.id === productId)
+    // Aceptar tanto productId como uniqueId
+    const item = this.items.find(item => item.uniqueId === productId || item.id === productId)
     if (item) {
       if (quantity <= 0) {
         this.removeItem(productId)
@@ -72,7 +80,11 @@ export const cartStore = reactive({
     let message = '¡Hola! Me interesa comprar los siguientes productos de Encanto Divino K-Beauty:\n\n'
     
     this.items.forEach((item, index) => {
-      message += `${index + 1}. ${item.name}\n`
+      message += `${index + 1}. ${item.name}`
+      if (item.tonoSeleccionado) {
+        message += ` - ${item.tonoSeleccionado.nombre}`
+      }
+      message += `\n`
       message += `   Cantidad: ${item.quantity}\n`
       message += `   Precio unitario: ${item.price}\n`
       message += `   Subtotal: $${(parseFloat(item.price.replace(/[^0-9.-]+/g, '')) * item.quantity).toLocaleString()}\n\n`

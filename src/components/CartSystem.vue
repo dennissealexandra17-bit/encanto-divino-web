@@ -24,12 +24,12 @@
           </div>
 
           <div v-else class="cart-items">
-            <div v-for="item in cartStore.items" :key="item.id" class="cart-item">
+            <div v-for="item in cartStore.items" :key="item.uniqueId || item.id" class="cart-item">
               <div class="item-image">
                 <span>📦</span>
               </div>
               <div class="item-details">
-                <h4>{{ item.name }}</h4>
+                <h4>{{ item.name }}<span v-if="item.tonoSeleccionado" class="item-tono"> - {{ item.tonoSeleccionado.nombre }}</span></h4>
                 <p class="item-price">{{ item.price }}</p>
                 <div class="quantity-controls">
                   <button @click="decreaseQuantity(item)" class="qty-btn">-</button>
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="item-actions">
-                <button @click="cartStore.removeItem(item.id)" class="remove-btn">🗑️</button>
+                <button @click="cartStore.removeItem(item.uniqueId || item.id)" class="remove-btn">🗑️</button>
               </div>
             </div>
           </div>
@@ -71,11 +71,11 @@ export default {
   name: 'CartSystem',
   setup() {
     const increaseQuantity = (item) => {
-      cartStore.updateQuantity(item.id, item.quantity + 1)
+      cartStore.updateQuantity(item.uniqueId || item.id, item.quantity + 1)
     }
 
     const decreaseQuantity = (item) => {
-      cartStore.updateQuantity(item.id, item.quantity - 1)
+      cartStore.updateQuantity(item.uniqueId || item.id, item.quantity - 1)
     }
 
     const sendToWhatsApp = () => {
@@ -273,6 +273,12 @@ export default {
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
   line-height: 1.3;
+}
+
+.item-tono {
+  color: #26c0b1;
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .item-price {

@@ -5,21 +5,20 @@
         <h2 class="section-title">Categorías Populares</h2>
       </div>
       <div class="categories-grid">
-                <router-link to="/limpiadores" class="link">
-
-        <div class="category-card">
-          <div class="category-icon">
-            <img
-              class="img-limpiadores"
-              src="../assets/categorias/limpiadores.jpg"
-              alt="Limpiadores"
-            />
+        <router-link to="/limpiadores" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-limpiadores"
+                src="../assets/categorias/limpiadores.jpg"
+                alt="Limpiadores"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Limpiadores</h3>
+              <p>Gel, espuma y aceites desmaquillantes</p>
+            </div>
           </div>
-          <div class="texto">
-             <h3 class="category-title">Limpiadores</h3>
-          <p>Gel, espuma y aceites desmaquillantes</p>
-          </div>
-        </div>
         </router-link>
         <router-link to="/tonicos" class="link">
           <div class="category-card">
@@ -30,75 +29,73 @@
                 alt="Tónicos"
               />
             </div>
-                      <div class="texto">
-
-            <h3 class="category-title">Tónicos</h3>
-            <p>Hidratación y preparación de la piel</p>
+            <div class="texto">
+              <h3 class="category-title">Tónicos</h3>
+              <p>Hidratación y preparación de la piel</p>
             </div>
           </div>
         </router-link>
-                <router-link to="/esencias-y-serums" class="link">
-
-        <div class="category-card">
-          <div class="category-icon">
-            <img
-              class="img-esencias"
-              src="../assets/categorias/esencias.png"
-              alt="Esencias"
-            />
+        <router-link to="/esencias-y-serums" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-esencias"
+                src="../assets/categorias/esencias.png"
+                alt="Esencias"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title" id="serums">Serums y Esencias</h3>
+              <p>Nutrición profunda y luminosidad</p>
+            </div>
           </div>
-          <div class="texto">
-          <h3 class="category-title" id="serums">Serums y Esencias</h3>
-          <p>Nutrición profunda y luminosidad</p></div>
-        </div>
         </router-link>
-                <router-link to="/mascarillas" class="link">
-
-        <div class="category-card">
-          <div class="category-icon">
-            <img
-              class="img-mascarillas"
-              src="../assets/categorias/mascarillas.jpeg"
-              alt="Mascarillas"
-            />
+        <router-link to="/mascarillas" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-mascarillas"
+                src="../assets/categorias/mascarillas.jpeg"
+                alt="Mascarillas"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Mascarillas</h3>
+              <p>Hidratación intensiva y cuidado</p>
+            </div>
           </div>
-          <div class="texto">
-            <h3 class="category-title">Mascarillas</h3>
-          <p>Hidratación intensiva y cuidado</p>
-          </div>
-        </div>
-     </router-link>
+        </router-link>
         <router-link to="/hidratantes" class="link">
-        <div class="category-card">
-          <div class="category-icon">
-            <img
-              class="img-protector"
-              src="../assets/categorias/hidratantes.jpeg"
-              alt="Cremas"
-            />
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-protector"
+                src="../assets/categorias/hidratantes.jpeg"
+                alt="Cremas"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Cremas Hidratantes</h3>
+              <p>Cremas hidratantes para la cara y los ojos</p>
+            </div>
           </div>
-          <div class="texto">
-          <h3 class="category-title">Cremas Hidratantes</h3>
-          <p>Cremas hidratantes para la cara y los ojos</p></div>
-        </div>
-              </router-link>
-      <router-link to="/proteccion-solar" class="link">
-        <div class="category-card">
-          <div class="category-icon">
-            <img
-              class="img-protector"
-              src="../assets/categorias/protector solar.jpg"
-              alt="Cremas"
-            />
+        </router-link>
+        <router-link to="/proteccion-solar" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-protector"
+                src="../assets/categorias/protector solar.jpg"
+                alt="Cremas"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Protección Solar</h3>
+              <p>Protección UV con textura ligera</p>
+            </div>
           </div>
-          <div class="texto">
-          <h3 class="category-title">Protección Solar</h3>
-          <p>Protección UV con textura ligera</p></div>
-        </div>
-              </router-link>
-
-        </div>
-
+        </router-link>
+      </div>
     </div>
   </section>
 </template>
@@ -167,7 +164,7 @@ export default {};
   border: 2px double #6d696a;
 }
 
-.link{
+.link {
   text-decoration: none;
 }
 .marcas-icon,
@@ -235,7 +232,7 @@ export default {};
   object-fit: cover;
   margin-top: 50px;
   border-radius: 15px;
-  border: 1px solid #ddd; 
+  border: 1px solid #ddd;
 }
 .img-protector {
   max-width: 200px;
@@ -243,7 +240,7 @@ export default {};
   object-fit: cover;
   margin-top: 50px;
   border-radius: 15px;
-  border: 1px solid #ddd; 
+  border: 1px solid #ddd;
 }
 
 .category-card h3 {
@@ -260,8 +257,7 @@ export default {};
   margin-top: 0.5rem;
 }
 
-
-.texto{
+.texto {
   margin-top: 60px;
 }
 

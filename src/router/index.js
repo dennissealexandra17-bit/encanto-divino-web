@@ -15,6 +15,7 @@ import hidratantesPage from '@/components/categorias/hidratantes.vue'
 import tocoboPage from '@/components/Tocobo.vue'
 import CosrxPage from '@/components/Cosrx.vue'
 import variasMarcasPage from '@/components/VariasMarcas.vue'
+import labialesPage from '@/components/maquillaje/labiales.vue'
   
 const routes = [
   {
@@ -96,6 +97,11 @@ const routes = [
       path: '/hidratantes',
       name: 'Cremas hidratantes',
       component: hidratantesPage
+    },
+    {
+      path: '/labiales',
+      name: 'Labiales',
+      component: labialesPage
     }
 
 ]

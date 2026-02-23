@@ -1,39 +1,73 @@
 <template>
-    <section class="categories" id="productos">
-      <div class="container">
-        <div class="titulo">
-          <h2 class="section-title">Maquillaje Asiático</h2>
-        </div>
-        <div class="categories-grid">
-          <div class="category-card">
-            <div class="category-icon">🧴</div>
-            <h3>Sombras</h3>
-            <p>Gel, espuma y aceites desmaquillantes</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">💧</div>
-            <h3>Labiales</h3>
-            <p>Hidratación y preparación de la piel</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">✨</div>
-            <h3>Máscaras de pestañas</h3>
-            <p>Nutrición profunda y luminosidad</p>
-          </div>
-          <div class="category-card">
-            <div class="category-icon">🌸</div>
-            <h3>Base</h3>
-            <p>Tratamientos concentrados específicos</p>
-          </div>
-        </div>
+  <section class="categories" id="productos">
+    <div class="container">
+      <div class="titulo">
+        <h2 class="section-title">Maquillaje Asiático</h2>
       </div>
-    </section>
+      <div class="categories-grid">
+         <router-link to="/sombras" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-sombras"
+                src="../assets/maquillaje/sombras.webp"
+                alt="Sombras"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Sombras de ojos</h3>
+            </div>
+          </div>
+        </router-link>
+        <router-link to="/labiales" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-labiales"
+                src="../assets/maquillaje/labiales.webp"
+                alt="Labiales"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Labiales</h3>
+            </div>
+          </div>
+        </router-link>
+        <router-link to="/mascaras" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-mascarillas"
+                src="../assets/maquillaje/mascara.png"
+                alt="Mascarillas"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Máscaras de pestañas</h3>
+            </div>
+          </div>
+        </router-link>
+        <router-link to="/otros" class="link">
+          <div class="category-card">
+            <div class="category-icon">
+              <img
+                class="img-otros"
+                src="../assets/maquillaje/otros.jpg"
+                alt="Otros productos"
+              />
+            </div>
+            <div class="texto">
+              <h3 class="category-title">Otros productos</h3>
+            </div>
+          </div>
+        </router-link>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped>
@@ -43,8 +77,8 @@ export default {
   margin-top: 2rem;
   border-radius: 14px;
   background: #efb9cb37;
-  border: 2px solid #E6ADEC;
-  box-shadow: 0 4px 18px #E6ADEC33;
+  border: 2px solid #e6adec;
+  box-shadow: 0 4px 18px #e6adec33;
 }
 
 .section-title {
@@ -66,6 +100,7 @@ export default {
   border-radius: 10px;
 }
 
+
 .titulo {
   display: flex;
   justify-content: center;
@@ -76,53 +111,60 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
 }
-
 .category-card {
-  background: linear-gradient(135deg, #FFFFFF 70%, #6D696A 110%);
-  padding: 2rem 1.5rem;
+  background: linear-gradient(135deg, #ffffff 40%, #e68c06 110%);
+  
   border-radius: 20px;
+  aspect-ratio: 1 / 1.1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
   text-align: center;
- transition: transform 0.3s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s, background 0.3s;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  aspect-ratio: 1 / 1.2;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-decoration: none;
-  overflow: hidden; 
-  border: 2px double #6D696A; 
-
+  overflow: hidden;
+  border: 2px double #6d696a;
 }
 .marcas-icon,
 .marcas-card h3 {
-  transition: transform 0.35s cubic-bezier(.4,1.5,.5,1), box-shadow 0.3s;
+  transition: transform 0.35s cubic-bezier(0.4, 1.5, 0.5, 1), box-shadow 0.3s;
 }
 
+.texto {
+  align-self: start;
+}
+
+.category-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+.category-icon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;  
+}
+
+.category-icon img {
+  max-width: 85%;
+  max-height: 200px;
+  object-fit: contain;
+}
 
 .category-card:hover {
-    background: linear-gradient(135deg, #757575 30%,#FFFFFF 80%);
-     
-   background-position: left top;
-     transform: translateY(-6px);
- border: 2px solid #6D696A;
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
+  background: linear-gradient(135deg, #e68c06 30%, #ffffff 80%);
+
+  background-position: left top;
+  transform: translateY(-6px);
+  border: 2px solid #6d696a;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
     background-position 0.35s ease;
   box-shadow: 0 0 0 3px rgba(133, 133, 133, 0.25);
 }
 
-.category-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.8rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
+.link {
+  text-decoration: none;
 }
+
 
 .category-card h3 {
   color: #333;
@@ -141,10 +183,11 @@ export default {
     padding: 0.7rem 0.7rem;
   }
   .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
   .category-card {
-    padding: 1.2rem 0.7rem;
+    padding: 0.9rem;
     font-size: 0.95rem;
   }
   .category-icon {
@@ -160,8 +203,12 @@ export default {
   .section-title {
     font-size: 1.2rem;
   }
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
   .category-card {
-    padding: 0.7rem 0.3rem;
+    padding: 0.7rem;
     font-size: 0.85rem;
   }
   .category-icon {
